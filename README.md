@@ -9,6 +9,14 @@ and the official 42 [minilibx](https://github.com/42Paris/minilibx-linux) submod
 git clone --recurse-submodules https://github.com/mvomiero/42_miniRT.git
 ```
 
-### Checklist before the evaluation:
+#### Checklist before the evaluation:
 
 * libft and minilibx as normal folders and not links to repos
+
+#### Git:
+
+* to create a new branch and change to it: `git branch <branchname>`, `git checkout <branchname>`
+
+* to merge the branch in main: `git checkout <main>`, `git merge <branchname>`
+
+* to see modifications: `git pull`
