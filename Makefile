@@ -6,7 +6,7 @@
 #    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/23 16:14:35 by lde-ross         ###   ########.fr        #
+#    Updated: 2023/06/23 16:56:40 by lde-ross         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ GREEN	= \e[32m
 
 # Compiler
 CC		= cc
-CFLAGS	= -Werror -Wextra -Wall
+CFLAGS	= -Werror -Wextra -Wall -g3
 LIBRARIES = $(MLX) $(LIBFT) -lm -lX11 -lXext
 
 # Libft
