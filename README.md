@@ -9,6 +9,6 @@ and the official 42 [minilibx](https://github.com/42Paris/minilibx-linux) submod
 git clone --recurse-submodules https://github.com/mvomiero/42_miniRT.git
 ```
 
-### Chechlist before the evaluation:
+### Checklist before the evaluation:
 
 * libft and minilibx as normal folders and not links to repos
