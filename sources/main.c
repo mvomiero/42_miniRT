@@ -3,17 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:27:58 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/23 13:55:30 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:24:55 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
-	printf("hello world!\n");
-	ft_putendl_fd("ciao", 2);
+	if (argc != 2)
+	{
+		ft_putendl_fd("Error", 2);
+		ft_putendl_fd("Wrong number of arguments", 2);
+		return (1);
+	}
+	parser(argv[1]);
 }
