@@ -53,17 +53,9 @@ bool parser(char *arg)
 {
 	int fd;
 	if (ft_strncmp(ft_strrchr(arg, '.'), ".rt", 4) != 0)
-	{
-		ft_putendl_fd("Error", 2);
-		ft_putendl_fd("Wrong file extension", 2);
-		return (false);
-	}
+		return(err_msg("Error: Wrong file extension", NULL, NULL), false);
 	fd = open(arg, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_putendl_fd("Error", 2);
-		ft_putendl_fd("File not found", 2);
-		return (false);
-	}
+		return(err_msg("Error: Promblem opening file", NULL, NULL), false);
 	return (parse_lines(fd));
 }
