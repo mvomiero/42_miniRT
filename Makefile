@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
+#    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/23 16:56:40 by lde-ross         ###   ########.fr        #
+#    Updated: 2023/06/26 15:18:03 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ INC			=	-I ./includes/ \
 SRC_PATH	=	sources/
 SRC			=	main.c \
 				initialization/init.c \
-				parse/parser.c
+				parse/parser.c \
+				utils/error.c
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
@@ -68,6 +69,7 @@ $(OBJ_PATH):
 	@mkdir $(OBJ_PATH)
 	@mkdir $(OBJ_PATH)/initialization
 	@mkdir $(OBJ_PATH)/parse
+	@mkdir $(OBJ_PATH)/utils
 
 $(MLX):
 	@echo "Making MiniLibX..."
