@@ -36,26 +36,40 @@ bool direct_parser(char *line)
 bool parse_lines(int fd)
 {
 	char *line;
+	char **tab;
 
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!direct_parser(line))
-			return (false);
-		printf("%s\n", line);
+		tab = ft_split(line, ' ');
+		// we will handle it in the parse_elements()
+		if (tab[0][0] == '\n')
+			printf("yesss\n"); // we wont parse
+
+		// split
+		// parseing 
+		// parse_elements(char **tab, t_data *data);
+		ft_print_strarr(tab);
+		free_tab(tab);
+
+		//printf("%s\n", line);
 		free(line);
 		line = get_next_line(fd);
 	}
 	return (true);
 }
 
-bool parser(char *arg)
+bool parser(char *arg) // add the struct t_data *data
 {
 	int fd;
 	if (ft_strncmp(ft_strrchr(arg, '.'), ".rt", 4) != 0)
-		return(err_msg("Error: Wrong file extension", NULL, NULL), false);
+		return(err_msg("Wrong file extension", NULL, NULL), false);
 	fd = open(arg, O_RDONLY);
 	if (fd < 0)
-		return(err_msg("Error: Promblem opening file", NULL, NULL), false);
+		return(err_msg("Promblem opening file", NULL, NULL), false);
+	// creation of the 2D array
+	// parse it in our struct
+	// free the array
+
 	return (parse_lines(fd));
 }

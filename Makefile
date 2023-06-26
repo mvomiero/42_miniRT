@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/26 15:18:03 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/06/26 15:41:29 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRC_PATH	=	sources/
 SRC			=	main.c \
 				initialization/init.c \
 				parse/parser.c \
-				utils/error.c
+				utils/error.c \
+				utils/utils.c
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 

@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/26 15:38:08 by mvomiero         ###   ########.fr       */
+/*   Created: 2023/06/26 15:36:39 by mvomiero          #+#    #+#             */
+/*   Updated: 2023/06/26 15:43:04 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "minirt.h"
 
-# include <X11/keysym.h> 		
-# include <X11/X.h>
-# include "../minilibx-linux/mlx.h"
-# include "../libft/libft.h"
-# include "minirt_structs.h"
-# include "Colors.h"
-# include <stdio.h>
-# include <math.h>
-# include <stdbool.h>
+void	free_tab(char **array)
+{
+	int	i;
 
-/* PARSER */
-bool parser(char *arg);
-
-/* ERROR */
-void	err_msg(char *s1, char *s2, char *s3);
-
-/* UTILS */
-void	free_tab(char **array);
-
-
-
-#endif
+	i = 0;
+	if (array)
+	{
+		while (array[i])
+		{
+			if (array[i])
+			{
+				free(array[i]);
+				array[i] = NULL;
+			}
+			i++;
+		}
+		free(array);
+		array = NULL;
+	}
+}
