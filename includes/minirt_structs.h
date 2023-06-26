@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/26 16:27:38 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/26 17:34:16 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@
 # include "minirt.h"
 
 /* ELEMENTS */
+
+typedef struct s_data
+{
+	t_sphere	*spheres;
+	t_cylinder	*cylinders;
+	t_plane		*plane;
+	t_ambient	*ambient;
+	t_camera	*camera;
+	t_light		*light;
+}				t_data;
+
 
 typedef struct	s_vect
 {
@@ -53,25 +64,28 @@ typedef struct	s_light
 
 typedef struct	s_sphere
 {
-	t_vect	pos;
-	double	diameter;
-	t_color	color;
+	t_vect			pos;
+	double			diameter;
+	t_color			color;
+	struct s_sphere	*next;
 }			t_sphere;
 
 typedef struct	s_plane
 {
-	t_vect	pos;
-	t_vect	norm_vect;
-	t_color	color;
+	t_vect			pos;
+	t_vect			norm_vect;
+	t_color			color;
+	struct s_plane	*next;
 }			t_plane;
 
 typedef struct	s_cylinder
 {
-	t_vect	pos;
-	t_vect	norm_vect;
-	double	diameter;
-	double	height;
-	t_color	color;
+	t_vect				pos;
+	t_vect				norm_vect;
+	double				diameter;
+	double				height;
+	t_color				color;
+	struct s_cylinder	*next;
 }			t_cylinder;
 
 #endif
