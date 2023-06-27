@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/27 18:50:12 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:08:47 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,17 @@ typedef struct	s_light
 
 typedef struct	s_sphere
 {
-	t_vect			*pos;
+	t_vect			pos;
 	double			diameter;
-	t_color			*color;
+	t_color			color;
 	struct s_sphere	*next;
 }			t_sphere;
 
 typedef struct	s_plane
 {
-	t_vect			*pos;
+	t_vect			pos;
 	t_vect			norm_vect;
-	t_color			*color;
+	t_color			color;
 	struct s_plane	*next;
 }			t_plane;
 
