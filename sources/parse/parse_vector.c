@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_vector.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:50:40 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/27 16:10:58 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:24:55 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_vect	*parse_vector(char *str, bool normalized)
 	temp->x = ft_atof(tab[0]);
 	temp->y = ft_atof(tab[1]);
 	temp->z = ft_atof(tab[2]);
+	printf("length array vector %d\n", ft_arrlen(tab));
 	free_tab(tab);
 	return (temp);
 }
