@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/27 17:18:52 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:50:12 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static bool	parse_elements(t_data *data, char **tab)
 {
 	if (ft_strncmp("A", tab[0], 2) == 0)
 		return (parse_ambient(data, tab));
-	else if (ft_strncmp("sp", tab[0], 2) == 0)
-		return (parse_sphere(data, tab));
-/* 	else if (ft_strncmp("C", tab[0], 2) == 0)
-		return (parse_camera(data, tab)); */
+	else if (ft_strncmp("C", tab[0], 2) == 0)
+		return (parse_camera(data, tab));
+	else if (ft_strncmp("L", tab[0], 2) == 0)
+		return (parse_light(data, tab));
 	return (false);
 }
 
@@ -43,8 +43,6 @@ static bool	parse_lines(t_data *data, int fd)
 			free_tab(tab);
 			//err_msg("parsing error!");
 			return (false);
-
-
 		}
 		ft_print_strarr(tab);
 		free_tab(tab);

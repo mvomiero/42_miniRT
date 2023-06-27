@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:24:23 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/27 15:24:38 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:46:42 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,18 @@ static bool	color_check(char **str)
 	return (true);
 }
 
-t_color	*parse_color(char *str)
+bool	parse_color(char *str, t_color *color)
 {
 	char	**tab;
-	t_color	*temp;
 
 	tab = ft_split(str, ',');
 	if (!tab)
-		return (NULL);
+		return (false);
 	if (ft_arrlen(tab) != 3 || !color_check(tab))
-		return (free_tab(tab), NULL);
-	temp = malloc(sizeof(temp));
-	temp->r = ft_atoi(tab[0]);
-	temp->g = ft_atoi(tab[1]);
-	temp->b = ft_atoi(tab[2]);
+		return (free_tab(tab), false);
+	color->r = ft_atoi(tab[0]);
+	color->g = ft_atoi(tab[1]);
+	color->b = ft_atoi(tab[2]);
 	free_tab(tab);
-	return (temp);
+	return (true);
 }
