@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/27 19:02:18 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/06/27 19:21:25 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRC			=	main.c \
 				parse/parse_camera.c \
 				parse/parse_light.c \
 				parse/parse_sphere.c \
+				parse/parse_plane.c \
 				utils/error.c \
 				utils/utils.c \
 				utils/init.c \

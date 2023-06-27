@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/27 19:03:37 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:21:08 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ bool	parse_ambient(t_data *data, char **tab);
 bool	parse_camera(t_data *data, char **tab);
 bool	parse_light(t_data *data, char **tab);
 bool	parse_sphere(t_data *data, char **tab);
+bool	parse_plane(t_data *data, char **tab);
+
 
 
 
