@@ -6,7 +6,7 @@
 #    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/27 15:55:42 by lde-ross         ###   ########.fr        #
+#    Updated: 2023/06/27 16:19:08 by lde-ross         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRC			=	main.c \
 				parse/parse_vector.c \
 				parse/parse_ambient.c \
 				parse/parse_camera.c \
+				parse/parse_light.c \
 				utils/error.c \
 				utils/utils.c
 

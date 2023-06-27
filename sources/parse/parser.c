@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/27 15:40:09 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:25:14 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static bool	parse_elements(t_data *data, char **tab)
 		return (parse_ambient(data, tab));
 	else if (ft_strncmp("C", tab[0], 2) == 0)
 		return (parse_camera(data, tab));
+	else if (ft_strncmp("L", tab[0], 2) == 0)
+		return (parse_light(data, tab));
 	return (false);
 }
 
