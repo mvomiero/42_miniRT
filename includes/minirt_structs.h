@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/27 18:02:00 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:19:07 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,17 @@ typedef struct	s_cylinder
 	struct s_cylinder	*next;
 }			t_cylinder;
 
+typedef struct s_vector
+{
+	int	x;
+	int	y;
+}				t_vector;
+
+typedef struct s_window {
+	void		*reference;
+	t_vector	size;
+}				t_window;
+
 typedef struct s_data
 {
 	t_sphere	*spheres;
@@ -88,6 +99,8 @@ typedef struct s_data
 	t_ambient	*ambient;
 	t_camera	*camera;
 	t_light		*light;
+	void		*mlx;
+	t_window	window;
 }				t_data;
 
 #endif

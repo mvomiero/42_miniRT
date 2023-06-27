@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 13:27:58 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/27 19:34:03 by lde-ross         ###   ########.fr       */
+/*   Created: 2023/06/27 16:37:09 by lde-ross          #+#    #+#             */
+/*   Updated: 2023/06/27 19:03:44 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
-int	main(int argc, char *argv[])
+void	init_data(t_data *data)
 {
-	t_data data;
-	// data.objects (t_data *data) (&data)
-	if (argc != 2)
-	{
-		err_msg("Wrong number of arguments!", NULL, NULL);
-		return (1);
-	}
-	init_data(&data);
-	// if (!parser(&data, argv[1]))
-	// {
-	// 	free_structs(&data);
-	// 	return (1);
-	// }
-	parser(&data, argv[1]);
-	init_mlx(&data);
-	mlx_loop(data.mlx);
-
-	return 0;
+	data->ambient = NULL;
+	data->camera = NULL;
+	data->light = NULL;
+	data->spheres = NULL;
+	data->plane = NULL;
+	data->cylinders = NULL;
+	// data->spheres->next = NULL;
+	// data->plane->next = NULL;
+	// data->cylinders->next = NULL;
 }

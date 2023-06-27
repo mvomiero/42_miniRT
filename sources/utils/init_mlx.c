@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 16:37:09 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/27 16:42:07 by lde-ross         ###   ########.fr       */
+/*   Created: 2023/06/27 19:16:21 by lde-ross          #+#    #+#             */
+/*   Updated: 2023/06/27 19:34:52 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void	init(t_data *data)
+static int	close_rt(void *param)
 {
-	data->ambient = NULL;
-	data->camera = NULL;
-	data->light = NULL;
-	data->spheres = NULL;
-	data->plane = NULL;
-	data->cylinders = NULL;
-	// data->spheres->next = NULL;
-	// data->plane->next = NULL;
-	// data->cylinders->next = NULL;
+	t_data	*app;
+
+	app = (t_data *)param;
+	free_structs(app);
+	mlx_destroy_window(app->mlx, app->window.reference);
+	mlx_destroy_display(app->mlx);
+	free(app->mlx);
+	exit(0);
+	return (0);
+}
+
+void	init_mlx(t_data *data)
+{
+	data->mlx = mlx_init();
+	data->window.reference = mlx_new_window(data->mlx, 800, 600, "miniRT");
+	mlx_hook(data->window.reference, 17, 0, close_rt, (void *)data);
+	
 }
