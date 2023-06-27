@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/26 19:05:51 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:49:00 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct	s_ambient
 
 typedef struct	s_camera
 {
-	t_vect	pos;
-	t_vect	norm_vect;
+	t_vect	*pos;
+	t_vect	*norm_vect;
 	int		fov; // field of view
 }			t_camera;
 
