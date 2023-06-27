@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/27 16:24:39 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:26:06 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static bool	parse_elements(t_data *data, char **tab)
 		return (parse_ambient(data, tab));
 	if (ft_strncmp("sp", tab[0], 3) == 0)
 		return (parse_sphere(data, tab));
-	else if (ft_strncmp("C", tab[0], 2) == 0)
-		return (parse_camera(data, tab));
+/* 	else if (ft_strncmp("C", tab[0], 2) == 0)
+		return (parse_camera(data, tab)); */
 	return (false);
 }
 
