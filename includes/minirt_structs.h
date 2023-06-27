@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/27 16:19:34 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:02:00 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,21 @@ typedef struct	s_color
 typedef struct	s_ambient
 {
 	double	light_ratio;
-	t_color	*color;
+	t_color	color;
 }			t_ambient;
 
 typedef struct	s_camera
 {
-	t_vect	*pos;
-	t_vect	*norm_vect;
+	t_vect	pos;
+	t_vect	norm_vect;
 	int		fov; // field of view
 }			t_camera;
 
 typedef struct	s_light
 {
-	t_vect	*pos;
+	t_vect	pos;
 	double	brightness;
-	t_color	*color;
+	t_color	color;
 }			t_light;
 
 typedef struct	s_sphere

@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/27 16:25:14 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:00:15 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ static bool	parse_lines(t_data *data, int fd)
 			free_tab(tab);
 			//err_msg("parsing error!");
 			return (false);
-
-
 		}
 		ft_print_strarr(tab);
 		free_tab(tab);

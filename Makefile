@@ -6,7 +6,7 @@
 #    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/27 16:19:08 by lde-ross         ###   ########.fr        #
+#    Updated: 2023/06/27 16:56:55 by lde-ross         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,9 @@ SRC			=	main.c \
 				parse/parse_camera.c \
 				parse/parse_light.c \
 				utils/error.c \
-				utils/utils.c
+				utils/utils.c \
+				utils/init.c \
+				utils/free_structs.c \
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 

@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:30:49 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/27 16:10:06 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:22:25 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,17 @@ static int parse_fov(char *str)
 bool	parse_camera(t_data *data, char **tab)
 {
 	t_camera	*temp;
-	t_vect		*pos;
-	t_vect		*norm_vect;
-	int			fov; // field of view
 
 	if (ft_arrlen(tab) != 4)
-		return (err_msg("invalid .rt file", NULL, NULL), false);
-	pos = parse_vector(tab[1], false);
-	norm_vect = parse_vector(tab[2], true);
-	if (!pos || !norm_vect)
-		return (err_msg("invalid .rt file", NULL, NULL), false);
-	fov = parse_fov(tab[3]);
-	if (fov == -1)
-		return (err_msg("invalid .rt file", NULL, NULL), false);
-	temp = malloc(sizeof(temp));
+		return (err_msg("Invalid camera settings", "1", NULL), false);
+	temp = malloc(sizeof(t_camera));
 	if (!temp)
 		return (false);
-	temp->pos = pos;
-	temp->norm_vect = norm_vect;
-	temp->fov = fov;
 	data->camera = temp;
+	if (!parse_vector(tab[1], false, &(temp->pos)) || !parse_vector(tab[2], true, &(temp->norm_vect)))
+		return (err_msg("Invalid camera settings", "Invalid vector detected", NULL), false);
+	temp->fov = parse_fov(tab[3]);
+	if (temp->fov == -1)
+		return (err_msg("Invalid camera settings", "Invalid FOV", NULL), false);
 	return (true);
 }

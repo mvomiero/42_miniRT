@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:27:58 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/26 19:19:31 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:08:01 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ int	main(int argc, char *argv[])
 		err_msg("Wrong number of arguments!", NULL, NULL);
 		return (1);
 	}
+	init(&data);
 	if (!parser(&data, argv[1]))
-		err_msg("parsing error!", NULL, NULL);
+	{
+		free_structs(&data);
+		return (1);
+	}
 	//printf("parser result is %d\n", parser(argv[1]));
 	
 	return 0;
