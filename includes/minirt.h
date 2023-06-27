@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/27 15:24:54 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:06:12 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 bool parser(t_data *data, char *arg);
 t_color	*parse_color(char *str);
 bool	parse_ambient(t_data *data, char **tab);
+bool	parse_sphere(t_data *data, char **tab);
+
 
 
 /* ERROR */
