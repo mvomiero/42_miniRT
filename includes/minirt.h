@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/27 16:06:12 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:23:46 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 /* PARSER */
 bool parser(t_data *data, char *arg);
 t_color	*parse_color(char *str);
+t_vect	*parse_vector(char *str, bool normalized);
 bool	parse_ambient(t_data *data, char **tab);
 bool	parse_sphere(t_data *data, char **tab);
-
 
 
 /* ERROR */
