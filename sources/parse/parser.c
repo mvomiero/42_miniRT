@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/27 17:00:15 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/28 11:11:05 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ static bool	parse_elements(t_data *data, char **tab)
 		return (parse_camera(data, tab));
 	else if (ft_strncmp("L", tab[0], 2) == 0)
 		return (parse_light(data, tab));
+	else if (ft_strncmp("sp", tab[0], 3) == 0)
+		return (parse_sphere(data, tab));
+	else if (ft_strncmp("pl", tab[0], 3) == 0)
+		return (parse_plane(data, tab));
+	else if (ft_strncmp("cy", tab[0], 3) == 0)
+		return (parse_cylinder(data, tab));
 	return (false);
 }
 
@@ -31,23 +37,22 @@ static bool	parse_lines(t_data *data, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		tab = ft_split(line, ' ');
-		// protect split output
-		free(line);
-
-
-		// split
-		// parseing 
-		if (!tab || !parse_elements(data, tab))
+		if (line[0] != '\n')
 		{
+			tab = ft_split(line, ' ');
+			if (!tab || !parse_elements(data, tab))
+			{
+				free(line);
+				free_tab(tab);
+				//err_msg("parsing error!");
+				return (false);
+			}
+			ft_print_strarr(tab);
 			free_tab(tab);
-			//err_msg("parsing error!");
-			return (false);
 		}
-		ft_print_strarr(tab);
-		free_tab(tab);
 
 		//printf("%s\n", line);
+		free(line);
 		line = get_next_line(fd);
 	}
 	return (true);
