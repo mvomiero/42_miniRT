@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 15:20:15 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:48:12 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,9 @@ typedef struct s_data
 	t_camera	*camera;
 	t_light		*light;
 	void		*mlx;
-	t_window	window;
+	void		*win;
+	void		*img;
+	char		*buf;
 }				t_data;
 
 #endif
