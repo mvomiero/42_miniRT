@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 15:38:20 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:38:51 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,8 @@ void	free_structs(t_data *data);
 
 /* RENDER */
 void	render(t_data *data);
+
+bool rayIntersectsSphere(t_vect rayOrigin, t_vect rayDirection, t_sphere sphere);
+
 
 #endif

@@ -6,17 +6,16 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:37:24 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/28 16:10:16 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:39:14 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-
+#include "../../includes/minirt.h"
 
 static void	set_pixel_color(t_data *data, int x, int y, int color)
 {
 	(void)color;
-	data->buf[x * 4 + y * WIDTH * 4] = (char)255; // B
+	data->buf[x * 4 + y * WIDTH * 4] = (char)color; // B
 	data->buf[x * 4 + y * WIDTH * 4 + 1] = (char)0; // G
 	data->buf[x * 4 + y * WIDTH * 4 + 2] = (char)0; // R
 	data->buf[x * 4 + y * WIDTH * 4 + 3] = (char)0; // Trans
@@ -27,7 +26,6 @@ void	render_2(t_data *data)
 	int		x;
 	int		y;
 
-
 	y = -1;
 	while (++y < HEIGHT)
 	{
@@ -35,10 +33,10 @@ void	render_2(t_data *data)
 		while (++x < WIDTH)
 		{
 
-			if (x < WIDTH/2)
-				set_pixel_color(data, x, y, 0xF6CC22);
+			if (rayIntersectsSphere(data->camera->pos, data->camera->norm_vect, *(data->spheres)))
+				set_pixel_color(data, x, y, 12);
 			else
-				set_pixel_color(data, x, y, 0x8513D4);
+				set_pixel_color(data, x, y, 255);
 		}
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
