@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:30:49 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/27 18:22:25 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:46:02 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,16 @@ bool	parse_camera(t_data *data, char **tab)
 	t_camera	*temp;
 
 	if (ft_arrlen(tab) != 4)
-		return (err_msg("Invalid camera settings", "1", NULL), false);
+		return (err_msg("Invalid camera arguments number", NULL, NULL), false);
 	temp = malloc(sizeof(t_camera));
 	if (!temp)
 		return (false);
 	data->camera = temp;
-	if (!parse_vector(tab[1], false, &(temp->pos)) || !parse_vector(tab[2], true, &(temp->norm_vect)))
-		return (err_msg("Invalid camera settings", "Invalid vector detected", NULL), false);
+	if (!parse_vector(tab[1], false, &(temp->pos)) 
+		|| !parse_vector(tab[2], true, &(temp->norm_vect)))
+		return (err_msg("Invalid camera vector", NULL, NULL), false);
 	temp->fov = parse_fov(tab[3]);
 	if (temp->fov == -1)
-		return (err_msg("Invalid camera settings", "Invalid FOV", NULL), false);
+		return (err_msg("Invalid camera FOV", NULL, NULL), false);
 	return (true);
 }

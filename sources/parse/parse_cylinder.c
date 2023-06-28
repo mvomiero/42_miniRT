@@ -32,7 +32,7 @@ bool	parse_cylinder(t_data *data, char **tab)
 	t_cylinder	*temp;
 
 	if (ft_arrlen(tab) != 6)
-		return (err_msg("invalid .rt file", NULL, NULL), false);
+		return (err_msg("invalid cylinder arguments", NULL, NULL), false);
 	temp = malloc(sizeof(t_cylinder));
 	if (!temp)
 		return (false);
@@ -45,7 +45,7 @@ bool	parse_cylinder(t_data *data, char **tab)
 	temp->height = ft_atof(tab[4]);
 	if ((!temp->diameter && !ft_is_zero(tab[3])) ||
 				(!temp->height && !ft_is_zero(tab[4])))
-		return (err_msg("invalid .rt file", NULL, NULL), false);
+		return (err_msg("invalid cylinder configuration", NULL, NULL), false);
 	temp->next = NULL;
 	return (true);
 }

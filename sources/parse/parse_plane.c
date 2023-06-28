@@ -32,7 +32,7 @@ bool	parse_plane(t_data *data, char **tab)
 	t_plane	*temp;
 
 	if (ft_arrlen(tab) != 4)
-		return (err_msg("invalid .rt file", NULL, NULL), false);
+		return (err_msg("invalid plane arguments number", NULL, NULL), false);
 	temp = malloc(sizeof(t_plane));
 	if (!temp)
 		return (false);
