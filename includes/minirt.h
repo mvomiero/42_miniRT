@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 15:19:52 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:24:40 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <stdio.h>
 # include <math.h>
 # include <stdbool.h>
+
+# define WIDTH 800
+# define HEIGHT 600
 
 /* PARSER */
 bool parser(t_data *data, char *arg);
