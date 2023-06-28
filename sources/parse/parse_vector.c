@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:50:40 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/27 18:48:53 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:48:45 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	vector_check(char **str, bool normalized)
 {
 	double	nb;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i < 3)

@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/28 12:47:30 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:49:50 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static bool	parse_elements(t_data *data, char **tab)
 
 static bool	parse_lines(t_data *data, int fd)
 {
-	char *line;
-	char **tab;
+	char	*line;
+	char	**tab;
 
 	line = get_next_line(fd);
 	while (line)
@@ -55,14 +55,14 @@ static bool	parse_lines(t_data *data, int fd)
 	return (true);
 }
 
-bool parser(t_data *data, char *arg)
+bool	parser(t_data *data, char *arg)
 {
-	int fd;
+	int	fd;
 
 	if (ft_strncmp(ft_strrchr(arg, '.'), ".rt", 4) != 0)
-		return(err_msg("Wrong file extension", NULL, NULL), false);
+		return (err_msg("Wrong file extension", NULL, NULL), false);
 	fd = open(arg, O_RDONLY);
 	if (fd < 0)
-		return(err_msg("Promblem opening file", NULL, NULL), false);
+		return (err_msg("Promblem opening file", NULL, NULL), false);
 	return (parse_lines(data, fd));
 }

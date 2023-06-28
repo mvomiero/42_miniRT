@@ -6,13 +6,13 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:30:49 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/28 12:46:02 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:53:07 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static int parse_fov(char *str)
+static int	parse_fov(char *str)
 {
 	int	nb;
 

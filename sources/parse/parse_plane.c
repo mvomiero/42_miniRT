@@ -37,9 +37,9 @@ bool	parse_plane(t_data *data, char **tab)
 	if (!temp)
 		return (false);
 	lstadd_plane(&data->plane, temp);
-	if (!parse_vector(tab[1], false, &(temp->pos)) || 
-				!parse_vector(tab[2], true, &(temp->norm_vect)) || 
-						!parse_color(tab[3], &temp->color))
+	if (!parse_vector(tab[1], false, &(temp->pos)) 
+		|| !parse_vector(tab[2], true, &(temp->norm_vect))
+		|| !parse_color(tab[3], &temp->color))
 		return (err_msg("invalid plane configuration", NULL, NULL), false);
 	temp->next = NULL;
 	return (true);

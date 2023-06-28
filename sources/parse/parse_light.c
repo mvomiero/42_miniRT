@@ -6,13 +6,13 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:17:55 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/28 12:47:08 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:52:43 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static double parse_brightness(char *str)
+static double	parse_brightness(char *str)
 {
 	double	nb;
 
@@ -22,7 +22,7 @@ static double parse_brightness(char *str)
 	else if (!nb && !ft_is_zero(str))
 		return (-1);
 	else
-		return nb;
+		return (nb);
 }
 
 bool	parse_light(t_data *data, char **tab)

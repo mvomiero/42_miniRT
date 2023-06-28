@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:41:33 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 12:40:41 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:56:06 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	parse_sphere(t_data *data, char **tab)
 	if (!temp->diameter && !ft_is_zero(tab[2]))
 		return (err_msg("invalid sphere configuration", NULL, NULL), false);
 	if (!parse_vector(tab[1], false, &(temp->pos)) || 
-						!parse_color(tab[3], &temp->color))
+		!parse_color(tab[3], &temp->color))
 		return (err_msg("invalid sphere configuration", NULL, NULL), false);
 	temp->next = NULL;
 	return (true);
