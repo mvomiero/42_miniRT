@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 12:11:59 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:19:52 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ bool	parse_light(t_data *data, char **tab);
 bool	parse_sphere(t_data *data, char **tab);
 bool	parse_plane(t_data *data, char **tab);
 bool	parse_cylinder(t_data *data, char **tab);
-
-
-
 
 
 /* ERROR */

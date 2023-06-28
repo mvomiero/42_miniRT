@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 12:11:33 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:20:15 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_data
 {
 	t_sphere	*spheres;
 	t_cylinder	*cylinders;
-	t_plane		*plane;
+	t_plane		*planes;
 	t_ambient	*ambient;
 	t_camera	*camera;
 	t_light		*light;

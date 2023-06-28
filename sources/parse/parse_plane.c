@@ -36,7 +36,7 @@ bool	parse_plane(t_data *data, char **tab)
 	temp = malloc(sizeof(t_plane));
 	if (!temp)
 		return (false);
-	lstadd_plane(&data->plane, temp);
+	lstadd_plane(&data->planes, temp);
 	if (!parse_vector(tab[1], false, &(temp->pos)) 
 		|| !parse_vector(tab[2], true, &(temp->norm_vect))
 		|| !parse_color(tab[3], &temp->color))
