@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 13:27:58 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 12:35:45 by mvomiero         ###   ########.fr       */
+/*   Created: 2023/06/26 15:15:21 by mvomiero          #+#    #+#             */
+/*   Updated: 2023/06/27 16:50:25 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int argc, char *argv[])
+void	err_msg(char *s1, char *s2, char *s3)
 {
-	t_data data;
-
-	if (argc != 2)
-		return (err_msg("Wrong number of arguments!", NULL, NULL), 1);
-	init_data(&data);
-	if (!parser(&data, argv[1]))
-		return (free_structs(&data), 1);
-
-	init_mlx(&data);
-	mlx_loop(data.mlx);
-
-	return 0;
+	ft_putendl_fd("miniRT: Error", STDERR_FILENO);
+	ft_putendl_fd(s1, STDERR_FILENO);
+	if (s2)
+		ft_putendl_fd(s2, STDERR_FILENO);
+	if (s3)
+		ft_putendl_fd(s3, STDERR_FILENO);
 }

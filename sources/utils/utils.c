@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 13:27:58 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 12:35:45 by mvomiero         ###   ########.fr       */
+/*   Created: 2023/06/26 15:36:39 by mvomiero          #+#    #+#             */
+/*   Updated: 2023/06/27 18:14:26 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int argc, char *argv[])
+void	free_tab(char **array)
 {
-	t_data data;
+	int	i;
 
-	if (argc != 2)
-		return (err_msg("Wrong number of arguments!", NULL, NULL), 1);
-	init_data(&data);
-	if (!parser(&data, argv[1]))
-		return (free_structs(&data), 1);
-
-	init_mlx(&data);
-	mlx_loop(data.mlx);
-
-	return 0;
+	i = 0;
+	if (array)
+	{
+		while (array[i])
+		{
+			if (array[i])
+			{
+				free(array[i]);
+				array[i] = NULL;
+			}
+			i++;
+		}
+		free(array);
+		array = NULL;
+	}
 }
