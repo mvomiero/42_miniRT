@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 15:24:40 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:38:20 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,9 @@ void	init_data(t_data *data);
 void	init_mlx(t_data *data);
 void	free_tab(char **array);
 void	free_structs(t_data *data);
+
+
+/* RENDER */
+void	render(t_data *data);
 
 #endif

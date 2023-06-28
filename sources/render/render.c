@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 13:27:58 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 15:38:58 by lde-ross         ###   ########.fr       */
+/*   Created: 2023/06/28 15:37:24 by lde-ross          #+#    #+#             */
+/*   Updated: 2023/06/28 15:37:52 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int argc, char *argv[])
+void	render(t_data *data)
 {
-	t_data data;
-
-	if (argc != 2)
-		return (err_msg("Wrong number of arguments!", NULL, NULL), 1);
-	init_data(&data);
-	if (!parser(&data, argv[1]))
-		return (free_structs(&data), 1);
-	init_mlx(&data);
-	render(&data);
-	mlx_loop(data.mlx);
-	return 0;
+	
 }

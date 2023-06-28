@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/28 12:10:26 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/06/28 15:38:41 by lde-ross         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC			=	main.c \
 				utils/init_data.c \
 				utils/init_mlx.c \
 				utils/free_structs.c \
+				render/render.c \
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
@@ -82,6 +83,7 @@ $(OBJ_PATH):
 	@mkdir $(OBJ_PATH)/initialization
 	@mkdir $(OBJ_PATH)/parse
 	@mkdir $(OBJ_PATH)/utils
+	@mkdir $(OBJ_PATH)/render
 
 $(MLX):
 	@echo "Making MiniLibX..."
