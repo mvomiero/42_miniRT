@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:37:24 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/29 15:22:51 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:00:15 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void calculateRayDirection(t_data *data, t_camera *camera, int pixelX, int pixel
 
 static void ray_tracer(t_data *data, int x, int y)
 {
-	parse_color("0,0,255",&(data->pix.color));
+	parse_color("0,0,120",&(data->pix.color));
 	data->pix.t = INFINITY;
 	calculateRayDirection(data, data->camera, x, y);
 	//t_vect rayDirection = calculateRayDirection(data->camera, x, y);
@@ -68,6 +68,8 @@ static void ray_tracer(t_data *data, int x, int y)
 
 	hit_sphere(data, data->spheres, data->camera->pos, data->pix.dir);
 	hit_cylinder(data, data->cylinders, data->camera->pos, data->pix.dir);
+	hit_plane(data, data->planes, data->camera->pos, data->pix.dir);
+
 	//bool isPlaneHit = hit_plane(data->planes, data->camera->pos, rayDirection);
 	// shade with pix
 		set_pixel_color(data, x, y, convert_rgb_to_hex(&(data->pix.color)));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_sphere.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:15:23 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/29 14:53:02 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:54:10 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,6 @@ t_vect normalize(t_vect v)
     return normalized;
 }
 
-
-bool hit_plane(t_plane *plane, t_vect rayOrigin, t_vect rayDirection)
-{
-    t_vect oc = {rayOrigin.x - plane->pos.x, rayOrigin.y - plane->pos.y, rayOrigin.z - plane->pos.z };
-    t_vect normRayDir = normalize(rayDirection);
-    t_vect normPlaneNorm = normalize(plane->norm_vect);
-
-    double denominator = dotProduct(normPlaneNorm, normRayDir);
-
-    // Check if the ray is parallel or almost parallel to the plane
-    if (denominator < EPSILON)
-        return true;
-
-    // Calculate the parameter t at which the ray intersects the plane
-    double t = dotProduct(oc, normPlaneNorm) / denominator;
-    if (t < 0)
-        printf("plane\n");
-    return !(t >= 0);
-}
 
 
 // hit_sphere(data->spheres->pos, data->spheres->diameter / 2.0, data->camera->pos, rayDirection);
