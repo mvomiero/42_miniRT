@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:37:24 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/29 12:58:10 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:53:13 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void ray_tracer(t_data *data, int x, int y)
 
 	hit_sphere(data, data->spheres, data->camera->pos, data->pix.dir);
 	//bool isPlaneHit = hit_plane(data->planes, data->camera->pos, rayDirection);
+	// shade with pix
 		set_pixel_color(data, x, y, convert_rgb_to_hex(&(data->pix.color)));
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_sphere.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:15:23 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/29 12:56:21 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:53:02 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,24 @@ void hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDir
 		double c = dotProduct(oc, oc) - radius * radius;
 		double discriminant = b * b - 4 * a * c;
 
-		if (discriminant > 0)
+		if (discriminant >= 0)
 		{
 			// Calculate the solutions
 			double t1 = (-b - sqrt(discriminant)) / (2.0 * a);
-			double t2 = (-b + sqrt(discriminant)) / (2.0 * a);
+			//double t2 = (-b + sqrt(discriminant)) / (2.0 * a);
 
 			// Check if the solutions are within the valid range and closer than the current closest hit
-			if (t1 > 0 && t1 < data->pix.t)
+			if (t1 > 0 && t1 < data->pix.t )
 			{
 				data->pix.t = t1;
 				data->pix.color = spheres->color;
+				// fill other values of pix
 			}
-			if (t2 > 0 && t2 < data->pix.t)
-			{
-				data->pix.t = t2;
-				data->pix.color = spheres->color;
-			}
+			// if (t2 > 0 && t2 < data->pix.t)
+			// {
+			// 	data->pix.t = t2;
+			// 	data->pix.color = spheres->color;
+			// }
 		}
 		spheres = spheres->next;
 	}
