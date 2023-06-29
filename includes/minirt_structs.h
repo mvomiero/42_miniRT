@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/29 12:33:05 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:53:11 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,23 +80,11 @@ typedef struct	s_cylinder
 	struct s_cylinder	*next;
 }			t_cylinder;
 
-typedef struct s_vector
-{
-	int	x;
-	int	y;
-}				t_vector;
-
-typedef struct s_window {
-	void		*reference;
-	t_vector	size;
-}				t_window;
-
 typedef struct s_pixel
 {
 	double			t;
 	t_color			color;
-	t_vect			hitpnt;
-	t_vect			objpos;
+	t_vect			hitpoint;
 	t_vect			normal;
 	t_vect			dir;
 }						t_pixel;

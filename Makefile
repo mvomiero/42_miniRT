@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/29 16:54:49 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/06/29 17:53:37 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC			=	main.c \
 				utils/init_data.c \
 				utils/init_mlx.c \
 				utils/free_structs.c \
+				utils/vectors.c \
 				render/render.c \
 				render/intersect_sphere.c \
 				render/intersect_cylinder.c \

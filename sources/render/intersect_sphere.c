@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:15:23 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/29 16:54:10 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:52:26 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,7 @@
 #define EPSILON 1e-6
 #define MAX_DISTANCE 200
 
-double dotProduct(t_vect vector1, t_vect vector2)
-{
-	return vector1.x * vector2.x + vector1.y * vector2.y + vector1.z * vector2.z;
-}
 
-t_vect normalize(t_vect v)
-{
-    double magnitude = sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
-    t_vect normalized = {v.x / magnitude, v.y / magnitude, v.z / magnitude};
-    return normalized;
-}
 
 
 
@@ -38,9 +28,9 @@ void hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDir
 		double radius = spheres->diameter/2;
 		t_vect oc = {rayOrigin.x - spheres->pos.x, rayOrigin.y - spheres->pos.y, rayOrigin.z - spheres->pos.z};
 
-		double a = dotProduct(rayDirection, rayDirection);
-		double b = 2.0 * dotProduct(oc, rayDirection);
-		double c = dotProduct(oc, oc) - radius * radius;
+		double a = vectorDotProduct(rayDirection, rayDirection);
+		double b = 2.0 * vectorDotProduct(oc, rayDirection);
+		double c = vectorDotProduct(oc, oc) - radius * radius;
 		double discriminant = b * b - 4 * a * c;
 
 		if (discriminant >= 0)
@@ -54,6 +44,8 @@ void hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDir
 			{
 				data->pix.t = t1;
 				data->pix.color = spheres->color;
+				data->pix.hitpoint = vectorAdd(rayOrigin, vectorScale(rayDirection, t1));
+				data->pix.normal = vectorNormalize(vectorSubtraction(data->pix.hitpoint, spheres->pos));
 				// fill other values of pix
 			}
 			// if (t2 > 0 && t2 < data->pix.t)

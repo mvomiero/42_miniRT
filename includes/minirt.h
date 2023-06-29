@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/29 16:53:14 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:51:35 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,16 @@ void	render(t_data *data);
 void hit_plane(t_data *data, t_plane *planes, t_vect rayOrigin, t_vect rayDirection);
 void hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDirection);
 void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection);
-double dotProduct(t_vect vector1, t_vect vector2);
+
+/* VECTORS */
+t_vect vectorSubtraction(t_vect v1, t_vect v2);
+t_vect vectorNormalize(t_vect v);
+t_vect vectorAdd(t_vect v1, t_vect v2);
+t_vect vectorScale(t_vect v, double scalar);
+double vectorDotProduct(t_vect vector1, t_vect vector2);
+
+
+
 
 
 
