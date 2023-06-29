@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/29 12:18:04 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:33:05 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ typedef struct s_window {
 
 typedef struct s_pixel
 {
-	double				hit;
-	t_color				color;
+	double			t;
+	t_color			color;
 	t_vect			hitpnt;
 	t_vect			objpos;
 	t_vect			normal;

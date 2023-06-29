@@ -6,18 +6,32 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:37:24 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/29 12:29:31 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:58:10 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static void set_pixel_color(t_data *data, int x, int y, int color)
+/*static void set_pixel_color(t_data *data, int x, int y, int color)
 {
 	data->buf[x * 4 + y * WIDTH * 4] = (char)color; // B
 	data->buf[x * 4 + y * WIDTH * 4 + 1] = (char)0; // G
 	data->buf[x * 4 + y * WIDTH * 4 + 2] = (char)0; // R
 	data->buf[x * 4 + y * WIDTH * 4 + 3] = (char)0; // Trans
+}*/
+
+static void	set_pixel_color(t_data *data, int x, int y, int color)
+{
+	data->buf[x * 4 + y * WIDTH * 4] = color;
+	data->buf[x * 4 + y * WIDTH * 4 + 1] = color >> 8;
+	data->buf[x * 4 + y * WIDTH * 4 + 2] = color >> 16;
+	data->buf[x * 4 + y * WIDTH * 4 + 3] = color >> 24;
+}
+
+int convert_rgb_to_hex(t_color *color)
+{
+    int hex = (color->r << 16) | (color->g << 8) | color->b;
+    return hex;
 }
 
 void calculateRayDirection(t_data *data, t_camera *camera, int pixelX, int pixelY)
@@ -43,6 +57,8 @@ void calculateRayDirection(t_data *data, t_camera *camera, int pixelX, int pixel
 
 static void ray_tracer(t_data *data, int x, int y)
 {
+	parse_color("0,0,255",&(data->pix.color));
+	data->pix.t = INFINITY;
 	calculateRayDirection(data, data->camera, x, y);
 	//t_vect rayDirection = calculateRayDirection(data->camera, x, y);
 
@@ -50,14 +66,9 @@ static void ray_tracer(t_data *data, int x, int y)
 	//bool isHit = hit_sphere(data->spheres->pos, data->spheres->diameter / 2.0, data->camera->pos, rayDirection);
 	// bool hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDirection)
 
-	bool isHit = hit_sphere(data, data->spheres, data->camera->pos, data->pix.dir);
+	hit_sphere(data, data->spheres, data->camera->pos, data->pix.dir);
 	//bool isPlaneHit = hit_plane(data->planes, data->camera->pos, rayDirection);
-	if (isHit)
-		set_pixel_color(data, x, y, 255);
-	//else if (isPlaneHit)
-	//	set_pixel_color(data, x, y, 150);
-	else
-		set_pixel_color(data, x, y, 15);
+		set_pixel_color(data, x, y, convert_rgb_to_hex(&(data->pix.color)));
 }
 
 static void render_pixel(t_data *data)

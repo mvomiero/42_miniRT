@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:15:23 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/29 12:26:36 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:56:21 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,39 @@ bool hit_plane(t_plane *plane, t_vect rayOrigin, t_vect rayDirection)
 // hit_sphere(data->spheres->pos, data->spheres->diameter / 2.0, data->camera->pos, rayDirection);
 
 
-bool hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDirection)
+void hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDirection)
 {
-	(void)data;
+	while (spheres)
+	{
+		double radius = spheres->diameter/2;
+		t_vect oc = {rayOrigin.x - spheres->pos.x, rayOrigin.y - spheres->pos.y, rayOrigin.z - spheres->pos.z};
 
-	double radius = spheres->diameter/2;
-	t_vect oc = {rayOrigin.x - spheres->pos.x, rayOrigin.y - spheres->pos.y, rayOrigin.z - spheres->pos.z};
+		double a = dotProduct(rayDirection, rayDirection);
+		double b = 2.0 * dotProduct(oc, rayDirection);
+		double c = dotProduct(oc, oc) - radius * radius;
+		double discriminant = b * b - 4 * a * c;
 
-	double a = dotProduct(rayDirection, rayDirection);
-	double b = 2.0 * dotProduct(oc, rayDirection);
-	double c = dotProduct(oc, oc) - radius * radius;
-	double discriminant = b * b - 4 * a * c;
+		if (discriminant > 0)
+		{
+			// Calculate the solutions
+			double t1 = (-b - sqrt(discriminant)) / (2.0 * a);
+			double t2 = (-b + sqrt(discriminant)) / (2.0 * a);
 
-	return (discriminant > 0);
+			// Check if the solutions are within the valid range and closer than the current closest hit
+			if (t1 > 0 && t1 < data->pix.t)
+			{
+				data->pix.t = t1;
+				data->pix.color = spheres->color;
+			}
+			if (t2 > 0 && t2 < data->pix.t)
+			{
+				data->pix.t = t2;
+				data->pix.color = spheres->color;
+			}
+		}
+		spheres = spheres->next;
+	}
+
 }
 
 /*bool hit_sphere(t_vect center, double radius, t_vect rayOrigin, t_vect rayDirection)
