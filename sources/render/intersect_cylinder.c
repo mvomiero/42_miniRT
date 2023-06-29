@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/29 16:02:24 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:13:59 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
         if (discriminant >= 0)
         {
             // Calculate the solutions
+			// Quadratic equations always have two solutions, one with -sqrt and the other with +sqrt
             double t1 = (-b - sqrt(discriminant)) / (2 * a);
             double t2 = (-b + sqrt(discriminant)) / (2 * a);
 
             // Check if the solutions are within the valid range and closer than the current closest hit
+			// > 0 means that they are not in the ray but behind the origin
             if (t1 > 0 && t1 < data->pix.t)
             {
                 // Calculate the y-coordinate of the intersection point
