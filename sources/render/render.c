@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:37:24 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/29 12:15:43 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:29:31 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ void calculateRayDirection(t_data *data, t_camera *camera, int pixelX, int pixel
 		camera->norm_vect.y + viewportY,
 		camera->norm_vect.z};
 
-	data->pix.dir.x = rayDirection.x;
-	data->pix.dir.y = rayDirection.y;
-	data->pix.dir.z = rayDirection.x;
+	data->pix.dir = rayDirection;
 }
 
 static void ray_tracer(t_data *data, int x, int y)
