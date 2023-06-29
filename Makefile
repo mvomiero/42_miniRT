@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/28 16:39:46 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/06/29 15:23:42 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ SRC			=	main.c \
 				utils/init_mlx.c \
 				utils/free_structs.c \
 				render/render.c \
-				render/intersect_sphere.c
+				render/intersect_sphere.c \
+				render/intersect_cylinder.c
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
