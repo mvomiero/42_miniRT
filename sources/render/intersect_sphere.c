@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_sphere.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:15:23 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 18:12:45 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:18:27 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,15 @@ bool hit_plane(t_plane *plane, t_vect rayOrigin, t_vect rayDirection)
 }
 
 
-bool hit_sphere(t_vect center, double radius, t_vect rayOrigin, t_vect rayDirection)
+// hit_sphere(data->spheres->pos, data->spheres->diameter / 2.0, data->camera->pos, rayDirection);
+
+
+bool hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDirection)
 {
-	t_vect oc = {rayOrigin.x - center.x, rayOrigin.y - center.y, rayOrigin.z - center.z};
+	(void)data;
+
+	double radius = spheres->diameter/2;
+	t_vect oc = {rayOrigin.x - spheres->pos.x, rayOrigin.y - spheres->pos.y, rayOrigin.z - spheres->pos.y};
 
 	double a = dotProduct(rayDirection, rayDirection);
 	double b = 2.0 * dotProduct(oc, rayDirection);

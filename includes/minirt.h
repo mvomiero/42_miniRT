@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 17:39:51 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:02:52 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void	free_structs(t_data *data);
 
 /* RENDER */
 void	render(t_data *data);
-bool hit_sphere(t_vect center, double radius, t_vect rayOrigin, t_vect rayDirection);
+//bool hit_sphere(t_vect center, double radius, t_vect rayOrigin, t_vect rayDirection);
 bool hit_plane(t_plane *plane, t_vect rayOrigin, t_vect rayDirection);
+bool hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDirection);
+
 
 bool rayIntersectsSphere(t_vect rayOrigin, t_vect rayDirection, t_sphere sphere);
 bool rayIntersectsSphere2(t_camera camera, t_sphere sphere);

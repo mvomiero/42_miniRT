@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:37:24 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/28 18:12:49 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:15:43 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void set_pixel_color(t_data *data, int x, int y, int color)
 	data->buf[x * 4 + y * WIDTH * 4 + 3] = (char)0; // Trans
 }
 
-t_vect calculateRayDirection(t_camera *camera, int pixelX, int pixelY)
+void calculateRayDirection(t_data *data, t_camera *camera, int pixelX, int pixelY)
 {
 	double fovRadians = camera->fov * M_PI / 180.0; // Convert FOV to radians
 	double aspectRatio = (double)WIDTH / (double)HEIGHT;
@@ -38,20 +38,26 @@ t_vect calculateRayDirection(t_camera *camera, int pixelX, int pixelY)
 		camera->norm_vect.y + viewportY,
 		camera->norm_vect.z};
 
-	return rayDirection;
+	data->pix.dir.x = rayDirection.x;
+	data->pix.dir.y = rayDirection.y;
+	data->pix.dir.z = rayDirection.x;
 }
 
 static void ray_tracer(t_data *data, int x, int y)
 {
-	t_vect rayDirection = calculateRayDirection(data->camera, x, y);
+	calculateRayDirection(data, data->camera, x, y);
+	//t_vect rayDirection = calculateRayDirection(data->camera, x, y);
 
 	
-	bool isHit = hit_sphere(data->spheres->pos, data->spheres->diameter / 2.0, data->camera->pos, rayDirection);
-	bool isPlaneHit = hit_plane(data->planes, data->camera->pos, rayDirection);
+	//bool isHit = hit_sphere(data->spheres->pos, data->spheres->diameter / 2.0, data->camera->pos, rayDirection);
+	// bool hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDirection)
+
+	bool isHit = hit_sphere(data, data->spheres, data->camera->pos, data->pix.dir);
+	//bool isPlaneHit = hit_plane(data->planes, data->camera->pos, rayDirection);
 	if (isHit)
 		set_pixel_color(data, x, y, 255);
-	else if (isPlaneHit)
-		set_pixel_color(data, x, y, 150);
+	//else if (isPlaneHit)
+	//	set_pixel_color(data, x, y, 150);
 	else
 		set_pixel_color(data, x, y, 15);
 }
