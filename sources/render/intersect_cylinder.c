@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/29 19:55:39 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:35:04 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 		t_vect oc = {rayOrigin.x - cylinders->pos.x, rayOrigin.y - cylinders->pos.y, rayOrigin.z - cylinders->pos.z};
 
 		// Calculate the dot products needed for the quadratic equation
-		double a = vectorDotProduct(rayDirection, rayDirection) - pow(vectorDotProduct(rayDirection, axisDirection), 2);
-		double b = 2 * (vectorDotProduct(rayDirection, oc) - vectorDotProduct(rayDirection, axisDirection) * vectorDotProduct(oc, axisDirection));
-		double c = vectorDotProduct(oc, oc) - pow(vectorDotProduct(oc, axisDirection), 2) - pow(cylinders->diameter / 2, 2);
+		double a = vector_dot_product(rayDirection, rayDirection) - pow(vector_dot_product(rayDirection, axisDirection), 2);
+		double b = 2 * (vector_dot_product(rayDirection, oc) - vector_dot_product(rayDirection, axisDirection) * vector_dot_product(oc, axisDirection));
+		double c = vector_dot_product(oc, oc) - pow(vector_dot_product(oc, axisDirection), 2) - pow(cylinders->diameter / 2, 2);
 
 		// Solve the quadratic equation to find the intersection points
 		double discriminant = b * b - 4 * a * c;
@@ -49,8 +49,8 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 				{
 					data->pix.t = t1;
 					data->pix.color = cylinders->color;
-					data->pix.hitpoint = vectorAdd(rayOrigin, vectorScale(rayDirection, t1));
-					data->pix.normal = vectorNormalize(vectorSubtraction(data->pix.hitpoint, vectorAdd(cylinders->pos, vectorScale(axisDirection, vectorDotProduct(vectorSubtraction(data->pix.hitpoint, cylinders->pos), axisDirection)))));
+					data->pix.hitpoint = vector_add(rayOrigin, vector_scale(rayDirection, t1));
+					data->pix.normal = vector_normalize(vector_substract(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, vector_dot_product(vector_substract(data->pix.hitpoint, cylinders->pos), axisDirection)))));
 					// Fill other values of pix
 				}
 			}
@@ -65,8 +65,8 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 				{
 					data->pix.t = t2;
 					data->pix.color = cylinders->color;
-					data->pix.hitpoint = vectorAdd(rayOrigin, vectorScale(rayDirection, t2));
-					data->pix.normal = (vectorSubtraction(data->pix.hitpoint, vectorAdd(cylinders->pos, vectorScale(axisDirection, t2))));
+					data->pix.hitpoint = vector_add(rayOrigin, vector_scale(rayDirection, t2));
+					data->pix.normal = (vector_substract(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, t2))));
 					// Fill other values of pix
 				}
 			}

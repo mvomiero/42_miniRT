@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/29 17:53:37 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/06/30 16:42:10 by lde-ross         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,10 +59,13 @@ SRC			=	main.c \
 				utils/init_mlx.c \
 				utils/free_structs.c \
 				utils/vectors.c \
+				utils/color.c \
 				render/render.c \
 				render/intersect_sphere.c \
 				render/intersect_cylinder.c \
-				render/intersect_plane.c
+				render/intersect_plane.c \
+				render/trace.c \
+				render/shade.c \
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 

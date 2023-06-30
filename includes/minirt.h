@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/29 19:34:08 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:41:45 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	init_data(t_data *data);
 void	init_mlx(t_data *data);
 void	free_tab(char **array);
 void	free_structs(t_data *data);
-
+int convert_rgb_to_hex(t_color *color);
+void set_pixel_color(t_data *data, int x, int y, int color);
 
 /* RENDER */
 void	render(t_data *data);
@@ -57,13 +58,18 @@ void	render(t_data *data);
 void hit_plane(t_data *data, t_plane *planes, t_vect rayOrigin, t_vect rayDirection);
 void hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDirection);
 void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection);
+void ray_tracer(t_data *data, t_coord pixel);
+void shade(t_data *data, t_coord pixel);
+
 
 /* VECTORS */
-t_vect vectorSubtraction(t_vect v1, t_vect v2);
-t_vect vectorNormalize(t_vect v);
-t_vect vectorAdd(t_vect v1, t_vect v2);
-t_vect vectorScale(t_vect v, double scalar);
-double vectorDotProduct(t_vect vector1, t_vect vector2);
+t_vect vector_substract(t_vect v1, t_vect v2);
+t_vect vector_normalize(t_vect v);
+t_vect vector_add(t_vect v1, t_vect v2);
+t_vect vector_scale(t_vect v, double scalar);
+double vector_dot_product(t_vect vector1, t_vect vector2);
+t_vect vector_divide(t_vect v, double scalar);
+double vector_length(t_vect direction);
 
 
 
@@ -73,7 +79,6 @@ double vectorDotProduct(t_vect vector1, t_vect vector2);
 bool rayIntersectsSphere(t_vect rayOrigin, t_vect rayDirection, t_sphere sphere);
 bool rayIntersectsSphere2(t_camera camera, t_sphere sphere);
 
-int convert_rgb_to_hex(t_color *color);
 
 
 
