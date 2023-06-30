@@ -6,12 +6,12 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:48:40 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 11:10:43 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:41:23 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYS_H
-# define KEYS_H
+#ifndef KEYCODES_H
+# define KEYCODES_H
 
 # define EVENT_CLOSE_BTN 17
 # define KEY_ESC 65307
