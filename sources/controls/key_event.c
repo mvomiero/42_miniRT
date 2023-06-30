@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:47:14 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 15:50:14 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:16:51 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ bool is_movement_key(int keycode)
 
 bool is_scale_key(int keycode)
 {
-	if (keycode == KEY_PLUS || keycode == KEY_W)
+	if (keycode == KEY_PLUS || keycode == KEY_MINUS)
 		return true;
 	return false;
 }
 
-void	transform_sphere(int keycode, t_data *data, t_type *selected_type)
+/*void	transform_sphere(int keycode, t_data *data, t_type *selected_type)
 {
 	static t_sphere *selected_sphere = NULL;
 
@@ -79,7 +79,64 @@ void	transform_sphere(int keycode, t_data *data, t_type *selected_type)
 				scale_element(keycode, &(selected_sphere->diameter));
 		}
 	}
+}*/
+void	transform_sphere(int keycode, t_data *data, t_type *selected_type)
+{
+	static t_sphere *selected_sphere = NULL;
+
+	if (keycode == KEY_S)
+	{
+		if (*selected_type != TYPE_SPHERE && keycode == KEY_S)
+		{
+			*selected_type = TYPE_SPHERE;
+			selected_sphere = data->spheres;
+		}
+		else if (*selected_type == TYPE_SPHERE && keycode == KEY_S)
+		{
+			selected_sphere = selected_sphere->next;
+			if (selected_sphere == NULL)
+				selected_sphere = data->spheres;
+		}
+	}
+	if (selected_sphere != NULL && *selected_type == TYPE_SPHERE)
+	{
+		if (is_movement_key(keycode))
+			move_element(keycode, &(selected_sphere->pos));
+		if (is_scale_key(keycode))
+			scale_element(keycode, &(selected_sphere->diameter));
+	}
 }
+
+void transform_cylinder(int keycode, t_data* data, t_type* selected_type)
+{
+	static t_cylinder* selected_cylinder = NULL;
+
+	if (keycode == KEY_C)
+	{
+		if (*selected_type != TYPE_CYLINDER && keycode == KEY_C)
+		{
+			*selected_type = TYPE_CYLINDER;
+			selected_cylinder = data->cylinders;
+		}
+		else if (*selected_type == TYPE_CYLINDER && keycode == KEY_C)
+		{
+			selected_cylinder = selected_cylinder->next;
+			if (selected_cylinder == NULL)
+				selected_cylinder = data->cylinders;
+		}
+	}
+	if (selected_cylinder != NULL && *selected_type == TYPE_CYLINDER)
+	{
+		if (is_movement_key(keycode))
+			move_element(keycode, &(selected_cylinder->pos));
+		if (is_scale_key(keycode))
+		{
+			scale_element(keycode, &(selected_cylinder->diameter));
+			scale_element(keycode, &(selected_cylinder->height));
+		}
+	}
+}
+
 
 int	key_event(int keycode, t_data *data)
 {
@@ -91,6 +148,7 @@ int	key_event(int keycode, t_data *data)
 		close_rt(data);
 
 	transform_sphere(keycode, data, &selected_type);
+	transform_cylinder(keycode, data, &selected_type);
 
 	render(data); // Render the scene using the modified data
 
