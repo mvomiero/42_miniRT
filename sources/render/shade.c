@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/30 18:01:15 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/30 18:25:53 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction)
 	t_plane *planes;
 	double t;
 
+	planes = data->planes;
+	while (planes)
+	{
+		if (is_plane_hit(planes, ray_origin, ray_direction, &t))
+			return true;
+		planes = planes->next;
+	}
 	spheres = data->spheres;
 	while (spheres)
 	{
@@ -44,13 +51,6 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction)
 		if (is_cylinder_hit(cylinders, ray_origin, ray_direction, &t))
 			return true;
 		cylinders = cylinders->next;
-	}
-	planes = data->planes;
-	while (planes)
-	{
-		if (is_plane_hit(planes, ray_origin, ray_direction, &t))
-			return true;
-		planes = planes->next;
 	}
 
 	return false;
