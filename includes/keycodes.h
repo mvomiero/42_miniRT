@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:48:40 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 12:41:23 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:49:00 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@
 # define MOUSE_BTN 1
 # define MOUSE_BTN_2 3
 # define KEY_K 107
+# define KEY_PAGE_UP 65365
+# define KEY_PAGE_DOWN 65366
 
 #endif
