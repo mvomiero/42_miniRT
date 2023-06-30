@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:47:14 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 12:54:30 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:05:23 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,7 @@
 #define STEP 2
 #define SCALE_FACTOR 0.5
 
-typedef enum {
-	TYPE_UNDEFINED,
-	TYPE_SPHERE,
-	TYPE_CYLINDER,
-	TYPE_PLANE
-} t_element_type;
+
 
 void move_element(int keycode, t_vect *pos)
 {
@@ -124,31 +119,28 @@ bool is_scale_key(int keycode)
 
 int key_event(int keycode, t_data *data)
 {
-	t_data temp = *data; // Create a local copy of data
-	t_element_type selected_type = TYPE_UNDEFINED;
 	
 	if (keycode == KEY_ESC)
 	{
 		close_rt(data);
-		close_rt(&temp);
 		return (0);
 	}
 	else if (keycode == KEY_S || is_movement_key(keycode))
 	{
 		
-		if (selected_type == TYPE_SPHERE && temp.spheres->next != NULL)
-			temp.spheres = temp.spheres->next;
+		if (data->type == TYPE_SPHERE && data->spheres->next != NULL)
+			data->spheres = data->spheres->next;
 		else
-			selected_type = TYPE_SPHERE;
+			data->type = TYPE_SPHERE;
 		if (is_movement_key(keycode))
-			move_element(keycode, &(temp.spheres->pos));
+			move_element(keycode, &(data->spheres->pos));
 		if (is_scale_key(keycode))
-			scale_element(keycode, &(temp.spheres->diameter));
+			scale_element(keycode, &(data->spheres->diameter));
 
 		// Add similar logic for other element types (cylinder, plane) if needed
 	}
 
-	render(&temp); // Render the scene using the modified temp data
+	render(data); // Render the scene using the modified temp data
 
 	return (0);
 }

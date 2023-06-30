@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/29 17:53:11 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:04:51 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,13 @@ typedef struct s_pixel
 	t_vect			dir;
 }						t_pixel;
 
+typedef enum {
+	TYPE_UNDEFINED,
+	TYPE_SPHERE,
+	TYPE_CYLINDER,
+	TYPE_PLANE
+} t_type;
+
 typedef struct s_data
 {
 	t_sphere	*spheres;
@@ -102,6 +109,7 @@ typedef struct s_data
 	void		*win;
 	void		*img;
 	char		*buf;
+	t_type		type;
 }				t_data;
 
 #endif
