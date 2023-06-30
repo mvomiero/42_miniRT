@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/29 17:53:37 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/06/30 11:03:44 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,8 @@ SRC			=	main.c \
 				render/render.c \
 				render/intersect_sphere.c \
 				render/intersect_cylinder.c \
-				render/intersect_plane.c
+				render/intersect_plane.c \
+				controls/key_event.c \
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
@@ -88,6 +89,7 @@ $(OBJ_PATH):
 	@mkdir $(OBJ_PATH)/parse
 	@mkdir $(OBJ_PATH)/utils
 	@mkdir $(OBJ_PATH)/render
+	@mkdir $(OBJ_PATH)/controls
 
 $(MLX):
 	@echo "Making MiniLibX..."

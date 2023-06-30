@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/29 19:34:08 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/30 11:02:34 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 # include "minirt_structs.h"
+# include "keycodes.h"
 # include "Colors.h"
 # include <stdio.h>
 # include <math.h>
@@ -74,6 +75,15 @@ bool rayIntersectsSphere(t_vect rayOrigin, t_vect rayDirection, t_sphere sphere)
 bool rayIntersectsSphere2(t_camera camera, t_sphere sphere);
 
 int convert_rgb_to_hex(t_color *color);
+
+/* CONTROLS */
+int	key_event(int keycode, t_data *data);
+
+/* EXIT */
+
+int	close_rt(void *param);
+
+
 
 
 
