@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 16:41:45 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:38:08 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,11 @@ void set_pixel_color(t_data *data, int x, int y, int color);
 
 /* RENDER */
 void	render(t_data *data);
-//bool hit_sphere(t_vect center, double radius, t_vect rayOrigin, t_vect rayDirection);
+bool is_plane_hit(t_plane *plane, t_vect ray_origin, t_vect ray_direction, double *t);
 void hit_plane(t_data *data, t_plane *planes, t_vect rayOrigin, t_vect rayDirection);
+bool is_sphere_hit(t_sphere *sphere, t_vect ray_origin, t_vect ray_direction, double *t);
 void hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDirection);
+bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_direction, double *t);
 void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection);
 void ray_tracer(t_data *data, t_coord pixel);
 void shade(t_data *data, t_coord pixel);

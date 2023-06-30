@@ -6,41 +6,40 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:49:58 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 16:35:04 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:13:35 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-
-
-
-
-void hit_plane(t_data *data, t_plane *planes, t_vect rayOrigin, t_vect rayDirection)
+bool is_plane_hit(t_plane *plane, t_vect ray_origin, t_vect ray_direction, double *t)
 {
-    while (planes)
-    {
-        double dotProductND = vector_dot_product(planes->norm_vect, rayDirection);
-        
-        // Check if the ray is not parallel to the plane (dotProductND is close to zero)
-        if (fabs(dotProductND) > EPSILON)
-        {
-            t_vect oc = vector_substract(planes->pos, rayOrigin);
-            double t = vector_dot_product(oc, planes->norm_vect) / dotProductND;
-            
-            if (t > 0 && t < data->pix.t)
-            {
-                data->pix.t = t;
-                data->pix.color = planes->color;
-				data->pix.hitpoint = vector_add(rayOrigin, vector_scale(rayDirection, t));
-				data->pix.normal = planes->norm_vect;
+	double dot_product_nd;
 
-                // Fill other values of pix
-            }
-        }
-        
-        planes = planes->next;
-    }
+	dot_product_nd = vector_dot_product(plane->norm_vect, ray_direction);
+	// Check if the ray is not parallel to the plane (dot_product_nd is close to zero)
+	if (fabs(dot_product_nd) > EPSILON)
+	{
+		t_vect oc = vector_substract(plane->pos, ray_origin);
+		*t = vector_dot_product(oc, plane->norm_vect) / dot_product_nd;
+		if (*t > 0)
+			return true;
+	}
+	return false;
 }
 
-
+void hit_plane(t_data *data, t_plane *planes, t_vect ray_origin, t_vect ray_direction)
+{
+	double t;
+	while (planes)
+	{
+		if (is_plane_hit(planes, ray_origin, ray_direction, &t) && t < data->pix.t)
+		{
+			data->pix.t = t;
+			data->pix.color = planes->color;
+			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
+			data->pix.normal = planes->norm_vect;
+		}
+		planes = planes->next;
+	}
+}
