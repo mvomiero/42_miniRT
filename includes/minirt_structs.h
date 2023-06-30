@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 13:04:51 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:45:34 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ typedef enum {
 	TYPE_UNDEFINED,
 	TYPE_SPHERE,
 	TYPE_CYLINDER,
-	TYPE_PLANE
+	TYPE_PLANE,
+	TYPE_CAMERA
 } t_type;
 
 typedef struct s_data

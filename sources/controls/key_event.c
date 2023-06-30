@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:47:14 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 16:41:03 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:54:44 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define STEP 2
 #define SCALE_FACTOR 1.2
-#define ROTATION_ANGLE 20
+#define ROTATION_ANGLE 10
 
 void rotate_vector_y(double angle, t_vect* vect)
 {
@@ -132,7 +132,7 @@ void	transform_sphere(int keycode, t_data *data, t_type *selected_type)
 	{
 		if (is_movement_key(keycode))
 			move_element(keycode, &(selected_sphere->pos));
-		if (is_scale_key(keycode))
+		else if (is_scale_key(keycode))
 			scale_element(keycode, &(selected_sphere->diameter));
 	}
 }
@@ -159,16 +159,42 @@ void transform_cylinder(int keycode, t_data* data, t_type* selected_type)
 	{
 		if (is_movement_key(keycode))
 			move_element(keycode, &(selected_cylinder->pos));
-		if (is_scale_key(keycode))
+		else if (is_scale_key(keycode))
 		{
 			scale_element(keycode, &(selected_cylinder->diameter));
 			scale_element(keycode, &(selected_cylinder->height));
 		}
-		if (is_rotation_key(keycode))
+		else if (is_rotation_key(keycode))
 			rotate_element(keycode, &(selected_cylinder->norm_vect));
 	}
 }
 
+void transform_camera(int keycode, t_data* data, t_type* selected_type)
+{
+	static t_camera* selected_camera = NULL;
+
+	if (keycode == KEY_V)
+	{
+		if (*selected_type != TYPE_CAMERA && keycode == KEY_V)
+		{
+			*selected_type = TYPE_CAMERA;
+			selected_camera = data->camera;
+		}
+	}
+	if (selected_camera != NULL && *selected_type == TYPE_CAMERA)
+	{
+		if (is_movement_key(keycode))
+			move_element(keycode, &(selected_camera->pos));
+		else if (is_rotation_key(keycode))
+			rotate_element(keycode, &(selected_camera->norm_vect));
+		else if (is_scale_key(keycode))
+		{
+			double temp_fov = (double)(selected_camera->fov);
+			scale_element(keycode, &temp_fov);
+			selected_camera->fov = (int)temp_fov;
+		}
+	}
+}
 
 int	key_event(int keycode, t_data *data)
 {
@@ -181,6 +207,7 @@ int	key_event(int keycode, t_data *data)
 
 	transform_sphere(keycode, data, &selected_type);
 	transform_cylinder(keycode, data, &selected_type);
+	transform_camera(keycode, data, &selected_type);
 
 	render(data); // Render the scene using the modified data
 
