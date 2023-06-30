@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:47:14 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 13:05:23 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/30 14:42:04 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@
 
 
 #define STEP 2
-#define SCALE_FACTOR 0.5
+#define SCALE_FACTOR 1.2
 
 
 
@@ -87,6 +87,7 @@ void move_element(int keycode, t_vect *pos)
 			pos->z -= STEP;
 		else if (keycode == KEY_PLUS)
 			pos->z += STEP;
+		printf("element moved\n");
 
 	// Add logic for other element types (cylinder, plane) if needed
 }
@@ -96,9 +97,10 @@ void scale_element(int keycode, double *parameter)
 
 
 		if (keycode == KEY_A)
-			*parameter += SCALE_FACTOR;
+			*parameter *= SCALE_FACTOR;
 		else if (keycode == KEY_W)
-			*parameter -= SCALE_FACTOR;
+			*parameter /= SCALE_FACTOR;
+		printf("scale function\n");
 	// Add logic for other element types (cylinder, plane) if needed
 }
 
@@ -117,7 +119,7 @@ bool is_scale_key(int keycode)
 	return false;
 }
 
-int key_event(int keycode, t_data *data)
+/*int key_event(int keycode, t_data *data)
 {
 	
 	if (keycode == KEY_ESC)
@@ -141,6 +143,48 @@ int key_event(int keycode, t_data *data)
 	}
 
 	render(data); // Render the scene using the modified temp data
+
+	return (0);
+}*/
+
+int key_event(int keycode, t_data *data)
+{
+	static t_type selected_type = TYPE_UNDEFINED;
+	static t_sphere *selected_sphere = NULL;
+	printf("\n keycode: %d\n", keycode);
+
+	if (keycode == KEY_ESC)
+	{
+		close_rt(data);
+		return (0);
+	}
+	else if (keycode == KEY_S || is_movement_key(keycode) || is_scale_key(keycode))
+	{
+		if (selected_type != TYPE_SPHERE && keycode == KEY_S)
+		{
+			selected_type = TYPE_SPHERE;
+			selected_sphere = data->spheres;
+		}
+		else if (selected_type == TYPE_SPHERE && keycode == KEY_S)
+		{
+			selected_sphere = selected_sphere->next;
+			if (selected_sphere == NULL)
+				selected_sphere = data->spheres;
+			
+		}
+
+		if (selected_sphere != NULL)
+		{
+			if (is_movement_key(keycode))
+				move_element(keycode, &(selected_sphere->pos));
+			if (is_scale_key(keycode))
+				scale_element(keycode, &(selected_sphere->diameter));
+		}
+
+		// Add similar logic for other element types (cylinder, plane) if needed
+	}
+
+	render(data); // Render the scene using the modified data
 
 	return (0);
 }
