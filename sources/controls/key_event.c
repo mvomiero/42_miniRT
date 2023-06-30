@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:47:14 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 16:54:44 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:37:42 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,34 @@ void transform_camera(int keycode, t_data* data, t_type* selected_type)
 	}
 }
 
+void transform_plane(int keycode, t_data* data, t_type* selected_type)
+{
+	static t_plane* selected_plane = NULL;
+
+	if (keycode == KEY_P)
+	{
+		if (*selected_type != TYPE_PLANE && keycode == KEY_P)
+		{
+			*selected_type = TYPE_PLANE;
+			selected_plane = data->planes;
+		}
+		else if (*selected_type == TYPE_PLANE && keycode == KEY_P)
+		{
+			selected_plane = selected_plane->next;
+			if (selected_plane == NULL)
+				selected_plane = data->planes;
+		}
+	}
+	if (selected_plane != NULL && *selected_type == TYPE_PLANE)
+	{
+		if (is_movement_key(keycode))
+			move_element(keycode, &(selected_plane->pos));
+		if (is_rotation_key(keycode))
+			rotate_element(keycode, &(selected_plane->norm_vect));
+	}
+}
+
+
 int	key_event(int keycode, t_data *data)
 {
 	static t_type selected_type = TYPE_UNDEFINED;
@@ -208,6 +236,7 @@ int	key_event(int keycode, t_data *data)
 	transform_sphere(keycode, data, &selected_type);
 	transform_cylinder(keycode, data, &selected_type);
 	transform_camera(keycode, data, &selected_type);
+	transform_plane(keycode, data, &selected_type);
 
 	render(data); // Render the scene using the modified data
 
