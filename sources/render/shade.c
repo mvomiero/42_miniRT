@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/03 19:12:19 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/03 20:24:09 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void get_soft_shadow_color(t_data *data, t_light *light, t_pixel *pix, t_vect li
 
         if (!is_in_shadow(data, pix->hitpoint, shadow_direction, distance_to_light))
         {
-            shadow_intensity += 1.0;  // If the shadow ray is not obstructed, increment the shadow intensity
+            shadow_intensity += 1;  // If the shadow ray is not obstructed, increment the shadow intensity
         }
     }
 
@@ -102,7 +102,6 @@ void get_soft_shadow_color(t_data *data, t_light *light, t_pixel *pix, t_vect li
 
     double dot_product = vector_dot_product(pix->normal, light_direction);  // Calculate the dot product between the pixel's normal and the light direction
     double ambient_dot_product = vector_dot_product(pix->normal, data->ambient->norm_vect);  // Calculate the dot product between the pixel's normal and the ambient light direction
-
     // Apply the shadow intensity to the diffuse color calculation
     pix->color.r = clamp((pix->color.r * light->brightness * dot_product * shadow_intensity) + (ambient_dot_product * data->ambient->light_ratio * data->ambient->color.r), 0, 255);
     pix->color.g = clamp((pix->color.g * light->brightness * dot_product * shadow_intensity) + (ambient_dot_product * data->ambient->light_ratio * data->ambient->color.g), 0, 255);

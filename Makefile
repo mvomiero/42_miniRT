@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/03 15:20:36 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/07/03 19:45:16 by lde-ross         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ GREEN	= \e[32m
 
 # Compiler
 CC		= cc
-CFLAGS	= -Werror -Wextra -Wall -g3
+CFLAGS	= -Werror -Wextra -Wall -o3
 LIBRARIES = $(MLX) $(LIBFT) -lm -lX11 -lXext
 
 # Libft
