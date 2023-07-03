@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/03 15:01:54 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/07/03 15:20:36 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ SRC			=	main.c \
 				render/intersect_cylinder.c \
 				render/intersect_plane.c \
 				render/trace.c \
-				render/shade.c \ \
+				render/shade.c \
 				controls/key_event.c \
 				controls/transform_operations.c \
 				controls/transform_utils.c \

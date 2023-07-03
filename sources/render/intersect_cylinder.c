@@ -6,11 +6,36 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 15:19:10 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:22:23 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+int check_cy(t_cylinder *cy, t_vect hpnt)
+{
+	t_vect pmax;
+	t_vect pmin;
+	double capmin;
+	double capmax;
+
+	pmin = vector_add(cy->pos, vector_scale(cy->norm_vect, -0.5 * cy->height));
+	pmax = vector_add(cy->pos, vector_scale(cy->norm_vect, 0.5 * cy->height));
+
+	t_vect hpnt_pmin = vector_substract(hpnt, pmin);
+	t_vect hpnt_pmax = vector_substract(hpnt, pmax);
+
+	capmin = vector_dot_product(hpnt_pmin, hpnt_pmin);
+	capmax = vector_dot_product(hpnt_pmax, hpnt_pmax);
+
+	if (vector_dot_product(cy->norm_vect, hpnt_pmin) > 0 && vector_dot_product(cy->norm_vect, hpnt_pmax) < 0)
+		return 1;
+
+	if (capmin < pow(cy->diameter / 2, 2) || capmax < pow(cy->diameter / 2, 2))
+		return 1;
+
+	return 0;
+}
 
 void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection)
 {
