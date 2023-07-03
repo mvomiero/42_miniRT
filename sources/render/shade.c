@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shade.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/03 16:08:41 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:57:05 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_vect get_light_direction(t_light *light, t_pixel *pix)
 	return (light_direction);
 }
 
-bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction)
+bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double distance_to_light)
 {
 	t_sphere *spheres;
 	t_cylinder *cylinders;
@@ -34,21 +34,21 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction)
 	planes = data->planes;
 	while (planes)
 	{
-		if (is_plane_hit(planes, ray_origin, ray_direction, &t))
+		if (is_plane_hit(planes, ray_origin, ray_direction, &t) && t < distance_to_light)
 			return true;
 		planes = planes->next;
 	}
 	spheres = data->spheres;
 	while (spheres)
 	{
-		if (is_sphere_hit(spheres, ray_origin, ray_direction, &t))
+		if (is_sphere_hit(spheres, ray_origin, ray_direction, &t) && t < distance_to_light)
 			return true;
 		spheres = spheres->next;
 	}
 	cylinders = data->cylinders;
 	while (cylinders)
 	{
-		if (is_cylinder_hit(cylinders, ray_origin, ray_direction, &t, NULL))
+		if (is_cylinder_hit(cylinders, ray_origin, ray_direction, &t, NULL) && t < distance_to_light)
 			return true;
 		cylinders = cylinders->next;
 	}
@@ -56,22 +56,26 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction)
 	return false;
 }
 
-void shade_diffuse(t_data *data,t_light *light, t_pixel *pix)
+void shade_diffuse(t_data *data, t_light *light, t_pixel *pix)
 {
 	t_vect light_direction;
 	double dot_product;
 
 	light_direction = get_light_direction(light, pix);
 	dot_product = vector_dot_product(pix->normal, light_direction);
-	//(void)data;
-	//if (dot_product <= 0)
-	if (dot_product <= 0 || is_in_shadow(data, pix->hitpoint, light_direction))
-		parse_color("0,0,0", &(pix->color));
+	double distance_to_light = vector_length(vector_substract(light->pos, pix->hitpoint));
+	if (dot_product <= 0 || is_in_shadow(data, pix->hitpoint, light_direction, distance_to_light))
+	{
+		//parse_color("0,0,0", &(pix->color));
+		pix->color.r = clamp((dot_product * data->ambient->light_ratio * data->ambient->color.r), 0, 255);
+        pix->color.g = clamp((dot_product * data->ambient->light_ratio * data->ambient->color.g), 0, 255);
+        pix->color.b = clamp((dot_product * data->ambient->light_ratio * data->ambient->color.b), 0, 255);
+	}	
 	else
 	{
-		pix->color.r = (unsigned char)(pix->color.r * light->brightness * dot_product);
-		pix->color.g = (unsigned char)(pix->color.g * light->brightness * dot_product);
-		pix->color.b = (unsigned char)(pix->color.b * light->brightness * dot_product);
+		pix->color.r = clamp((pix->color.r * light->brightness * dot_product) + (data->ambient->light_ratio * data->ambient->color.r), 0, 255);
+		pix->color.g = clamp((pix->color.g * light->brightness * dot_product) + (data->ambient->light_ratio * data->ambient->color.g), 0, 255);
+		pix->color.b = clamp((pix->color.b * light->brightness * dot_product) + (data->ambient->light_ratio * data->ambient->color.b), 0, 255);
 	}
 }
 

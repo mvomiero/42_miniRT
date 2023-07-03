@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 16:02:21 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:31:09 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	free_tab(char **array);
 void	free_structs(t_data *data);
 int convert_rgb_to_hex(t_color *color);
 void set_pixel_color(t_data *data, int x, int y, int color);
+int	clamp(int value, int min, int max);
 
 /* RENDER */
 void	render(t_data *data);
