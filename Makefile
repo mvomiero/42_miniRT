@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/30 11:03:44 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/07/03 13:04:04 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,14 @@ SRC			=	main.c \
 				render/intersect_cylinder.c \
 				render/intersect_plane.c \
 				controls/key_event.c \
+				controls/transform_operations.c \
+				controls/transform_utils.c \
+				controls/transform_camera.c \
+				controls/transform_plane.c \
+				controls/transform_utils_keycheck.c \
+				controls/transform_cylinder.c \
+				controls/transform_sphere.c \
+				controls/transform_utils_vectors.c
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 

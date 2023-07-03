@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 12:19:01 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:01:47 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@
 
 # define WIDTH 800
 # define HEIGHT 600
-#define EPSILON 1e-6
+# define EPSILON 1e-6
+
+# define STEP 2
+# define SCALE_FACTOR 1.2
+# define ROTATION_ANGLE 10
 
 
 
@@ -78,6 +82,26 @@ int convert_rgb_to_hex(t_color *color);
 
 /* CONTROLS */
 int	key_event(int keycode, t_data *data);
+void	transform_plane(int keycode, t_data* data, t_type* selected_type);
+void	transform_sphere(int keycode, t_data *data, t_type *selected_type);
+void	transform_camera(int keycode, t_data* data, t_type* selected_type);
+void	transform_cylinder(int keycode, t_data* data, t_type* selected_type);
+
+	// utils transformation
+void rotate_element(int keycode, t_vect* norm_vect);
+void move_element(int keycode, t_vect *pos);
+void scale_element(int keycode, double *parameter);
+	// utils vectors
+void	rotate_vector_y(double angle, t_vect* vect);
+void	rotate_vector_x(double angle, t_vect* vect);
+void	rotate_vector_z(double angle, t_vect* vect);
+	// utils keycheck
+bool	is_movement_key(int keycode);
+bool	is_scale_key(int keycode);
+bool	is_rotation_key(int keycode);
+
+
+
 
 /* EXIT */
 
