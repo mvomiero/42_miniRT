@@ -6,11 +6,12 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 16:01:26 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:07:29 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
 
 int check_cy(t_cylinder *cy, t_vect hpnt)
 {
@@ -37,7 +38,7 @@ int check_cy(t_cylinder *cy, t_vect hpnt)
 	return 0;
 }
 
-/*void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection)
+void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection)
 {
 	while (cylinders)
 	{
@@ -99,7 +100,9 @@ int check_cy(t_cylinder *cy, t_vect hpnt)
 
 		cylinders = cylinders->next;
 	}
-}*/
+}
+
+
 
 bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_direction, double *t, t_vect *normal)
 {
@@ -160,7 +163,7 @@ bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_directi
 	return false;
 }
 
-void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t_vect ray_direction)
+/*void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t_vect ray_direction)
 {
 	double t;
 
@@ -175,4 +178,4 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t_vect
 		}
 		cylinders = cylinders->next;
 	}
-}
+}*/
