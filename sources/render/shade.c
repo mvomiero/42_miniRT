@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shade.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/30 18:25:53 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:02:40 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction)
 	cylinders = data->cylinders;
 	while (cylinders)
 	{
-		if (is_cylinder_hit(cylinders, ray_origin, ray_direction, &t))
+		if (is_cylinder_hit(cylinders, ray_origin, ray_direction, &t, NULL))
 			return true;
 		cylinders = cylinders->next;
 	}
@@ -63,7 +63,9 @@ void shade_diffuse(t_data *data,t_light *light, t_pixel *pix)
 
 	light_direction = get_light_direction(light, pix);
 	dot_product = vector_dot_product(pix->normal, light_direction);
-	if (dot_product <= 0 || is_in_shadow(data, pix->hitpoint, light_direction))
+	(void)data;
+	if (dot_product <= 0)
+	//if (dot_product <= 0 || is_in_shadow(data, pix->hitpoint, light_direction))
 		parse_color("0,0,0", &(pix->color));
 	else
 	{
