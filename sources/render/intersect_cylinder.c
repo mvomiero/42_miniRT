@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 16:07:29 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:41:44 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_directi
 
 		// Check if the solutions are within the valid range and closer than the current closest hit
 		// > 0 means that they are not in the ray but behind the origin
-		if (t1 > 0)
+		if (t1 > 0 && t1 < t2)
 		{
 			// Calculate the y-coordinate of the intersection point
 			t_vect hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t1));
@@ -144,7 +144,7 @@ bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_directi
 				return true;
 			}
 		}
-		if (t2 > 0)
+		if (t2 > 0 && t2 < t1)
 		{
 			// Calculate the y-coordinate of the intersection point
 			t_vect hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t1));
@@ -158,7 +158,7 @@ bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_directi
 				return true;
 			}
 		}
-		(void)t2;
+		//(void)t2;
 	}
 	return false;
 }

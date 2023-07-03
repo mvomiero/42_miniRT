@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 15:02:05 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:50:55 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,11 @@ typedef enum {
 	TYPE_CAMERA
 } t_type;
 
+typedef enum {
+	R_SHADED,
+	R_SHADOWS
+} t_render;
+
 typedef struct s_data
 {
 	t_sphere	*spheres;
@@ -114,6 +119,7 @@ typedef struct s_data
 	void		*img;
 	char		*buf;
 	t_type		type;
+	t_render	render;
 }				t_data;
 
 #endif

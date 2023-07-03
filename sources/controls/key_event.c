@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:47:14 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 13:01:52 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:54:51 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ int	key_event(int keycode, t_data *data)
 
 	if (keycode == KEY_ESC)
 		close_rt(data);
+	if (keycode == KEY_R)
+		data->render = R_SHADED;
+	if (keycode == KEY_T)
+		data->render = R_SHADOWS;
 
 	transform_sphere(keycode, data, &selected_type);
 	transform_cylinder(keycode, data, &selected_type);

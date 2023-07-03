@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:37:09 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/30 13:05:45 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:52:56 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ void	init_data(t_data *data)
 	data->planes = NULL;
 	data->cylinders = NULL;
 	data->type = TYPE_UNDEFINED;
+	data->render = R_SHADOWS;
 }
