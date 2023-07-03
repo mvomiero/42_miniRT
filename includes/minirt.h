@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 17:38:08 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:07:49 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,19 @@
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 # include "minirt_structs.h"
+# include "keycodes.h"
 # include "Colors.h"
 # include <stdio.h>
 # include <math.h>
 # include <stdbool.h>
 
-# define WIDTH 1250
-# define HEIGHT 900
-#define EPSILON 1e-6
+# define WIDTH 800
+# define HEIGHT 600
+# define EPSILON 1e-6
+
+# define STEP 2
+# define SCALE_FACTOR 1.2
+# define ROTATION_ANGLE 10
 
 
 
@@ -73,13 +78,36 @@ double vector_dot_product(t_vect vector1, t_vect vector2);
 t_vect vector_divide(t_vect v, double scalar);
 double vector_length(t_vect direction);
 
+/* COLOR */
+int convert_rgb_to_hex(t_color *color);
+
+/* CONTROLS */
+int	key_event(int keycode, t_data *data);
+void	transform_plane(int keycode, t_data* data, t_type* selected_type);
+void	transform_sphere(int keycode, t_data *data, t_type *selected_type);
+void	transform_camera(int keycode, t_data* data, t_type* selected_type);
+void	transform_cylinder(int keycode, t_data* data, t_type* selected_type);
+
+	// utils transformation
+void	rotate_element(int keycode, t_vect* norm_vect);
+void	move_element(int keycode, t_vect *pos);
+void	scale_element(int keycode, double *parameter);
+	// utils vectors
+void	rotate_vector_y(double angle, t_vect* vect);
+void	rotate_vector_x(double angle, t_vect* vect);
+void	rotate_vector_z(double angle, t_vect* vect);
+	// utils keycheck
+bool	is_movement_key(int keycode);
+bool	is_scale_key(int keycode);
+bool	is_rotation_key(int keycode);
 
 
 
 
+/* EXIT */
 
-bool rayIntersectsSphere(t_vect rayOrigin, t_vect rayDirection, t_sphere sphere);
-bool rayIntersectsSphere2(t_camera camera, t_sphere sphere);
+int	close_rt(void *param);
+
 
 
 

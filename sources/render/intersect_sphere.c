@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_sphere.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:15:23 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 17:36:32 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:11:18 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,37 +30,21 @@ bool is_sphere_hit(t_sphere *sphere, t_vect ray_origin, t_vect ray_direction, do
 		double t1 = (-b - sqrt(discriminant)) / (2.0 * a);
 		// double t2 = (-b + sqrt(discriminant)) / (2.0 * a);
 
-		// Check if the solutions are within the valid range
-		if (t1 > 0)
-		{
-			*t = t1;
-			return true;
+			// Check if the solutions are within the valid range and closer than the current closest hit
+			if (t1 > 0 && t1 < data->pix.t )
+			{
+				data->pix.t = t1;
+				data->pix.color = spheres->color;
+				data->pix.hitpoint = vectorAdd(rayOrigin, vectorScale(rayDirection, t1));
+				data->pix.normal = vectorNormalize(vectorSubtraction(data->pix.hitpoint, spheres->pos));
+				// fill other values of pix
+			}
+			// if (t2 > 0 && t2 < data->pix.t)
+			// {
+			// 	data->pix.t = t2;
+			// 	data->pix.color = spheres->color;
+			// }
 		}
-
-		// if (t2 > 0)
-		// {
-		//     *t = t2;
-		//     return true;
-		// }
-	}
-
-	return false;
-}
-
-void hit_sphere(t_data *data, t_sphere *spheres, t_vect ray_origin, t_vect ray_direction)
-{
-	double t;
-
-	while (spheres)
-	{
-		if (is_sphere_hit(spheres, ray_origin, ray_direction, &t) && t < data->pix.t)
-		{
-			data->pix.t = t;
-			data->pix.color = spheres->color;
-			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
-			data->pix.normal = vector_normalize(vector_substract(data->pix.hitpoint, spheres->pos));
-		}
-
 		spheres = spheres->next;
 	}
 }

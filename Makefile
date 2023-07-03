@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
+#    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/06/30 16:42:10 by lde-ross         ###   ########.fr        #
+#    Updated: 2023/07/03 15:01:54 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,16 @@ SRC			=	main.c \
 				render/intersect_cylinder.c \
 				render/intersect_plane.c \
 				render/trace.c \
-				render/shade.c \
+				render/shade.c \ \
+				controls/key_event.c \
+				controls/transform_operations.c \
+				controls/transform_utils.c \
+				controls/transform_camera.c \
+				controls/transform_plane.c \
+				controls/transform_utils_keycheck.c \
+				controls/transform_cylinder.c \
+				controls/transform_sphere.c \
+				controls/transform_utils_vectors.c
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
@@ -91,6 +100,7 @@ $(OBJ_PATH):
 	@mkdir $(OBJ_PATH)/parse
 	@mkdir $(OBJ_PATH)/utils
 	@mkdir $(OBJ_PATH)/render
+	@mkdir $(OBJ_PATH)/controls
 
 $(MLX):
 	@echo "Making MiniLibX..."
