@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:14:27 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/28 12:50:36 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:47:56 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,8 @@ bool	parse_ambient(t_data *data, char **tab)
 		return (err_msg("Invalid ambient light ratio", NULL, NULL), false);
 	if (!parse_color(tab[2], &(temp->color)))
 		return (err_msg("Invalid ambient color", NULL, NULL), false);
+	data->ambient->norm_vect.x = 0.0;
+	data->ambient->norm_vect.y = 1.0;
+	data->ambient->norm_vect.z = 0.0;
 	return (true);
 }

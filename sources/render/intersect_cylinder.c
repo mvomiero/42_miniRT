@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_cylinder.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 16:07:29 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:11:11 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 			// Quadratic equations always have two solutions, one with -sqrt and the other with +sqrt
 			double t1 = (-b - sqrt(discriminant)) / (2 * a);
 			double t2 = (-b + sqrt(discriminant)) / (2 * a);
-
+			(void)t2;
 			// Check if the solutions are within the valid range and closer than the current closest hit
 			// > 0 means that they are not in the ray but behind the origin
 			if (t1 > 0 && t1 < data->pix.t)
@@ -81,21 +81,21 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 				}
 			}
 
-			if (t2 > 0 && t2 < data->pix.t)
-			{
-				// Calculate the intersection point
-				t_vect hitpoint = vector_add(rayOrigin, vector_scale(rayDirection, t2));
+			// if (t2 > 0 && t2 < data->pix.t)
+			// {
+			// 	// Calculate the intersection point
+			// 	t_vect hitpoint = vector_add(rayOrigin, vector_scale(rayDirection, t2));
 
-				// Check if the intersection point is within the height of the cylinder
-				if (check_cy(cylinders, hitpoint))
-				{
-					data->pix.t = t2;
-					data->pix.color = cylinders->color;
-					data->pix.hitpoint = hitpoint;
-					data->pix.normal = vector_normalize(vector_substract(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, t2))));
-					// Fill other values of pix
-				}
-			}
+			// 	// Check if the intersection point is within the height of the cylinder
+			// 	if (check_cy(cylinders, hitpoint))
+			// 	{
+			// 		data->pix.t = t2;
+			// 		data->pix.color = cylinders->color;
+			// 		data->pix.hitpoint = hitpoint;
+			// 		data->pix.normal = vector_normalize(vector_substract(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, t2))));
+			// 		// Fill other values of pix
+			// 	}
+			// }
 		}
 
 		cylinders = cylinders->next;

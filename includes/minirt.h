@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 16:31:09 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:40:01 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_vect vector_scale(t_vect v, double scalar);
 double vector_dot_product(t_vect vector1, t_vect vector2);
 t_vect vector_divide(t_vect v, double scalar);
 double vector_length(t_vect direction);
+t_vect vector_multiply(t_vect v1, t_vect v2);
 
 /* COLOR */
 int convert_rgb_to_hex(t_color *color);
