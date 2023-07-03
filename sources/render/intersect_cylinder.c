@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 15:09:26 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:19:10 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 		t_vect axisDirection = cylinders->norm_vect;
 
 	// Calculate the vector from the ray origin to the cylinder's position
-	t_vect oc = vector_substract(ray_origin, cylinder->pos);
+	t_vect oc = vector_substract(rayOrigin, cylinders->pos);
 
 		// Calculate the dot products needed for the quadratic equation
 		double a = vector_dot_product(rayDirection, rayDirection) - pow(vector_dot_product(rayDirection, axisDirection), 2);
@@ -50,7 +50,7 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 					data->pix.t = t1;
 					data->pix.color = cylinders->color;
 					data->pix.hitpoint = hitpoint;
-					data->pix.normal = vector_normalize(vector_subtraction(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, vector_dot_product(vector_subtraction(data->pix.hitpoint, cylinders->pos), axisDirection)))));
+					data->pix.normal = vector_normalize(vector_substract(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, vector_dot_product(vector_substract(data->pix.hitpoint, cylinders->pos), axisDirection)))));
 					// Fill other values of pix
 				}
 			}
@@ -66,7 +66,7 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 					data->pix.t = t2;
 					data->pix.color = cylinders->color;
 					data->pix.hitpoint = hitpoint;
-					data->pix.normal = vector_normalize(vector_subtraction(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, t2))));
+					data->pix.normal = vector_normalize(vector_substract(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, t2))));
 					// Fill other values of pix
 				}
 			}
