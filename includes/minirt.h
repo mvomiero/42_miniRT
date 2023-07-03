@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 13:01:47 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:10:21 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,13 @@ void hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDir
 void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection);
 
 /* VECTORS */
-t_vect vectorSubtraction(t_vect v1, t_vect v2);
-t_vect vectorNormalize(t_vect v);
-t_vect vectorAdd(t_vect v1, t_vect v2);
-t_vect vectorScale(t_vect v, double scalar);
-double vectorDotProduct(t_vect vector1, t_vect vector2);
+t_vect vector_subtraction(t_vect v1, t_vect v2);
+t_vect vector_normalize(t_vect v);
+t_vect vector_add(t_vect v1, t_vect v2);
+t_vect vector_scale(t_vect v, double scalar);
+double vector_dot_product(t_vect vector1, t_vect vector2);
 
-
-
-
-
-
-bool rayIntersectsSphere(t_vect rayOrigin, t_vect rayDirection, t_sphere sphere);
-bool rayIntersectsSphere2(t_camera camera, t_sphere sphere);
-
+/* COLOR */
 int convert_rgb_to_hex(t_color *color);
 
 /* CONTROLS */
@@ -88,9 +81,9 @@ void	transform_camera(int keycode, t_data* data, t_type* selected_type);
 void	transform_cylinder(int keycode, t_data* data, t_type* selected_type);
 
 	// utils transformation
-void rotate_element(int keycode, t_vect* norm_vect);
-void move_element(int keycode, t_vect *pos);
-void scale_element(int keycode, double *parameter);
+void	rotate_element(int keycode, t_vect* norm_vect);
+void	move_element(int keycode, t_vect *pos);
+void	scale_element(int keycode, double *parameter);
 	// utils vectors
 void	rotate_vector_y(double angle, t_vect* vect);
 void	rotate_vector_x(double angle, t_vect* vect);

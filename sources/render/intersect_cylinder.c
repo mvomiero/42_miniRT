@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 12:42:08 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:09:46 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ int check_cy(t_cylinder *cy, t_vect hpnt)
 	double capmin;
 	double capmax;
 
-	pmin = vectorAdd(cy->pos, vectorScale(cy->norm_vect, -0.5 * cy->height));
-	pmax = vectorAdd(cy->pos, vectorScale(cy->norm_vect, 0.5 * cy->height));
+	pmin = vector_add(cy->pos, vector_scale(cy->norm_vect, -0.5 * cy->height));
+	pmax = vector_add(cy->pos, vector_scale(cy->norm_vect, 0.5 * cy->height));
 
-	t_vect hpnt_pmin = vectorSubtraction(hpnt, pmin);
-	t_vect hpnt_pmax = vectorSubtraction(hpnt, pmax);
+	t_vect hpnt_pmin = vector_subtraction(hpnt, pmin);
+	t_vect hpnt_pmax = vector_subtraction(hpnt, pmax);
 
-	capmin = vectorDotProduct(hpnt_pmin, hpnt_pmin);
-	capmax = vectorDotProduct(hpnt_pmax, hpnt_pmax);
+	capmin = vector_dot_product(hpnt_pmin, hpnt_pmin);
+	capmax = vector_dot_product(hpnt_pmax, hpnt_pmax);
 
-	if (vectorDotProduct(cy->norm_vect, hpnt_pmin) > 0 && vectorDotProduct(cy->norm_vect, hpnt_pmax) < 0)
+	if (vector_dot_product(cy->norm_vect, hpnt_pmin) > 0 && vector_dot_product(cy->norm_vect, hpnt_pmax) < 0)
 		return 1;
 
 	if (capmin < pow(cy->diameter / 2, 2) || capmax < pow(cy->diameter / 2, 2))
@@ -50,9 +50,9 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 		t_vect oc = {rayOrigin.x - cylinders->pos.x, rayOrigin.y - cylinders->pos.y, rayOrigin.z - cylinders->pos.z};
 
 		// Calculate the dot products needed for the quadratic equation
-		double a = vectorDotProduct(rayDirection, rayDirection) - pow(vectorDotProduct(rayDirection, axisDirection), 2);
-		double b = 2 * (vectorDotProduct(rayDirection, oc) - vectorDotProduct(rayDirection, axisDirection) * vectorDotProduct(oc, axisDirection));
-		double c = vectorDotProduct(oc, oc) - pow(vectorDotProduct(oc, axisDirection), 2) - pow(cylinders->diameter / 2, 2);
+		double a = vector_dot_product(rayDirection, rayDirection) - pow(vector_dot_product(rayDirection, axisDirection), 2);
+		double b = 2 * (vector_dot_product(rayDirection, oc) - vector_dot_product(rayDirection, axisDirection) * vector_dot_product(oc, axisDirection));
+		double c = vector_dot_product(oc, oc) - pow(vector_dot_product(oc, axisDirection), 2) - pow(cylinders->diameter / 2, 2);
 
 		// Solve the quadratic equation to find the intersection points
 		double discriminant = b * b - 4 * a * c;
@@ -69,7 +69,7 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 			if (t1 > 0 && t1 < data->pix.t)
 			{
 				// Calculate the intersection point
-				t_vect hitpoint = vectorAdd(rayOrigin, vectorScale(rayDirection, t1));
+				t_vect hitpoint = vector_add(rayOrigin, vector_scale(rayDirection, t1));
 
 				// Check if the intersection point is within the height of the cylinder
 				if (check_cy(cylinders, hitpoint))
@@ -77,7 +77,7 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 					data->pix.t = t1;
 					data->pix.color = cylinders->color;
 					data->pix.hitpoint = hitpoint;
-					data->pix.normal = vectorNormalize(vectorSubtraction(data->pix.hitpoint, vectorAdd(cylinders->pos, vectorScale(axisDirection, vectorDotProduct(vectorSubtraction(data->pix.hitpoint, cylinders->pos), axisDirection)))));
+					data->pix.normal = vector_normalize(vector_subtraction(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, vector_dot_product(vector_subtraction(data->pix.hitpoint, cylinders->pos), axisDirection)))));
 					// Fill other values of pix
 				}
 			}
@@ -85,7 +85,7 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 			if (t2 > 0 && t2 < data->pix.t)
 			{
 				// Calculate the intersection point
-				t_vect hitpoint = vectorAdd(rayOrigin, vectorScale(rayDirection, t2));
+				t_vect hitpoint = vector_add(rayOrigin, vector_scale(rayDirection, t2));
 
 				// Check if the intersection point is within the height of the cylinder
 				if (check_cy(cylinders, hitpoint))
@@ -93,7 +93,7 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 					data->pix.t = t2;
 					data->pix.color = cylinders->color;
 					data->pix.hitpoint = hitpoint;
-					data->pix.normal = vectorNormalize(vectorSubtraction(data->pix.hitpoint, vectorAdd(cylinders->pos, vectorScale(axisDirection, t2))));
+					data->pix.normal = vector_normalize(vector_subtraction(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, t2))));
 					// Fill other values of pix
 				}
 			}
