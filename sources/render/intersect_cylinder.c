@@ -6,13 +6,74 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 11:34:18 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:20:54 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
+#include <math.h>
+
+bool intersectPlane(const t_vect *n, const t_vect *p0, const t_vect *l0, const t_vect *l, double *t)
+{
+    double denom = vectorDotProduct(*n, *l);
+
+    if (fabs(denom) < EPSILON)
+        return false;
+
+    *t = vectorDotProduct(*n, vectorSubtraction(*p0, *l0)) / denom;
+
+    if (*t >= 0)
+        return true;
+
+    return false;
+}
+
+bool intersectDisk(const t_vect *n, const t_vect *p0, const double *radius, const t_vect *l0, const t_vect *l)
+{
+    double t = 0;
+    if (intersectPlane(n, p0, l0, l, &t)) {
+        t_vect p = vectorAdd(*l0, vectorScale(*l, t));
+        t_vect v = vectorSubtraction(p, *p0);
+        double d2 = vectorDotProduct(v, v);
+        return (sqrt(d2) <= *radius);
+    }
+
+    return false;
+}
+
+
+
 int check_cy(t_cylinder *cy, t_vect hpnt)
+{
+    t_vect pmin = vectorAdd(cy->pos, vectorScale(cy->norm_vect, -0.5 * cy->height));
+    t_vect pmax = vectorAdd(cy->pos, vectorScale(cy->norm_vect, 0.5 * cy->height));
+
+    if (vectorDotProduct(cy->norm_vect, vectorSubtraction(hpnt, pmin)) > 0 && vectorDotProduct(cy->norm_vect, vectorSubtraction(hpnt, pmax)) < 0)
+        return 1;
+
+    double radius2 = cy->diameter / 2 * cy->diameter / 2;
+
+    t_vect disk_center = vectorAdd(cy->pos, vectorScale(cy->norm_vect, -0.5 * cy->height));
+    t_vect scaled_norm_vect = vectorScale(cy->norm_vect, -1.0);
+    if (intersectDisk(&cy->norm_vect, &disk_center, &radius2, &hpnt, &scaled_norm_vect))
+        return 1;
+
+    disk_center = vectorAdd(cy->pos, vectorScale(cy->norm_vect, 0.5 * cy->height));
+    if (intersectDisk(&cy->norm_vect, &disk_center, &radius2, &hpnt, &cy->norm_vect))
+        return 1;
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+/*int check_cy(t_cylinder *cy, t_vect hpnt)
 {
 	t_vect pmax;
 	t_vect pmin;
@@ -35,7 +96,7 @@ int check_cy(t_cylinder *cy, t_vect hpnt)
 		return 1;
 
 	return 0;
-}
+}*/
 
 void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection)
 {
