@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 14:05:53 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:37:10 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ double vector_magnitude(t_vect vector);
 t_vect move_point_along_normal(t_vect point, t_vect normal, double distance);
 
 
+t_vect vector_multiply(t_vect v1, t_vect v2);
 
 /* COLOR */
 int convert_rgb_to_hex(t_color *color);

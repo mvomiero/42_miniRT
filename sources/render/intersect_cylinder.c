@@ -6,12 +6,11 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 14:22:36 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:38:25 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-
 
 int check_cy(t_cylinder *cy, t_vect hpnt)
 {

@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 10:50:20 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:34:35 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,6 @@ typedef struct	s_plane
 	t_color			color;
 	struct s_plane	*next;
 }			t_plane;
-
-typedef struct	s_disk
-{
-	t_vect			pos;
-	t_vect			norm_vect;
-	double			diameter;
-	t_color			color;
-	struct s_disk	*next;
-}			t_disk;
 
 typedef struct	s_cylinder
 {

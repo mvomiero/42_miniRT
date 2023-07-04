@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:37:24 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/03 15:46:44 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:34:24 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void render_pixel(t_data *data)
 	int x;
 	int y;
 	t_coord pixel;
+	static int i = 0;
 
 	y = -1;
 	while (++y < HEIGHT)
@@ -29,6 +30,13 @@ static void render_pixel(t_data *data)
 			ray_tracer(data, pixel);
 			shade(data, pixel);
 		}
+		i++;
+		if (i == 10)
+		{
+			i = 0;
+			mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+		}
+		//mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	}
 }
 

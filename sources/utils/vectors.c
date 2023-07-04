@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:48:44 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 13:45:39 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:42:44 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@ t_vect vector_divide(t_vect v, double scalar)
 	result.x = v.x / scalar;
 	result.y = v.y / scalar;
 	result.z = v.z / scalar;
+	return result;
+}
+
+t_vect vector_multiply(t_vect v1, t_vect v2)
+{
+	t_vect result;
+	result.x = v1.x * v2.x;
+	result.y = v1.y * v2.y;
+	result.z = v1.z * v2.z;
 	return result;
 }
 
