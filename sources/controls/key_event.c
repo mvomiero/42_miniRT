@@ -6,18 +6,28 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:47:14 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 17:40:49 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:35:30 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+# define COL_COMMANDS 0xffffff
 
 void	print_instructions(t_data* data)
 {
 	if (data->instructions == false)
 	{
 		data->instructions = true;
-		mlx_string_put(data->mlx, data->win, 5, 15, 0xffffff, "ciao");
+		mlx_string_put(data->mlx, data->win, 5, 15, COL_COMMANDS, "miniRT");
+		mlx_string_put(data->mlx, data->win, 5, 25, COL_COMMANDS, "Instructions: (I)");
+		mlx_string_put(data->mlx, data->win, 5, 50, COL_COMMANDS, "Objects: (S) sphere, (P) plane, (C) camera, (L) light, (V) view");
+		mlx_string_put(data->mlx, data->win, 5, 70, COL_COMMANDS, "Move: arrows to move in the xz plane, Pg to move in z axis ");
+		mlx_string_put(data->mlx, data->win, 5, 90, COL_COMMANDS, "Rotate: (H)-(J) -> y axis");
+		mlx_string_put(data->mlx, data->win, 5, 110, COL_COMMANDS, "        (U)-(N) -> x axis");
+		mlx_string_put(data->mlx, data->win, 5, 130, COL_COMMANDS, "        (Y)-(M) -> z axis");
+		mlx_string_put(data->mlx, data->win, 5, 150, COL_COMMANDS, "Render: (R) shaded, (T) shadows");
+		mlx_string_put(data->mlx, data->win, 5, 170, COL_COMMANDS, "Exit: Esc");
 	}
 	else if (data->instructions == true)
 	{
