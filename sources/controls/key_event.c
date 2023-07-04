@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:47:14 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 18:35:30 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:03:44 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 # define COL_COMMANDS 0xffffff
 
-void	print_instructions(t_data* data)
+void	print_instructions(int keycode, t_data* data)
 {
-	if (data->instructions == false)
+	if (keycode == KEY_I && data->instructions == false)
+		data->instructions = true;
+	else if (keycode == KEY_I && data->instructions == true)
+		data->instructions = false;
+	if (data->instructions == true)
 	{
 		data->instructions = true;
 		mlx_string_put(data->mlx, data->win, 5, 15, COL_COMMANDS, "miniRT");
@@ -26,13 +30,10 @@ void	print_instructions(t_data* data)
 		mlx_string_put(data->mlx, data->win, 5, 90, COL_COMMANDS, "Rotate: (H)-(J) -> y axis");
 		mlx_string_put(data->mlx, data->win, 5, 110, COL_COMMANDS, "        (U)-(N) -> x axis");
 		mlx_string_put(data->mlx, data->win, 5, 130, COL_COMMANDS, "        (Y)-(M) -> z axis");
-		mlx_string_put(data->mlx, data->win, 5, 150, COL_COMMANDS, "Render: (R) shaded, (T) shadows");
-		mlx_string_put(data->mlx, data->win, 5, 170, COL_COMMANDS, "Exit: Esc");
-	}
-	else if (data->instructions == true)
-	{
-		data->instructions = false;
-		render(data);
+		mlx_string_put(data->mlx, data->win, 5, 150, COL_COMMANDS, "        (Y)-(M) -> z axis");
+		mlx_string_put(data->mlx, data->win, 5, 170, COL_COMMANDS, "Scale: + -");
+		mlx_string_put(data->mlx, data->win, 5, 190, COL_COMMANDS, "Render: (R) shaded, (T) shadows");
+		mlx_string_put(data->mlx, data->win, 5, 210, COL_COMMANDS, "Exit: Esc");
 	}
 }
 
@@ -55,10 +56,11 @@ int	key_event(int keycode, t_data *data)
 	transform_camera(keycode, data, &selected_type);
 	transform_plane(keycode, data, &selected_type);
 
-	if (keycode == KEY_I)
-		return(print_instructions(data), 0);
+	//if (keycode == KEY_I)
+	//	return(print_instructions(keycode, data), 0);
 
 	render(data); // Render the scene using the modified data
+	print_instructions(keycode, data);
 
 	return (0);
 }
