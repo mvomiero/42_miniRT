@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/04 12:31:22 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:26:27 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double 
 			return true;
 		cylinders = cylinders->next;
 	}
+
 
 	return false;
 }

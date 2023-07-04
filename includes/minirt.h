@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 12:29:08 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 12:57:30 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void ray_tracer(t_data *data, t_coord pixel);
 void shade(t_data *data, t_coord pixel);
 
 void hit_disk_cylinder(t_data* data, t_cylinder* cylinders, t_vect ray_origin, t_vect ray_direction);
-bool is_cylinder_disk_hit(t_data* data, t_cylinder* cylinder, t_vect ray_origin, t_vect ray_direction, double* t);
+int is_cylinder_disk_hit(t_data* data, t_cylinder* cylinder, t_vect ray_origin, t_vect ray_direction, double* t);
 
 
 
