@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 10:46:47 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:30:02 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int check_cy(t_cylinder *cy, t_vect hpnt)
 	return 0;
 }
 
-void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection)
+/*void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection)
 {
 	while (cylinders)
 	{
@@ -99,7 +99,7 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 		}
 		cylinders = cylinders->next;
 	}
-}
+}*/
 
 
 
@@ -164,7 +164,7 @@ bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_directi
 	return false;
 }
 
-/*void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t_vect ray_direction)
+void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t_vect ray_direction)
 {
 	double t;
 
@@ -179,4 +179,4 @@ bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_directi
 		}
 		cylinders = cylinders->next;
 	}
-}*/
+}
