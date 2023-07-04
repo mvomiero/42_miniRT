@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 13:30:02 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:31:28 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,21 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t_vect
 			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
 			//data->pix.normal = vector_normalize(vector_substract(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(cylinders->norm_vect, vector_dot_product(vector_substract(data->pix.hitpoint, cylinders->pos), cylinders->norm_vect)))));
 		}
+		if (is_cylinder_disk_top_hit(cylinders, ray_origin, ray_direction, &t) && t < data->pix.t)
+        {
+            data->pix.t = t;
+            data->pix.color = cylinders->color;
+            data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
+            data->pix.normal = cylinders->norm_vect;
+        }
+        if (is_cylinder_disk_bottom_hit(cylinders, ray_origin, ray_direction, &t) && t < data->pix.t)
+        {
+            data->pix.t = t;
+            data->pix.color = cylinders->color;
+            data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
+            data->pix.normal = get_opposite_normal(cylinders->norm_vect);
+				
+        }
 		cylinders = cylinders->next;
 	}
 }

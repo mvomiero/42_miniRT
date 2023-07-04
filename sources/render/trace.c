@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:50:11 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/04 12:15:51 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:33:42 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void ray_tracer(t_data *data, t_coord pixel)
 	data->pix.t = INFINITY;
 	data->pix.dir = get_ray_direction(data->camera, pixel);
 	hit_sphere(data, data->spheres, data->camera->pos, data->pix.dir);
-	hit_disk_cylinder(data, data->cylinders, data->camera->pos, data->pix.dir);
+	//hit_disk_cylinder(data, data->cylinders, data->camera->pos, data->pix.dir);
 	hit_cylinder(data, data->cylinders, data->camera->pos, data->pix.dir);
 	hit_plane(data, data->planes, data->camera->pos, data->pix.dir);
 }
