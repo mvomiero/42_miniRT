@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 19:39:27 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:46:47 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,32 +36,6 @@ int check_cy(t_cylinder *cy, t_vect hpnt)
 		return 1;
 
 	return 0;
-}
-
-double vector_distance(t_vect v1, t_vect v2)
-{
-    double dx = v2.x - v1.x;
-    double dy = v2.y - v1.y;
-    double dz = v2.z - v1.z;
-    
-    return sqrt(dx * dx + dy * dy + dz * dz);
-}
-
-int check_disk(t_cylinder *cylinder, t_vect point, t_vect disk_normal)
-{
-    // Calculate the distance between the point and the center of the disk
-    t_vect center = vector_add(cylinder->pos, vector_scale(disk_normal, -cylinder->height / 2.0));
-    double distance = vector_distance(point, center);
-
-    // Check if the distance is within the disk's radius
-    if (distance <= cylinder->diameter / 2.0)
-    {
-        return 1; // Point is within the disk
-    }
-    else
-    {
-        return 0; // Point is outside the disk
-    }
 }
 
 void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection)
@@ -123,96 +97,6 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect 
 				}
 			}
 		}
-
-
-         // Calculate the center of the bottom disk
-        t_vect center_bottom_disk = {
-            cylinders->pos.x + (cylinders->norm_vect.x * (-cylinders->height / 2.0)),
-            cylinders->pos.y + (cylinders->norm_vect.y * (-cylinders->height / 2.0)),
-            cylinders->pos.z + (cylinders->norm_vect.z * (-cylinders->height / 2.0))
-        };
-
-        // Calculate the normal of the bottom disk
-        t_vect normal_bottom_disk = cylinders->norm_vect;
-
-        // ... existing code ...
-
-        // Calculate the center of the top disk
-        t_vect center_top_disk = {
-            cylinders->pos.x + (cylinders->norm_vect.x * (cylinders->height / 2.0)),
-            cylinders->pos.y + (cylinders->norm_vect.y * (cylinders->height / 2.0)),
-            cylinders->pos.z + (cylinders->norm_vect.z * (cylinders->height / 2.0))
-        };
-
-        // Calculate the normal of the top disk
-        t_vect normal_top_disk = {
-            cylinders->norm_vect.x * -1,
-            cylinders->norm_vect.y * -1,
-            cylinders->norm_vect.z * -1
-        };
-
-        // ... existing code ...
-		
-		// Calculate the distance between the ray origin and the center of the bottom disk
-        t_vect ray_to_center_bottom = {center_bottom_disk.x - rayOrigin.x, center_bottom_disk.y - rayOrigin.y, center_bottom_disk.z - rayOrigin.z};
-        double t_bottom = (ray_to_center_bottom.x * rayDirection.x + ray_to_center_bottom.y * rayDirection.y + ray_to_center_bottom.z * rayDirection.z) / (rayDirection.x * rayDirection.x + rayDirection.y * rayDirection.y + rayDirection.z * rayDirection.z);
-        t_vect intersection_point_bottom = {rayOrigin.x + t_bottom * rayDirection.x, rayOrigin.y + t_bottom * rayDirection.y, rayOrigin.z + t_bottom * rayDirection.z};
-        double distance_bottom = vector_distance(intersection_point_bottom, center_bottom_disk);
-
-        if (distance_bottom <= cylinders->diameter / 2.0 && distance_bottom < data->pix.t)
-        {
-            // The ray intersects the bottom disk
-            data->pix.t = distance_bottom;
-            data->pix.color = cylinders->color;
-            data->pix.hitpoint = intersection_point_bottom;
-            data->pix.normal = vector_normalize(normal_bottom_disk);
-            // Fill other values of pix
-        }
-
-        // ... existing code ...
-
-        // Calculate the distance between the ray origin and the center of the top disk
-        t_vect ray_to_center_top = {center_top_disk.x - rayOrigin.x, center_top_disk.y - rayOrigin.y, center_top_disk.z - rayOrigin.z};
-        double t_top = (ray_to_center_top.x * rayDirection.x + ray_to_center_top.y * rayDirection.y + ray_to_center_top.z * rayDirection.z) / (rayDirection.x * rayDirection.x + rayDirection.y * rayDirection.y + rayDirection.z * rayDirection.z);
-        t_vect intersection_point_top = {rayOrigin.x + t_top * rayDirection.x, rayOrigin.y + t_top * rayDirection.y, rayOrigin.z + t_top * rayDirection.z};
-        double distance_top = vector_distance(intersection_point_top, center_top_disk);
-
-        if (distance_top <= cylinders->diameter / 2.0 && distance_top < data->pix.t)
-        {
-            // The ray intersects the top disk
-            data->pix.t = distance_top;
-            data->pix.color = cylinders->color;
-            data->pix.hitpoint = intersection_point_top;
-            data->pix.normal = vector_normalize(normal_top_disk);
-            // Fill other values of pix
-        }
-
-		/*// Calculate the center of the top disk
-        t_vect center_top_disk = {
-            cylinders->pos.x + (cylinders->norm_vect.x * (cylinders->height / 2.0)),
-            cylinders->pos.y + (cylinders->norm_vect.y * (cylinders->height / 2.0)),
-            cylinders->pos.z + (cylinders->norm_vect.z * (cylinders->height / 2.0))
-        };
-
-		// Calculate the normal of the top disk
-        t_vect normal_top_disk = cylinders->norm_vect;
-
-        // Calculate the distance between the ray origin and the center of the top disk
-        t_vect ray_to_center_top = {center_top_disk.x - rayOrigin.x, center_top_disk.y - rayOrigin.y, center_top_disk.z - rayOrigin.z};
-        double t_top = (ray_to_center_top.x * rayDirection.x + ray_to_center_top.y * rayDirection.y + ray_to_center_top.z * rayDirection.z) / (rayDirection.x * rayDirection.x + rayDirection.y * rayDirection.y + rayDirection.z * rayDirection.z);
-        t_vect intersection_point_top = {rayOrigin.x + t_top * rayDirection.x, rayOrigin.y + t_top * rayDirection.y, rayOrigin.z + t_top * rayDirection.z};
-        double distance_top = vector_distance(intersection_point_top, center_top_disk);
-
-        if (distance_top <= cylinders->diameter / 2.0 && t_top < data->pix.t) 
-        {
-            // The ray intersects the top disk
-            data->pix.t = distance_top;
-            data->pix.color = cylinders->color;
-            data->pix.hitpoint = intersection_point_top;
-            data->pix.normal = vector_normalize(normal_top_disk);
-            // Fill other values of pix
-        }*/
-
 		cylinders = cylinders->next;
 	}
 }
