@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:49:58 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 11:37:57 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 12:30:50 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_vect get_opposite_normal(t_vect normal)
 }
 
 
-bool is_cylinder_disk_hit(t_cylinder* cylinder, t_vect ray_origin, t_vect ray_direction, double* t)
+bool is_cylinder_disk_hit(t_data *data, t_cylinder* cylinder, t_vect ray_origin, t_vect ray_direction, double* t)
 {
     double dot_product_nd = vector_dot_product(cylinder->norm_vect, ray_direction);
     
@@ -106,7 +106,10 @@ bool is_cylinder_disk_hit(t_cylinder* cylinder, t_vect ray_origin, t_vect ray_di
             double distance = vector_magnitude(vector_substract(hit_point, pos_top));
             
             if (distance <= cylinder->diameter / 2)
+			{
+				data->pix.normal = data->cylinders->norm_vect;
                 return true;
+			}
         }
     }
 
@@ -125,7 +128,10 @@ bool is_cylinder_disk_hit(t_cylinder* cylinder, t_vect ray_origin, t_vect ray_di
             double distance = vector_magnitude(vector_substract(hit_point, pos_bottom));
             
             if (distance <= cylinder->diameter / 2)
+			{
+				data->pix.normal = normal_bottom;
                 return true;
+			}
         }
     }
 
@@ -140,7 +146,7 @@ void hit_disk_cylinder(t_data* data, t_cylinder* cylinders, t_vect ray_origin, t
     
     while (cylinders)
     {
-        if (is_cylinder_disk_hit(cylinders, ray_origin, ray_direction, &t) && t < data->pix.t)
+        if (is_cylinder_disk_hit(data, cylinders, ray_origin, ray_direction, &t) && t < data->pix.t)
         {
             data->pix.t = t;
             data->pix.color = cylinders->color;
