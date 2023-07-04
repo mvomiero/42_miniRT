@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/04 13:40:07 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:53:35 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,6 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double 
 			return true;
 		cylinders = cylinders->next;
 	}
-	/*cylinders = data->cylinders;
-	while (cylinders)
-	{
-		if (is_cylinder_disk_hit(data, cylinders, ray_origin, ray_direction, &t) && t < distance_to_light)
-			return true;
-		cylinders = cylinders->next;
-	}*/
 
 
 	return false;
