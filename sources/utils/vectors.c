@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vectors.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:48:44 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/30 16:39:21 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:45:39 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,31 @@ double vector_length(t_vect direction)
 	return sqrt(direction.x * direction.x +
 				direction.y * direction.y +
 				direction.z * direction.z);
+}
+
+t_vect get_opposite_normal(t_vect normal)
+{
+	double magnitude = vector_length(normal);
+	t_vect opposite_normal = vector_scale(normal, -magnitude);
+
+	return opposite_normal;
+}
+
+double vector_magnitude(t_vect vector)
+{
+	return sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
+}
+
+t_vect move_point_along_normal(t_vect point, t_vect normal, double distance)
+{
+	// Normalize the normal vector (if it's not already normalized)
+	t_vect normalized_normal = vector_normalize(normal);
+
+	// Calculate the displacement vector in the opposite direction
+	t_vect displacement = vector_scale(normalized_normal, -distance);
+
+	// Move the point along the normal direction
+	t_vect moved_point = vector_add(point, displacement);
+
+	return moved_point;
 }

@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/03 15:20:36 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/07/04 13:47:11 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRC			=	main.c \
 				render/render.c \
 				render/intersect_sphere.c \
 				render/intersect_cylinder.c \
+				render/intersect_cylinder_disks.c \
 				render/intersect_plane.c \
 				render/trace.c \
 				render/shade.c \

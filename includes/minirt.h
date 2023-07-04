@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 13:32:59 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:45:51 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,9 @@ double vector_dot_product(t_vect vector1, t_vect vector2);
 t_vect vector_divide(t_vect v, double scalar);
 double vector_length(t_vect direction);
 t_vect get_opposite_normal(t_vect normal);
+double vector_magnitude(t_vect vector);
+t_vect move_point_along_normal(t_vect point, t_vect normal, double distance);
+
 
 
 /* COLOR */
