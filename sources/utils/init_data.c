@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:37:09 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/04 16:50:11 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:33:08 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	init_data(t_data *data)
 	data->cylinders = NULL;
 	data->type = TYPE_UNDEFINED;
 	data->render = R_SHADED;
+	data->instructions = false;
 }

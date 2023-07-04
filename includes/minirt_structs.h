@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 16:48:19 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:38:55 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MINIRT_STRUCTS_H
 
 # include "minirt.h"
+# include <stdbool.h>
+
 
 /* ELEMENTS */
 
@@ -98,7 +100,8 @@ typedef enum {
 	TYPE_SPHERE,
 	TYPE_CYLINDER,
 	TYPE_PLANE,
-	TYPE_CAMERA
+	TYPE_CAMERA,
+	TYPE_INSTRUCTIONS
 } t_type;
 
 typedef enum {
@@ -121,6 +124,7 @@ typedef struct s_data
 	char		*buf;
 	t_type		type;
 	t_render	render;
+	bool		instructions;
 }				t_data;
 
 #endif
