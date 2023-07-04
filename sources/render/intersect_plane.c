@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:49:58 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 11:34:07 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/04 11:37:57 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ bool is_cylinder_disk_hit(t_cylinder* cylinder, t_vect ray_origin, t_vect ray_di
 {
     double dot_product_nd = vector_dot_product(cylinder->norm_vect, ray_direction);
     
-	t_vect pos_top = move_point_along_normal(cylinder->pos, cylinder->norm_vect, cylinder->diameter/2);
+	t_vect pos_top = move_point_along_normal(cylinder->pos, cylinder->norm_vect, cylinder->height/2);
     // Check if the ray is not parallel to the cylinder (dot_product_nd is close to zero)
     if (fabs(dot_product_nd) > EPSILON)
     {
@@ -112,7 +112,7 @@ bool is_cylinder_disk_hit(t_cylinder* cylinder, t_vect ray_origin, t_vect ray_di
 
 	
 	t_vect	normal_bottom = get_opposite_normal(cylinder->norm_vect);
-	t_vect pos_bottom = move_point_along_normal(cylinder->pos, normal_bottom, cylinder->diameter/2);
+	t_vect pos_bottom = move_point_along_normal(cylinder->pos, normal_bottom, cylinder->height/2);
 	dot_product_nd = vector_dot_product(normal_bottom, ray_direction);
     if (fabs(dot_product_nd) > EPSILON)
     {
