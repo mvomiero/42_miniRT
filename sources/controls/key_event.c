@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:47:14 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 15:42:45 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:04:36 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_instructions(int keycode, t_data* data)
 		mlx_string_put(data->mlx, data->win, 5, 130, COL_COMMANDS, "        (Y)-(M) -> z axis");
 		mlx_string_put(data->mlx, data->win, 5, 150, COL_COMMANDS, "        (Y)-(M) -> z axis");
 		mlx_string_put(data->mlx, data->win, 5, 170, COL_COMMANDS, "Scale: + -");
-		mlx_string_put(data->mlx, data->win, 5, 190, COL_COMMANDS, "Render: (R) shaded, (T) shadows");
+		mlx_string_put(data->mlx, data->win, 5, 190, COL_COMMANDS, "Render: (R) shaded, (E) hard shadows, (T) soft shadows");
 		mlx_string_put(data->mlx, data->win, 5, 210, COL_COMMANDS, "Exit: Esc");
 	}
 }
@@ -49,6 +49,8 @@ int	key_event(int keycode, t_data *data)
 		data->scenes.render = R_SHADED;
 	if (keycode == KEY_T)
 		data->scenes.render = R_SHADOWS;
+	if (keycode == KEY_E)
+		data->scenes.render = R_SOFT_SHADOWS;
 
 	
 	transform_sphere(keycode, data, &selected_type);

@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 15:42:16 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:00:09 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ typedef enum {
 
 typedef enum {
 	R_SHADED,
-	R_SHADOWS
+	R_SHADOWS,
+	R_SOFT_SHADOWS
 } t_render;
 
 typedef struct s_scenes

@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/05 15:49:25 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:03:23 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double 
     t_plane *planes;
     double t;
 
-	if (data->scenes.render != R_SHADOWS)
+	if (data->scenes.render == R_SHADED)
 		return (false);
     planes = data->planes;
     while (planes)
@@ -141,7 +141,7 @@ void shade_diffuse(t_data *data, t_light *light, t_pixel *pix)
     t_vect light_direction = get_light_direction(light, pix);  // Get the normalized light direction
 
     // Calculate soft shadow color
-	if (data->scenes.render == R_SHADED)
+	if (data->scenes.render == R_SHADED || data->scenes.render == R_SOFT_SHADOWS)
     	get_diffuse_color(data, light, pix, light_direction);
 	if (data->scenes.render == R_SHADOWS)
     	get_soft_shadow_color(data, light, pix, light_direction);
