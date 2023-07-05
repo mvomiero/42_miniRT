@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 15:50:50 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:35:52 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ bool	parse_light(t_data *data, char **tab);
 bool	parse_sphere(t_data *data, char **tab);
 bool	parse_plane(t_data *data, char **tab);
 bool	parse_cylinder(t_data *data, char **tab);
+bool	parse_triangle(t_data *data, char **tab);
+
 
 
 /* ERROR */
@@ -67,6 +69,7 @@ bool is_sphere_hit(t_sphere *sphere, t_vect ray_origin, t_vect ray_direction, do
 void hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDirection);
 bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_direction, double *t, t_data* data);
 void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection);
+void hit_triangle(t_data *data, t_triangle *triangles, t_vect ray_origin, t_vect ray_direction);
 void ray_tracer(t_data *data, t_coord pixel);
 void shade(t_data *data, t_coord pixel);
 

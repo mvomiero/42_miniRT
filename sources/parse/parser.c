@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/30 12:21:02 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:19:18 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static bool	parse_elements(t_data *data, char **tab)
 		return (parse_plane(data, tab));
 	else if (ft_strncmp("cy", tab[0], 3) == 0)
 		return (parse_cylinder(data, tab));
+	else if (ft_strncmp("tr", tab[0], 3) == 0)
+		return (parse_triangle(data, tab));
 	return (false);
 }
 

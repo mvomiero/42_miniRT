@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:50:11 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/04 13:50:13 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:36:06 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ void ray_tracer(t_data *data, t_coord pixel)
 	hit_sphere(data, data->spheres, data->camera->pos, data->pix.dir);
 	hit_cylinder(data, data->cylinders, data->camera->pos, data->pix.dir);
 	hit_plane(data, data->planes, data->camera->pos, data->pix.dir);
+	hit_triangle(data, data->triangles, data->camera->pos, data->pix.dir);
 }

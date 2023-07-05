@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/04 16:33:07 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/07/05 16:34:58 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRC			=	main.c \
 				parse/parse_sphere.c \
 				parse/parse_plane.c \
 				parse/parse_cylinder.c \
+				parse/parse_triangle.c \
 				utils/error.c \
 				utils/utils.c \
 				utils/init_data.c \
@@ -62,6 +63,7 @@ SRC			=	main.c \
 				utils/color.c \
 				render/render.c \
 				render/intersect_sphere.c \
+				render/intersect_triangle.c \
 				render/intersect_cylinder.c \
 				render/intersect_cylinder_disks.c \
 				render/intersect_plane.c \
