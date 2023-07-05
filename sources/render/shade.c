@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/05 16:03:23 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:45:41 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double 
     t_sphere *spheres;
     t_cylinder *cylinders;
     t_plane *planes;
+    t_triangle *triangles;
     double t;
 
 	if (data->scenes.render == R_SHADED)
@@ -59,6 +60,13 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double 
         if (is_plane_hit(planes, ray_origin, ray_direction, &t) && t < distance_to_light)
             return true;  // If a plane is hit and the hit distance is smaller than the distance to the light, return true
         planes = planes->next;
+    }
+	triangles = data->triangles;
+    while (triangles)
+    {
+        if (is_triangle_hit(triangles, ray_origin, ray_direction, &t) && t < distance_to_light)
+            return true;  // If a plane is hit and the hit distance is smaller than the distance to the light, return true
+        triangles = triangles->next;
     }
     spheres = data->spheres;
     while (spheres)

@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/05 16:34:58 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/07/05 16:53:34 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ SRC			=	main.c \
 				controls/transform_utils.c \
 				controls/transform_camera.c \
 				controls/transform_plane.c \
+				controls/transform_triangle.c \
 				controls/transform_utils_keycheck.c \
 				controls/transform_cylinder.c \
 				controls/transform_sphere.c \

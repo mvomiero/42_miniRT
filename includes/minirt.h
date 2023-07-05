@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 16:35:52 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:50:34 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDir
 bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_direction, double *t, t_data* data);
 void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection);
 void hit_triangle(t_data *data, t_triangle *triangles, t_vect ray_origin, t_vect ray_direction);
+bool is_triangle_hit(t_triangle *triangle, t_vect ray_origin, t_vect ray_direction, double *t);
+
 void ray_tracer(t_data *data, t_coord pixel);
 void shade(t_data *data, t_coord pixel);
 
@@ -106,6 +108,8 @@ void	transform_plane(int keycode, t_data* data, t_type* selected_type);
 void	transform_sphere(int keycode, t_data *data, t_type *selected_type);
 void	transform_camera(int keycode, t_data* data, t_type* selected_type);
 void	transform_cylinder(int keycode, t_data* data, t_type* selected_type);
+void	transform_triangle(int keycode, t_data* data, t_type* selected_type);
+
 
 	// utils transformation
 void	rotate_element(int keycode, t_vect* norm_vect);

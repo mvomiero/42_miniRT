@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:47:14 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 16:04:36 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:55:31 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_instructions(int keycode, t_data* data)
 		data->instructions = true;
 		mlx_string_put(data->mlx, data->win, 5, 15, COL_COMMANDS, "miniRT");
 		mlx_string_put(data->mlx, data->win, 5, 25, COL_COMMANDS, "Instructions: (I)");
-		mlx_string_put(data->mlx, data->win, 5, 50, COL_COMMANDS, "Objects: (S) sphere, (P) plane, (C) camera, (L) light, (V) view");
+		mlx_string_put(data->mlx, data->win, 5, 50, COL_COMMANDS, "Objects: (S) sphere, (P) plane, (C) camera, (G) triangle, (L) light, (V) view");
 		mlx_string_put(data->mlx, data->win, 5, 70, COL_COMMANDS, "Move: arrows to move in the xz plane, Pg to move in z axis ");
 		mlx_string_put(data->mlx, data->win, 5, 90, COL_COMMANDS, "Rotate: (H)-(J) -> y axis");
 		mlx_string_put(data->mlx, data->win, 5, 110, COL_COMMANDS, "        (U)-(N) -> x axis");
@@ -57,6 +57,7 @@ int	key_event(int keycode, t_data *data)
 	transform_cylinder(keycode, data, &selected_type);
 	transform_camera(keycode, data, &selected_type);
 	transform_plane(keycode, data, &selected_type);
+	transform_triangle(keycode, data, &selected_type);
 
 	//if (keycode == KEY_I)
 	//	return(print_instructions(keycode, data), 0);
