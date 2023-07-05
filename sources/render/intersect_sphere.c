@@ -3,53 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_sphere.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:15:23 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 15:33:27 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:42:33 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-
-
-bool is_sphere_hit(t_sphere *sphere, t_vect ray_origin, t_vect ray_direction, double *t)
+bool	is_sphere_hit(t_sphere *sphere, t_vect ray_origin, t_vect ray_direction, double *t)
 {
-	double radius = sphere->diameter / 2;
-	t_vect oc = vector_substract(ray_origin, sphere->pos);
+	double	radius; 
+	t_vect	oc; 
+	double	a;
+	double	b;
+	double	c;
+	double	discriminant;
+	double	t1;
 
-	double a = vector_dot_product(ray_direction, ray_direction);
-	double b = 2.0 * vector_dot_product(oc, ray_direction);
-	double c = vector_dot_product(oc, oc) - radius * radius;
-	double discriminant = b * b - 4 * a * c;
-
+	radius = sphere->diameter / 2;
+	oc = vector_sub(ray_origin, sphere->pos);
+	a = vector_dot_product(ray_direction, ray_direction);
+	b = 2.0 * vector_dot_product(oc, ray_direction);
+	c = vector_dot_product(oc, oc) - radius * radius;
+	discriminant = b * b - 4 * a * c;
 	if (discriminant >= 0)
 	{
-		// Calculate the solutions
-		double t1 = (-b - sqrt(discriminant)) / (2.0 * a);
-		// double t2 = (-b + sqrt(discriminant)) / (2.0 * a);
-
-		// Check if the solutions are within the valid range
+		t1 = (-b - sqrt(discriminant)) / (2.0 * a);
 		if (t1 > 0)
 		{
 			*t = t1;
-			return true;
+			return (true);
 		}
-
-		// if (t2 > 0)
-		// {
-		//     *t = t2;
-		//     return true;
-		// }
 	}
-
-	return false;
+	return (false);
 }
 
-void hit_sphere(t_data *data, t_sphere *spheres, t_vect ray_origin, t_vect ray_direction)
+void	hit_sphere(t_data *data, t_sphere *spheres, t_vect ray_origin, t_vect ray_direction)
 {
-	double t;
+	double	t;
 
 	while (spheres)
 	{
@@ -58,10 +51,8 @@ void hit_sphere(t_data *data, t_sphere *spheres, t_vect ray_origin, t_vect ray_d
 			data->pix.t = t;
 			data->pix.color = spheres->color;
 			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
-			data->pix.normal = vector_normalize(vector_substract(data->pix.hitpoint, spheres->pos));
+			data->pix.normal = vector_normalize(vector_sub(data->pix.hitpoint, spheres->pos));
 		}
-
 		spheres = spheres->next;
 	}
 }
-

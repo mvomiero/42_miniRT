@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 16:50:34 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:39:01 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ bool is_cylinder_disk_bottom_hit(t_cylinder* cylinder, t_vect ray_origin, t_vect
 
 
 /* VECTORS */
-t_vect vector_substract(t_vect v1, t_vect v2);
+t_vect vector_sub(t_vect v1, t_vect v2);
 t_vect vector_normalize(t_vect v);
 t_vect vector_add(t_vect v1, t_vect v2);
 t_vect vector_scale(t_vect v, double scalar);
@@ -93,7 +93,6 @@ double vector_dot_product(t_vect vector1, t_vect vector2);
 t_vect vector_divide(t_vect v, double scalar);
 double vector_length(t_vect direction);
 t_vect get_opposite_normal(t_vect normal);
-double vector_magnitude(t_vect vector);
 t_vect move_point_along_normal(t_vect point, t_vect normal, double distance);
 
 

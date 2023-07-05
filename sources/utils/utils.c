@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:36:39 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 16:30:55 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:15:14 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	clamp(int value, int min, int max)
 		return (min);
 	if (value > max)
 		return (max);
-
 	return (value);
 }
 

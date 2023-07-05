@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:54:38 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/28 15:20:15 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:15:29 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	free_planes(t_plane **alst)
 	t_plane	*current;
 
 	current = *alst;
-
 	while (current)
 	{
 		temp = current->next;
@@ -33,7 +32,6 @@ static void	free_spheres(t_sphere **alst)
 	t_sphere	*current;
 
 	current = *alst;
-
 	while (current)
 	{
 		temp = current->next;
@@ -48,7 +46,6 @@ static void	free_cylinders(t_cylinder **alst)
 	t_cylinder	*current;
 
 	current = *alst;
-
 	while (current)
 	{
 		temp = current->next;

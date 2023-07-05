@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/05 16:53:34 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/07/05 18:30:21 by lde-ross         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRC			=	main.c \
 				utils/init_mlx.c \
 				utils/free_structs.c \
 				utils/vectors.c \
+				utils/vectors2.c \
 				utils/color.c \
 				render/render.c \
 				render/intersect_sphere.c \

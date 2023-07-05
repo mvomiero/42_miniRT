@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:30:44 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 17:16:53 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:33:40 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ t_vect vector_cross_product(t_vect v1, t_vect v2)
 
 t_vect vector_subtract(t_vect v1, t_vect v2)
 {
-    t_vect result;
-    result.x = v1.x - v2.x;
-    result.y = v1.y - v2.y;
-    result.z = v1.z - v2.z;
-    return result;
+	t_vect result;
+	result.x = v1.x - v2.x;
+	result.y = v1.y - v2.y;
+	result.z = v1.z - v2.z;
+	return result;
 }
-
 
 bool is_triangle_hit(t_triangle *triangle, t_vect ray_origin, t_vect ray_direction, double *t)
 {
