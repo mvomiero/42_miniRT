@@ -6,13 +6,13 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:15:23 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 15:12:58 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:33:27 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-#define EPSILON 1e-6
-#define MAX_DISTANCE 200
+
+
 
 bool is_sphere_hit(t_sphere *sphere, t_vect ray_origin, t_vect ray_direction, double *t)
 {

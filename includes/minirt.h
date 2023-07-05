@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 16:37:10 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:50:50 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define STEP 2
 # define SCALE_FACTOR 1.2
 # define ROTATION_ANGLE 10
+//#define MAX_DISTANCE 200
 
 
 
