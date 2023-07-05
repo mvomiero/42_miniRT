@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 19:16:21 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/30 11:09:01 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:48:33 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	close_rt(void *param)
 
 	app = (t_data *)param;
 	free_structs(app);
+	mlx_destroy_image(app->mlx, app->img);
 	mlx_destroy_window(app->mlx, app->win);
 	mlx_destroy_display(app->mlx);
 	free(app->mlx);
