@@ -6,13 +6,13 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:15:23 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 18:42:33 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:43:48 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-bool	is_sphere_hit(t_sphere *sphere, t_vect ray_origin, t_vect ray_direction, double *t)
+double	get_discriminant(t_vect ray_origin, t_vect ray_direction, t_sphere *sphere)
 {
 	double	radius; 
 	t_vect	oc; 
@@ -20,7 +20,6 @@ bool	is_sphere_hit(t_sphere *sphere, t_vect ray_origin, t_vect ray_direction, do
 	double	b;
 	double	c;
 	double	discriminant;
-	double	t1;
 
 	radius = sphere->diameter / 2;
 	oc = vector_sub(ray_origin, sphere->pos);
@@ -28,6 +27,15 @@ bool	is_sphere_hit(t_sphere *sphere, t_vect ray_origin, t_vect ray_direction, do
 	b = 2.0 * vector_dot_product(oc, ray_direction);
 	c = vector_dot_product(oc, oc) - radius * radius;
 	discriminant = b * b - 4 * a * c;
+	return (discriminant);
+}
+
+bool	is_sphere_hit(t_sphere *sphere, t_vect ray_origin, t_vect ray_direction, double *t)
+{
+	double	discriminant;
+	double	t1;
+
+	discriminant = get_discriminant(ray_origin, ray_direction, sphere);
 	if (discriminant >= 0)
 	{
 		t1 = (-b - sqrt(discriminant)) / (2.0 * a);
