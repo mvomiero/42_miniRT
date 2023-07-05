@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shade.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/05 16:03:23 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:53:02 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,21 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double 
 	if (data->scenes.render == R_SHADED)
 		return (false);
     planes = data->planes;
-    while (planes)
+   while (planes)
     {
         if (is_plane_hit(planes, ray_origin, ray_direction, &t) && t < distance_to_light)
-            return true;  // If a plane is hit and the hit distance is smaller than the distance to the light, return true
+        {
+            // Apply offset to avoid self-intersection
+            t_vect offset_hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
+            t_vect offset_origin = vector_add(offset_hitpoint, vector_scale(planes->norm_vect, EPSILON));
+
+            // Check if the offset ray intersects the plane before the light
+            if (is_plane_hit(planes, offset_origin, ray_direction, &t) && t < distance_to_light)
+                return true;
+        }
         planes = planes->next;
     }
+
     spheres = data->spheres;
     while (spheres)
     {
@@ -75,7 +84,7 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double 
 		else if (is_cylinder_disk_bottom_hit(cylinders, ray_origin, ray_direction, &t) && t < distance_to_light)
 			return true;
 		else if (is_cylinder_disk_top_hit(cylinders, ray_origin, ray_direction, &t) && t < distance_to_light)
-            return true;  // If a cylinder is hit and the hit distance is smaller than the distance to the light, return true
+            return true;
         cylinders = cylinders->next;
     }
 

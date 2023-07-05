@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_plane.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:49:58 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/04 13:48:23 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:20:17 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,27 @@ void hit_plane(t_data *data, t_plane *planes, t_vect ray_origin, t_vect ray_dire
 		planes = planes->next;
 	}
 }
+
+// void hit_plane(t_data *data, t_plane *planes, t_vect ray_origin, t_vect ray_direction)
+// {
+//     double t;
+//     while (planes)
+//     {
+//         if (is_plane_hit(planes, ray_origin, ray_direction, &t))
+//         {
+//             // Apply offset to avoid self-intersection
+//             t_vect offset_hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
+//             t_vect offset_origin = vector_add(offset_hitpoint, vector_scale(planes->norm_vect, EPSILON));
+
+//             // Check if the offset ray still intersects with the plane
+//             if (is_plane_hit(planes, offset_origin, ray_direction, &t) && t < data->pix.t)
+//             {
+//                 data->pix.t = t;
+//                 data->pix.color = planes->color;
+//                 data->pix.hitpoint = vector_add(offset_origin, vector_scale(ray_direction, t));
+//                 data->pix.normal = planes->norm_vect;
+//             }
+//         }
+//         planes = planes->next;
+//     }
+// }
