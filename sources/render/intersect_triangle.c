@@ -6,13 +6,13 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:30:44 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/06 15:57:21 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:41:15 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-bool is_triangle_hit(t_triangle *triangle, t_vect ray_origin, t_vect ray_direction, double *t)
+/* bool is_triangle_hit(t_triangle *triangle, t_vect ray_origin, t_vect ray_direction, double *t)
 {
 	t_vect edge1, edge2, h, s, q;
 	double a, f, u, v;
@@ -47,6 +47,46 @@ bool is_triangle_hit(t_triangle *triangle, t_vect ray_origin, t_vect ray_directi
 	return false;
 }
 
+ */
+
+bool is_triangle_hit(t_triangle *triangle, t_vect ray_origin, t_vect ray_direction, double *t)
+{
+    t_vect edge1, edge2, h, s, q;
+    double a, f, u, v;
+
+    edge1 = vector_subtract(triangle->v2, triangle->v1);
+    edge2 = vector_subtract(triangle->v3, triangle->v1);
+
+    h = vector_cross_product(ray_direction, edge2);
+    a = vector_dot_product(edge1, h);
+
+    if (fabs(a) < EPSILON)
+        return false;
+
+    f = 1.0 / a;
+    s = vector_subtract(ray_origin, triangle->v1);
+    u = f * vector_dot_product(s, h);
+
+    if (u < 0.0 || u > 1.0)
+        return false;
+
+    q = vector_cross_product(s, edge1);
+    v = f * vector_dot_product(ray_direction, q);
+
+    if (v < 0.0 || u + v > 1.0)
+        return false;
+
+    *t = f * vector_dot_product(edge2, q);
+
+    if (*t > 0.0) {
+        if (a > 0.0) // Triangle with counterclockwise vertex order
+            return true;
+        else // Triangle with clockwise vertex order
+            return false;
+    }
+
+    return false;
+}
 
 void hit_triangle(t_data *data, t_triangle *triangles, t_vect ray_origin, t_vect ray_direction)
 {

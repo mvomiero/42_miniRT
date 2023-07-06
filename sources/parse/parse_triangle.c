@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:17:25 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/06 15:59:50 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:45:11 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,6 @@ bool	parse_triangle(t_data *data, char **tab)
 	t_vect edge1 = vector_subtract(temp->v2, temp->v1);
 	t_vect edge2 = vector_subtract(temp->v3, temp->v1);
 	temp->norm_vect = vector_normalize(vector_cross_product(edge1, edge2));
-	//t_vect camera_direction = vector_normalize(vector_subtract(data->camera->pos, temp->v1));
-	//if (vector_dot_product(temp->norm_vect, camera_direction) > 0.0)
-	//	temp->norm_vect = vector_scale(temp->norm_vect, -1.0); // Flip the normal
 
 
 	temp->next = NULL;

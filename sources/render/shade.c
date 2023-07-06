@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/06 16:34:42 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:30:36 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,12 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double 
 	triangles = data->triangles;
 	while (triangles)
 	{
-		//if (is_triangle_hit(triangles, ray_origin, ray_direction, &t) && t < distance_to_light)
-		//	return true; // If a plane is hit and the hit distance is smaller than the distance to the light, return true
 
 		if (is_triangle_hit(triangles, ray_origin, ray_direction, &t) && t < distance_to_light)
 		{
-			// Apply offset to avoid self-intersection
-			t_vect offset_hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
-			t_vect offset_origin = vector_add(offset_hitpoint, vector_scale(triangles->norm_vect, EPSILON));
-
-			// Check if the offset ray intersects the plane before the light
-			if (is_triangle_hit(triangles, offset_origin, ray_direction, &t) && t < distance_to_light)
+		
 				return true; // If a plane is hit and the hit distance is smaller than the distance to the light, return true
+
 		}
 		triangles = triangles->next;
 	}
