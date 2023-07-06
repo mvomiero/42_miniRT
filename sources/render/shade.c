@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shade.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/05 18:39:01 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:00:10 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,25 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double 
 		if (is_cylinder_hit(cylinders, ray_origin, ray_direction, &t, NULL) && t < distance_to_light)
 			return true;
 		else if (is_cylinder_disk_bottom_hit(cylinders, ray_origin, ray_direction, &t) && t < distance_to_light)
-			return true;
+		{
+			// Apply offset to avoid self-intersection
+			t_vect offset_hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
+			t_vect offset_origin = vector_add(offset_hitpoint, vector_scale(cylinders->norm_vect, EPSILON));
+			
+			// Check if the offset ray intersects the plane before the light
+			if (is_cylinder_disk_bottom_hit(cylinders, offset_origin, ray_direction, &t) && t < distance_to_light)
+				return true;
+		}
 		else if (is_cylinder_disk_top_hit(cylinders, ray_origin, ray_direction, &t) && t < distance_to_light)
-			return true;
+		{
+			// Apply offset to avoid self-intersection
+			t_vect offset_hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
+			t_vect offset_origin = vector_add(offset_hitpoint, vector_scale(get_opposite_normal(cylinders->norm_vect), EPSILON));
+			
+			// Check if the offset ray intersects the plane before the light
+			if (is_cylinder_disk_top_hit(cylinders, offset_origin, ray_direction, &t) && t < distance_to_light)
+				return true;
+		}
 		cylinders = cylinders->next;
 	}
 
