@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_triangle.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:30:44 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 18:33:40 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:25:29 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-
-t_vect vector_cross_product(t_vect v1, t_vect v2)
-{
-	t_vect result;
-	result.x = v1.y * v2.z - v1.z * v2.y;
-	result.y = v1.z * v2.x - v1.x * v2.z;
-	result.z = v1.x * v2.y - v1.y * v2.x;
-	return result;
-}
-
-t_vect vector_subtract(t_vect v1, t_vect v2)
-{
-	t_vect result;
-	result.x = v1.x - v2.x;
-	result.y = v1.y - v2.y;
-	result.z = v1.z - v2.z;
-	return result;
-}
 
 bool is_triangle_hit(t_triangle *triangle, t_vect ray_origin, t_vect ray_direction, double *t)
 {
@@ -75,7 +57,12 @@ void hit_triangle(t_data *data, t_triangle *triangles, t_vect ray_origin, t_vect
 			data->pix.t = t;
 			data->pix.color = triangles->color;
 			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
-			data->pix.normal = vector_cross_product(vector_subtract(triangles->v2, triangles->v1), vector_subtract(triangles->v3, triangles->v1));
+			//data->pix.normal = vector_cross_product(vector_subtract(triangles->v2, triangles->v1), vector_subtract(triangles->v3, triangles->v1));
+			/*t_vect edge1 = vector_subtract(triangles->v2, triangles->v1);
+			t_vect edge2 = vector_subtract(triangles->v3, triangles->v1);
+			data->pix.normal = vector_normalize(vector_cross_product(edge1, edge2));*/
+			data->pix.normal = triangles->norm_vect;
+
 		}
 		triangles = triangles->next;
 	}

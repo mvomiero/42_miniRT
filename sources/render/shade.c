@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/06 11:00:10 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:51:48 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,26 @@ static t_vect get_light_direction(t_light *light, t_pixel *pix)
 	return light_direction; // Return the normalized light direction vector
 }
 
+bool is_point_in_triangle(t_vect point, t_vect v1, t_vect v2, t_vect v3)
+{
+    // Calculate the barycentric coordinates of the point within the triangle
+    t_vect u = vector_subtract(v2, v1);
+    t_vect v = vector_subtract(v3, v1);
+    t_vect w = vector_subtract(point, v1);
+    double uu = vector_dot_product(u, u);
+    double uv = vector_dot_product(u, v);
+    double vv = vector_dot_product(v, v);
+    double wu = vector_dot_product(w, u);
+    double wv = vector_dot_product(w, v);
+    double denominator = uv * uv - uu * vv;
+
+    // Check if the point is within the triangle
+    double s = (uv * wv - vv * wu) / denominator;
+    double t = (uv * wu - uu * wv) / denominator;
+    return (s >= 0.0) && (t >= 0.0) && (s + t <= 1.0);
+}
+
+
 bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double distance_to_light)
 {
 	t_sphere *spheres;
@@ -72,8 +92,19 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double 
 	triangles = data->triangles;
 	while (triangles)
 	{
+		//if (is_triangle_hit(triangles, ray_origin, ray_direction, &t) && t < distance_to_light)
+		//	return true; // If a plane is hit and the hit distance is smaller than the distance to the light, return true
+
 		if (is_triangle_hit(triangles, ray_origin, ray_direction, &t) && t < distance_to_light)
-			return true; // If a plane is hit and the hit distance is smaller than the distance to the light, return true
+		{
+			// Apply offset to avoid self-intersection
+			t_vect offset_hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
+			t_vect offset_origin = vector_add(offset_hitpoint, vector_scale(triangles->norm_vect, EPSILON));
+
+			// Check if the offset ray intersects the plane before the light
+			if (is_triangle_hit(triangles, offset_origin, ray_direction, &t) && t < distance_to_light)
+				return true; // If a plane is hit and the hit distance is smaller than the distance to the light, return true
+		}
 		triangles = triangles->next;
 	}
 

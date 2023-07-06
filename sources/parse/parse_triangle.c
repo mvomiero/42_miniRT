@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_triangle.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:17:25 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 18:27:16 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:25:21 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ bool	parse_triangle(t_data *data, char **tab)
 		|| !parse_vector(tab[3], false, &(temp->v3))
 		|| !parse_color(tab[4], &(temp->color)))
 		return (err_msg("invalid triangle configuration", NULL, NULL), false);
+	t_vect edge1 = vector_subtract(temp->v2, temp->v1);
+	t_vect edge2 = vector_subtract(temp->v3, temp->v1);
+	temp->norm_vect = vector_normalize(vector_cross_product(edge1, edge2));
 	temp->next = NULL;
 	return (true);
 }

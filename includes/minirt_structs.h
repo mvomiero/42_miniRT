@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 16:49:49 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:24:53 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_triangle
 	t_vect	v2;
 	t_vect	v3;
 	t_color	color;
+	t_vect	norm_vect;
 	struct s_triangle	*next;
 }	t_triangle;
 

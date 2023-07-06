@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 18:39:01 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:20:23 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ t_vect vector_divide(t_vect v, double scalar);
 double vector_length(t_vect direction);
 t_vect get_opposite_normal(t_vect normal);
 t_vect move_point_along_normal(t_vect point, t_vect normal, double distance);
+t_vect vector_cross_product(t_vect v1, t_vect v2);
+t_vect vector_subtract(t_vect v1, t_vect v2);
+
 
 
 t_vect vector_multiply(t_vect v1, t_vect v2);
