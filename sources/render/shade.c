@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shade.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/06 11:51:48 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:34:42 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double 
 	{
 		if (is_cylinder_hit(cylinders, ray_origin, ray_direction, &t, NULL) && t < distance_to_light)
 			return true;
-		else if (is_cylinder_disk_bottom_hit(cylinders, ray_origin, ray_direction, &t) && t < distance_to_light)
+		if (is_cylinder_disk_bottom_hit(cylinders, ray_origin, ray_direction, &t) && t < distance_to_light)
 		{
 			// Apply offset to avoid self-intersection
 			t_vect offset_hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
@@ -130,7 +130,7 @@ bool is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double 
 			if (is_cylinder_disk_bottom_hit(cylinders, offset_origin, ray_direction, &t) && t < distance_to_light)
 				return true;
 		}
-		else if (is_cylinder_disk_top_hit(cylinders, ray_origin, ray_direction, &t) && t < distance_to_light)
+		if (is_cylinder_disk_top_hit(cylinders, ray_origin, ray_direction, &t) && t < distance_to_light)
 		{
 			// Apply offset to avoid self-intersection
 			t_vect offset_hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));

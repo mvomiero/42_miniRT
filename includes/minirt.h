@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/06 11:20:23 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:39:06 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define HEIGHT 600
 # define EPSILON 1e-6
 
-# define STEP 2
+# define STEP 5
 # define SCALE_FACTOR 1.2
 # define ROTATION_ANGLE 10
 //#define MAX_DISTANCE 200
