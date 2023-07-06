@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_cylinder_disks.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:43:08 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 18:39:01 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/06 10:44:35 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,16 @@ void hit_disk_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t
 			data->pix.t = t;
 			data->pix.color = cylinders->color;
 			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
-			data->pix.normal = cylinders->norm_vect;
+			//data->pix.normal = cylinders->norm_vect;
+			data->pix.normal = get_opposite_normal(cylinders->norm_vect);
 		}
 		if (is_cylinder_disk_bottom_hit(cylinders, ray_origin, ray_direction, &t) && t < data->pix.t)
 		{
 			data->pix.t = t;
 			data->pix.color = cylinders->color;
 			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
-			data->pix.normal = get_opposite_normal(cylinders->norm_vect);
+			data->pix.normal = cylinders->norm_vect;
+			//data->pix.normal = get_opposite_normal(cylinders->norm_vect);
 		}
 
 		cylinders = cylinders->next;
