@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_triangle.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:30:44 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/06 17:41:15 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:39:01 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ bool is_triangle_hit(t_triangle *triangle, t_vect ray_origin, t_vect ray_directi
         if (a > 0.0) // Triangle with counterclockwise vertex order
             return true;
         else // Triangle with clockwise vertex order
-            return false;
+            return true;
+            //return false;
     }
 
     return false;

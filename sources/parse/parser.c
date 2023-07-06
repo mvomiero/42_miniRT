@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/05 16:19:18 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:15:28 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ static bool	parse_lines(t_data *data, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
+		if (line[0] == '#') // Check if line starts with #
+		{
+			free(line);
+			line = get_next_line(fd);
+			continue; // Ignore the line and continue the loop
+		}
 		if (line[0] != '\n')
 		{
 			tab = ft_split(line, ' ');
