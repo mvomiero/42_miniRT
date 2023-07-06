@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_cylinder_disks.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:43:08 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/06 10:44:35 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:33:00 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ bool is_cylinder_disk_top_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ra
 	// Check if the ray is not parallel to the top disk (dot_product_nd is close to zero)
 	if (fabs(dot_product_nd) > EPSILON)
 	{
-		t_vect oc = vector_sub(pos_top, ray_origin);
+		t_vect oc = vector_subtract(pos_top, ray_origin);
 		*t = vector_dot_product(oc, cylinder->norm_vect) / dot_product_nd;
 
 		if (*t > 0)
 		{
 			t_vect hit_point = vector_add(ray_origin, vector_scale(ray_direction, *t));
-			double distance = vector_length(vector_sub(hit_point, pos_top));
+			double distance = vector_length(vector_subtract(hit_point, pos_top));
 
 			if (distance <= cylinder->diameter / 2)
 				return (true);
@@ -44,26 +44,24 @@ bool is_cylinder_disk_bottom_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect
 	dot_product_nd = vector_dot_product(cylinder->norm_vect, ray_direction);
 	if (fabs(dot_product_nd) > EPSILON)
 	{
-		t_vect oc = vector_sub(pos_bottom, ray_origin);
+		t_vect oc = vector_subtract(pos_bottom, ray_origin);
 		*t = vector_dot_product(oc, cylinder->norm_vect) / dot_product_nd;
 
 		if (*t > 0)
 		{
 			t_vect hit_point = vector_add(ray_origin, vector_scale(ray_direction, *t));
-			double distance = vector_length(vector_sub(hit_point, pos_bottom));
+			double distance = vector_length(vector_subtract(hit_point, pos_bottom));
 
 			if (distance <= cylinder->diameter / 2)
 				return (true);
 		}
 	}
-
-	// No intersection with either disk
 	return false;
 }
 
 void hit_disk_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t_vect ray_direction)
 {
-	double t;
+	double	t;
 
 	while (cylinders)
 	{
@@ -72,7 +70,6 @@ void hit_disk_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t
 			data->pix.t = t;
 			data->pix.color = cylinders->color;
 			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
-			//data->pix.normal = cylinders->norm_vect;
 			data->pix.normal = get_opposite_normal(cylinders->norm_vect);
 		}
 		if (is_cylinder_disk_bottom_hit(cylinders, ray_origin, ray_direction, &t) && t < data->pix.t)
@@ -81,9 +78,7 @@ void hit_disk_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t
 			data->pix.color = cylinders->color;
 			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
 			data->pix.normal = cylinders->norm_vect;
-			//data->pix.normal = get_opposite_normal(cylinders->norm_vect);
 		}
-
 		cylinders = cylinders->next;
 	}
 }
@@ -100,13 +95,13 @@ void hit_disk_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t
 	// Check if the ray is not parallel to the cylinder (dot_product_nd is close to zero)
 	if (fabs(dot_product_nd) > EPSILON)
 	{
-		t_vect oc = vector_sub(pos_top, ray_origin);
+		t_vect oc = vector_subtract(pos_top, ray_origin);
 		*t = vector_dot_product(oc, cylinder->norm_vect) / dot_product_nd;
 
 		if (*t > 0)
 		{
 			t_vect hit_point = vector_add(ray_origin, vector_scale(ray_direction, *t));
-			double distance = vector_length(vector_sub(hit_point, pos_top));
+			double distance = vector_length(vector_subtract(hit_point, pos_top));
 
 			if (distance <= cylinder->diameter / 2)
 			{
@@ -122,13 +117,13 @@ void hit_disk_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t
 	dot_product_nd = vector_dot_product(normal_bottom, ray_direction);
 	if (fabs(dot_product_nd) > EPSILON)
 	{
-		t_vect oc = vector_sub(pos_bottom, ray_origin);
+		t_vect oc = vector_subtract(pos_bottom, ray_origin);
 		*t = vector_dot_product(oc, normal_bottom) / dot_product_nd;
 
 		if (*t > 0)
 		{
 			t_vect hit_point = vector_add(ray_origin, vector_scale(ray_direction, *t));
-			double distance = vector_length(vector_sub(hit_point, pos_bottom));
+			double distance = vector_length(vector_subtract(hit_point, pos_bottom));
 
 			if (distance <= cylinder->diameter / 2)
 			{
@@ -153,13 +148,13 @@ void hit_disk_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t
 	// Check if the ray is not parallel to the top disk (dot_product_nd is close to zero)
 	if (fabs(dot_product_nd) > EPSILON)
 	{
-		t_vect oc = vector_sub(pos_top, ray_origin);
+		t_vect oc = vector_subtract(pos_top, ray_origin);
 		*t = vector_dot_product(oc, cylinder->norm_vect) / dot_product_nd;
 
 		if (*t > 0)
 		{
 			t_vect hit_point = vector_add(ray_origin, vector_scale(ray_direction, *t));
-			double distance = vector_length(vector_sub(hit_point, pos_top));
+			double distance = vector_length(vector_subtract(hit_point, pos_top));
 
 			if (distance <= cylinder->diameter / 2)
 			{
@@ -174,13 +169,13 @@ void hit_disk_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t
 	dot_product_nd = vector_dot_product(cylinder->norm_vect, ray_direction);
 	if (fabs(dot_product_nd) > EPSILON)
 	{
-		t_vect oc = vector_sub(pos_bottom, ray_origin);
+		t_vect oc = vector_subtract(pos_bottom, ray_origin);
 		*t = vector_dot_product(oc, cylinder->norm_vect) / dot_product_nd;
 
 		if (*t > 0)
 		{
 			t_vect hit_point = vector_add(ray_origin, vector_scale(ray_direction, *t));
-			double distance = vector_length(vector_sub(hit_point, pos_bottom));
+			double distance = vector_length(vector_subtract(hit_point, pos_bottom));
 
 			if (distance <= cylinder->diameter / 2)
 			{

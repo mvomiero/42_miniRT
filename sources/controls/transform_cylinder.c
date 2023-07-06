@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   transform_cylinder.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:50:26 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 12:52:04 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:41:35 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void transform_cylinder(int keycode, t_data* data, t_type* selected_type)
+void	transform_cylinder(int keycode, t_data *data, t_type *selected_type)
 {
-	static t_cylinder* selected_cylinder = NULL;
+	static t_cylinder	*selected_cylinder = NULL;
 
 	if (keycode == KEY_C)
 	{

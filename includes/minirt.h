@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/06 18:43:20 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:49:44 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include <X11/keysym.h> 		
+# include <X11/keysym.h>
 # include <X11/X.h>
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
@@ -33,8 +33,6 @@
 # define ROTATION_ANGLE 10
 //#define MAX_DISTANCE 200
 
-
-
 /* PARSER */
 bool parser(t_data *data, char *arg);
 bool	parse_color(char *str, t_color *color);
@@ -46,8 +44,6 @@ bool	parse_sphere(t_data *data, char **tab);
 bool	parse_plane(t_data *data, char **tab);
 bool	parse_cylinder(t_data *data, char **tab);
 bool	parse_triangle(t_data *data, char **tab);
-
-
 
 /* ERROR */
 void	err_msg(char *s1, char *s2, char *s3);
@@ -71,21 +67,15 @@ bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_directi
 void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection);
 void hit_triangle(t_data *data, t_triangle *triangles, t_vect ray_origin, t_vect ray_direction);
 bool is_triangle_hit(t_triangle *triangle, t_vect ray_origin, t_vect ray_direction, double *t);
-
 void ray_tracer(t_data *data, t_coord pixel);
 void shade(t_data *data, t_coord pixel);
-
 void hit_disk_cylinder(t_data* data, t_cylinder* cylinders, t_vect ray_origin, t_vect ray_direction);
 int is_cylinder_disk_hit(t_data* data, t_cylinder* cylinder, t_vect ray_origin, t_vect ray_direction, double* t);
 bool is_cylinder_disk_top_hit(t_cylinder* cylinder, t_vect ray_origin, t_vect ray_direction, double* t);
-
 bool is_cylinder_disk_bottom_hit(t_cylinder* cylinder, t_vect ray_origin, t_vect ray_direction, double* t);
 
-
-
-
 /* VECTORS */
-t_vect vector_sub(t_vect v1, t_vect v2);
+t_vect vector_subtract(t_vect v1, t_vect v2);
 t_vect vector_normalize(t_vect v);
 t_vect vector_add(t_vect v1, t_vect v2);
 t_vect vector_scale(t_vect v, double scalar);
@@ -96,9 +86,6 @@ t_vect get_opposite_normal(t_vect normal);
 t_vect move_point_along_normal(t_vect point, t_vect normal, double distance);
 t_vect vector_cross_product(t_vect v1, t_vect v2);
 t_vect vector_subtract(t_vect v1, t_vect v2);
-
-
-
 t_vect vector_multiply(t_vect v1, t_vect v2);
 
 /* COLOR */
@@ -112,30 +99,20 @@ void	transform_camera(int keycode, t_data* data, t_type* selected_type);
 void	transform_cylinder(int keycode, t_data* data, t_type* selected_type);
 void	transform_triangle(int keycode, t_data* data, t_type* selected_type);
 
-
-	// utils transformation
+// utils transformation
 void	rotate_element(int keycode, t_vect* norm_vect);
 void	move_element(int keycode, t_vect *pos);
 void	scale_element(int keycode, double *parameter);
-	// utils vectors
+// utils vectors
 void	rotate_vector_y(double angle, t_vect* vect);
 void	rotate_vector_x(double angle, t_vect* vect);
 void	rotate_vector_z(double angle, t_vect* vect);
-	// utils keycheck
+// utils keycheck
 bool	is_movement_key(int keycode);
 bool	is_scale_key(int keycode);
 bool	is_rotation_key(int keycode);
 
-
-
-
 /* EXIT */
-
 int	close_rt(void *param);
-
-
-
-
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:48:44 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 18:39:01 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:31:18 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_vect	vector_add(t_vect v1, t_vect v2)
 	return (result);
 }
 
-t_vect	vector_sub(t_vect v1, t_vect v2)
+t_vect	vector_subtract(t_vect v1, t_vect v2)
 {
 	t_vect	result;
 

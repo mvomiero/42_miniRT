@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   transform_camera.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:51:29 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 12:51:49 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:43:06 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void transform_camera(int keycode, t_data* data, t_type* selected_type)
+void	transform_camera(int keycode, t_data *data, t_type *selected_type)
 {
-	static t_camera* selected_camera = NULL;
+	static t_camera	*selected_camera = NULL;
+	double			temp_fov;
 
 	if (keycode == KEY_V)
 	{
@@ -32,7 +33,7 @@ void transform_camera(int keycode, t_data* data, t_type* selected_type)
 			rotate_element(keycode, &(selected_camera->norm_vect));
 		else if (is_scale_key(keycode))
 		{
-			double temp_fov = (double)(selected_camera->fov);
+			temp_fov = (double)(selected_camera->fov);
 			scale_element(keycode, &temp_fov);
 			selected_camera->fov = (int)temp_fov;
 		}

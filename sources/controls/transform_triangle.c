@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   transform_triangle.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:48:47 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 16:49:34 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:40:04 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void transform_triangle(int keycode, t_data* data, t_type* selected_type)
+void	transform_triangle(int keycode, t_data *data, t_type *selected_type)
 {
-	static t_triangle* selected_triangle = NULL;
+	static t_triangle	*selected_triangle = NULL;
 
 	if (keycode == KEY_G)
 	{
@@ -30,7 +30,6 @@ void transform_triangle(int keycode, t_data* data, t_type* selected_type)
 				selected_triangle = data->triangles;
 		}
 	}
-
 	if (selected_triangle != NULL && *selected_type == TYPE_TRIANGLE)
 	{
 		if (is_movement_key(keycode))
@@ -39,7 +38,6 @@ void transform_triangle(int keycode, t_data* data, t_type* selected_type)
 			move_element(keycode, &(selected_triangle->v2));
 			move_element(keycode, &(selected_triangle->v3));
 		}
-
 		if (is_rotation_key(keycode))
 		{
 			rotate_element(keycode, &(selected_triangle->v1));

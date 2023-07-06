@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_cylinder.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/06 10:44:01 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:31:18 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int check_cy(t_cylinder *cy, t_vect hpnt)
 	pmin = vector_add(cy->pos, vector_scale(cy->norm_vect, -0.5 * cy->height));
 	pmax = vector_add(cy->pos, vector_scale(cy->norm_vect, 0.5 * cy->height));
 
-	t_vect hpnt_pmin = vector_sub(hpnt, pmin);
-	t_vect hpnt_pmax = vector_sub(hpnt, pmax);
+	t_vect hpnt_pmin = vector_subtract(hpnt, pmin);
+	t_vect hpnt_pmax = vector_subtract(hpnt, pmax);
 
 	capmin = vector_dot_product(hpnt_pmin, hpnt_pmin);
 	capmax = vector_dot_product(hpnt_pmax, hpnt_pmax);
@@ -43,7 +43,7 @@ bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_directi
 	t_vect axisDirection = cylinder->norm_vect;
 
 	// Calculate the vector from the ray origin to the cylinder's position
-	t_vect oc = vector_sub(ray_origin, cylinder->pos);
+	t_vect oc = vector_subtract(ray_origin, cylinder->pos);
 
 	// Calculate the dot products needed for the quadratic equation
 	double a = vector_dot_product(ray_direction, ray_direction) - pow(vector_dot_product(ray_direction, axisDirection), 2);
@@ -74,7 +74,7 @@ bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_directi
 				if (data)
 				{
 					if (t1 < data->pix.t)
-						data->pix.normal = vector_normalize(vector_sub(hitpoint, vector_add(cylinder->pos, vector_scale(axisDirection, vector_dot_product(vector_sub(hitpoint, cylinder->pos), axisDirection)))));
+						data->pix.normal = vector_normalize(vector_subtract(hitpoint, vector_add(cylinder->pos, vector_scale(axisDirection, vector_dot_product(vector_subtract(hitpoint, cylinder->pos), axisDirection)))));
 				}
 
 				return true;
@@ -92,7 +92,7 @@ bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_directi
 				if (data)
 				{
 					if (t2 < data->pix.t)
-						data->pix.normal = vector_normalize(vector_sub(hitpoint, vector_add(cylinder->pos, vector_scale(axisDirection, t2))));
+						data->pix.normal = vector_normalize(vector_subtract(hitpoint, vector_add(cylinder->pos, vector_scale(axisDirection, t2))));
 				}
 				return true;
 			}
@@ -113,7 +113,7 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t_vect
 			data->pix.t = t;
 			data->pix.color = cylinders->color;
 			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
-			// data->pix.normal = vector_normalize(vector_sub(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(cylinders->norm_vect, vector_dot_product(vector_sub(data->pix.hitpoint, cylinders->pos), cylinders->norm_vect)))));
+			// data->pix.normal = vector_normalize(vector_subtract(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(cylinders->norm_vect, vector_dot_product(vector_subtract(data->pix.hitpoint, cylinders->pos), cylinders->norm_vect)))));
 		}
 		if (is_cylinder_disk_top_hit(cylinders, ray_origin, ray_direction, &t) && t < data->pix.t)
 		{
@@ -175,7 +175,7 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t_vect
 					data->pix.t = t1;
 					data->pix.color = cylinders->color;
 					data->pix.hitpoint = hitpoint;
-					data->pix.normal = vector_normalize(vector_sub(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, vector_dot_product(vector_sub(data->pix.hitpoint, cylinders->pos), axisDirection)))));
+					data->pix.normal = vector_normalize(vector_subtract(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, vector_dot_product(vector_subtract(data->pix.hitpoint, cylinders->pos), axisDirection)))));
 					// Fill other values of pix
 				}
 			}
@@ -191,7 +191,7 @@ void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t_vect
 					data->pix.t = t2;
 					data->pix.color = cylinders->color;
 					data->pix.hitpoint = hitpoint;
-					data->pix.normal = vector_normalize(vector_sub(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, t2))));
+					data->pix.normal = vector_normalize(vector_subtract(data->pix.hitpoint, vector_add(cylinders->pos, vector_scale(axisDirection, t2))));
 					// Fill other values of pix
 				}
 			}

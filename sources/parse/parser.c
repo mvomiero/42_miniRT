@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/06 18:15:28 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:26:59 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,7 @@ static bool	parse_lines(t_data *data, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line[0] == '#') // Check if line starts with #
-		{
-			free(line);
-			line = get_next_line(fd);
-			continue; // Ignore the line and continue the loop
-		}
-		if (line[0] != '\n')
+		if (line[0] != '\n' && line[0] != '#')
 		{
 			tab = ft_split(line, ' ');
 			if (!tab || !parse_elements(data, tab))

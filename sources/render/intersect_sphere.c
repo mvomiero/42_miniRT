@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:15:23 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/05 19:39:02 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:31:18 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	is_sphere_hit(t_sphere *sphere, t_vect ray_origin,
 	double	t1;
 	double	discriminant;
 
-	oc = vector_sub(ray_origin, sphere->pos);
+	oc = vector_subtract(ray_origin, sphere->pos);
 	a = vector_dot_product(ray_direction, ray_direction);
 	b = 2.0 * vector_dot_product(oc, ray_direction);
 	discriminant = get_discriminant(a, b, (sphere->diameter / 2), oc);
@@ -57,7 +57,7 @@ void	hit_sphere(t_data *data, t_sphere *spheres,
 			data->pix.hitpoint = vector_add(ray_origin,
 					vector_scale(ray_direction, t));
 			data->pix.normal = vector_normalize(
-					vector_sub(data->pix.hitpoint, spheres->pos));
+					vector_subtract(data->pix.hitpoint, spheres->pos));
 		}
 		spheres = spheres->next;
 	}

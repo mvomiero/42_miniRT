@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   transform_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:46:34 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 13:01:15 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:34:27 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void rotate_element(int keycode, t_vect* norm_vect)
+void	rotate_element(int keycode, t_vect *norm_vect)
 {
-	double angle = ROTATION_ANGLE * M_PI / 180.0; // Convert degrees to radians
+	double	angle;
 
+	angle = ROTATION_ANGLE * M_PI / 180.0; // Convert degrees to radians
 	if (keycode == KEY_H)
 		rotate_vector_y(angle, norm_vect); // Rotate counterclockwise along the y-axis
 	else if (keycode == KEY_J)
@@ -30,10 +31,7 @@ void rotate_element(int keycode, t_vect* norm_vect)
 		rotate_vector_z(-angle, norm_vect); // Rotate clockwise along the z-axis
 }
 
-
-
-
-void move_element(int keycode, t_vect *pos)
+void	move_element(int keycode, t_vect *pos)
 {
 	if (keycode == KEY_PAGE_DOWN)
 		pos->y -= STEP;
@@ -49,7 +47,7 @@ void move_element(int keycode, t_vect *pos)
 		pos->z += STEP;
 }
 
-void scale_element(int keycode, double *parameter)
+void	scale_element(int keycode, double *parameter)
 {
 	if (keycode == KEY_PLUS)
 		*parameter *= SCALE_FACTOR;

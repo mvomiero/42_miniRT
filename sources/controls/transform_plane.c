@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   transform_plane.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:50:07 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 12:50:43 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:41:05 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void transform_plane(int keycode, t_data* data, t_type* selected_type)
+void	transform_plane(int keycode, t_data *data, t_type *selected_type)
 {
-	static t_plane* selected_plane = NULL;
+	static t_plane	*selected_plane = NULL;
 
 	if (keycode == KEY_P)
 	{

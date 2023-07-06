@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shade.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/06 18:49:12 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:31:18 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_vect get_light_direction(t_light *light, t_pixel *pix)
 	t_vect light_direction;
 	double light_distance;
 
-	light_direction = vector_sub(light->pos, pix->hitpoint);	  // Calculate the vector from the pixel's hitpoint to the light source
+	light_direction = vector_subtract(light->pos, pix->hitpoint);	  // Calculate the vector from the pixel's hitpoint to the light source
 	light_distance = vector_length(light_direction);				  // Calculate the distance between the pixel's hitpoint and the light source
 	light_direction = vector_divide(light_direction, light_distance); // Normalize the light direction vector
 
@@ -159,7 +159,7 @@ void get_soft_shadow_color(t_data *data, t_light *light, t_pixel *pix, t_vect li
 
 		t_vect shadow_target = vector_add(light->pos, vector_scale(random_in_unit_disk(), 2)); // Calculate the position of the shadow ray's target on the light source
 
-		t_vect shadow_direction = vector_sub(shadow_target, vector_add(pix->hitpoint, vector_scale(pix->normal, offset_x))); // Calculate the direction of the shadow ray
+		t_vect shadow_direction = vector_subtract(shadow_target, vector_add(pix->hitpoint, vector_scale(pix->normal, offset_x))); // Calculate the direction of the shadow ray
 		double distance_to_light = vector_length(shadow_direction);																   // Calculate the distance between the pixel's hitpoint and the shadow target
 		shadow_direction = vector_divide(shadow_direction, distance_to_light);													   // Normalize the shadow direction vector
 
@@ -186,7 +186,7 @@ void get_diffuse_color(t_data *data, t_light *light, t_pixel *pix, t_vect light_
 
 	dot_product = vector_dot_product(pix->normal, light_direction);
 	ambient_dot_product = vector_dot_product(pix->normal, data->ambient->norm_vect);
-	double distance_to_light = vector_length(vector_sub(light->pos, pix->hitpoint));
+	double distance_to_light = vector_length(vector_subtract(light->pos, pix->hitpoint));
 	if (dot_product <= 0 || is_in_shadow(data, pix->hitpoint, light_direction, distance_to_light))
 	{
 		pix->color.r = clamp((ambient_dot_product * data->ambient->light_ratio * data->ambient->color.r), 0, 255);

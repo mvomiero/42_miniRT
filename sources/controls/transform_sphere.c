@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_sphere.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:16:02 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/03 12:52:14 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:40:41 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	transform_sphere(int keycode, t_data *data, t_type *selected_type)
 {
-	static t_sphere *selected_sphere = NULL;
+	static t_sphere	*selected_sphere = NULL;
 
 	if (keycode == KEY_S)
 	{
