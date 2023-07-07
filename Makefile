@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/06 11:21:34 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/07/07 17:22:04 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,6 @@ SRC			=	main.c \
 				render/trace.c \
 				render/shade.c \
 				controls/key_event.c \
-				controls/transform_operations.c \
 				controls/transform_utils.c \
 				controls/transform_camera.c \
 				controls/transform_plane.c \
