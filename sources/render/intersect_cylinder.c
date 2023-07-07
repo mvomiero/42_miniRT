@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/07 17:24:57 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:28:38 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ bool	t2_routine(t_vect ray_o, t_vect ray_d, t_cylinder *cyl, t_data *data)
 	return (false);
 }
 
-bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o, t_vect ray_d, t_data *data)
+bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o, t_vect ray_d, double *t, t_data *data)
 {
 	cyl->inter.discriminant = get_cyl_discr(cyl, ray_o, ray_d);
 	if (cyl->inter.discriminant >= 0)
@@ -111,7 +111,7 @@ bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o, t_vect ray_d, t_data *data)
 		{
 			if (t1_routine(ray_o, ray_d, cyl, data))
 			{
-				cyl->inter.t = cyl->inter.t1;
+				*t = cyl->inter.t1;
 				return (true);
 			}
 		}
@@ -119,7 +119,7 @@ bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o, t_vect ray_d, t_data *data)
 		{
 			if (t2_routine(ray_o, ray_d, cyl, data))
 			{
-				cyl->inter.t = cyl->inter.t2;
+				*t = cyl->inter.t2;
 				return (true);
 			}
 		}
@@ -129,11 +129,13 @@ bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o, t_vect ray_d, t_data *data)
 
 void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t_vect ray_direction)
 {
+	double t;
+
 	while (cylinders)
 	{
-		if (is_cylinder_hit(cylinders, ray_origin, ray_direction, data) && cylinders->inter.t < data->pix.t)
+		if (is_cylinder_hit(cylinders, ray_origin, ray_direction, &t, data) && t < data->pix.t)
 		{
-			data->pix.t = cylinders->inter.t;
+			data->pix.t = t;
 			data->pix.color = cylinders->color;
 			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
 		}
