@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/07 17:28:38 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:32:08 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,16 @@ bool	t2_routine(t_vect ray_o, t_vect ray_d, t_cylinder *cyl, t_data *data)
 	return (false);
 }
 
-bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o, t_vect ray_d, double *t, t_data *data)
+bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o,
+	t_vect ray_d, double *t, t_data *data)
 {
 	cyl->inter.discriminant = get_cyl_discr(cyl, ray_o, ray_d);
 	if (cyl->inter.discriminant >= 0)
 	{
-		cyl->inter.t1 = (-cyl->inter.b - sqrt(cyl->inter.discriminant)) / (2 * cyl->inter.a);
-		cyl->inter.t2 = (-cyl->inter.b + sqrt(cyl->inter.discriminant)) / (2 * cyl->inter.a);
+		cyl->inter.t1 = (-cyl->inter.b - sqrt(cyl->inter.discriminant))
+			/ (2 * cyl->inter.a);
+		cyl->inter.t2 = (-cyl->inter.b + sqrt(cyl->inter.discriminant))
+			/ (2 * cyl->inter.a);
 		if (cyl->inter.t1 > 0 && cyl->inter.t1 < cyl->inter.t2)
 		{
 			if (t1_routine(ray_o, ray_d, cyl, data))
@@ -127,32 +130,36 @@ bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o, t_vect ray_d, double *t, t_d
 	return (false);
 }
 
-void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect ray_origin, t_vect ray_direction)
+void	hit_cylinder(t_data *data, t_cylinder *cyls, t_vect ray_o, t_vect ray_d)
 {
-	double t;
+	double	t;
 
-	while (cylinders)
+	while (cyls)
 	{
-		if (is_cylinder_hit(cylinders, ray_origin, ray_direction, &t, data) && t < data->pix.t)
+		if (is_cylinder_hit(cyls, ray_o, ray_d, &t, data)
+			&& t < data->pix.t)
 		{
 			data->pix.t = t;
-			data->pix.color = cylinders->color;
-			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
+			data->pix.color = cyls->color;
+			data->pix.hitpoint = vector_add(ray_o, vector_scale(ray_d, t));
 		}
-		if (is_cylinder_disk_top_hit(cylinders, ray_origin, ray_direction, &t) && t < data->pix.t)
+		if (is_cylinder_disk_top_hit(cyls, ray_o, ray_d, &t)
+			&& t < data->pix.t)
 		{
 			data->pix.t = t;
-			data->pix.color = cylinders->color;
-			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
-			data->pix.normal = get_opposite_normal(cylinders->norm_vect);
+			data->pix.color = cyls->color;
+			data->pix.hitpoint = vector_add(ray_o, vector_scale(ray_d, t));
+			data->pix.normal = get_opposite_normal(cyls->norm_vect);
 		}
-		if (is_cylinder_disk_bottom_hit(cylinders, ray_origin, ray_direction, &t) && t < data->pix.t)
+		if (is_cylinder_disk_bottom_hit(cyls, ray_o, ray_d, &t)
+			&& t < data->pix.t)
 		{
 			data->pix.t = t;
-			data->pix.color = cylinders->color;
-			data->pix.hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
-			data->pix.normal = cylinders->norm_vect;
+			data->pix.color = cyls->color;
+			data->pix.hitpoint = vector_add(ray_o,
+					vector_scale(ray_d, t));
+			data->pix.normal = cyls->norm_vect;
 		}
-		cylinders = cylinders->next;
+		cyls = cyls->next;
 	}
 }
