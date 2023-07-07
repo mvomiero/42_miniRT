@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/07 15:53:46 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:20:46 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ typedef struct	s_inter_cylinder
 	double	b;
 	double	c;
 	double	discriminant;
-	
+	t_vect	oc;
+	double	t1;
+	double	t2;
+	double	t;
 }				t_inter_cylinder;
 
 typedef struct	s_cylinder
