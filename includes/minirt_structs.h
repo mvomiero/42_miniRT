@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/06 11:24:53 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:53:46 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,15 @@ typedef struct	s_plane
 	struct s_plane	*next;
 }			t_plane;
 
+typedef struct	s_inter_cylinder
+{
+	double	a;
+	double	b;
+	double	c;
+	double	discriminant;
+	
+}				t_inter_cylinder;
+
 typedef struct	s_cylinder
 {
 	t_vect				pos;
@@ -84,6 +93,7 @@ typedef struct	s_cylinder
 	double				height;
 	t_color				color;
 	struct s_cylinder	*next;
+	t_inter_cylinder	inter;
 }			t_cylinder;
 
 typedef struct s_pixel
