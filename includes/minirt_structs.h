@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/07 15:53:46 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:23:03 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,20 @@ typedef struct s_pixel
 	t_vect			dir;
 }						t_pixel;
 
+typedef struct s_inter_triangle
+{
+	t_vect edge1;
+	t_vect edge2;
+	t_vect h;
+	t_vect s;
+	t_vect q;
+	double a;
+	double f;
+	double u;
+	double v;
+}				t_inter_triangle;
+
+
 typedef struct s_triangle
 {
 	t_vect	v1;
@@ -113,6 +127,7 @@ typedef struct s_triangle
 	t_color	color;
 	t_vect	norm_vect;
 	struct s_triangle	*next;
+	t_inter_triangle	inter;
 }	t_triangle;
 
 typedef enum {
