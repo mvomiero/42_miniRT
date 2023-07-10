@@ -6,13 +6,13 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 11:17:52 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/10 11:37:57 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static bool	check_cy(t_cylinder *cy, t_vect hpnt)
+bool	check_cy(t_cylinder *cy, t_vect hpnt)
 {
 	double	capmin;
 	double	capmax;
@@ -47,61 +47,8 @@ static double	get_cyl_discr(t_cylinder *cyl, t_vect ray_o, t_vect ray_d)
 	return (cyl->inter.b * cyl->inter.b - 4 * cyl->inter.a * cyl->inter.c);
 }
 
-static void	fill_normal_t1(double t1, t_data *data, t_cylinder *cyl, t_vect hp)
-{
-	if (data)
-	{
-		if (t1 < data->pix.t)
-			data->pix.normal = vector_normalize(
-					vector_subtract(hp,
-						vector_add(cyl->pos,
-							vector_scale(cyl->norm_vect,
-								vector_dot_product(
-									vector_subtract(hp, cyl->pos),
-									cyl->norm_vect)))));
-	}
-}
-
-static void	fill_normal_t2(double t2, t_data *data, t_cylinder *cyl, t_vect hp)
-{
-	if (data)
-	{
-		if (t2 < data->pix.t)
-			data->pix.normal = vector_normalize(
-					vector_subtract(hp,
-						vector_add(cyl->pos,
-							vector_scale(cyl->norm_vect, t2))));
-	}
-}
-
-bool	t1_routine(t_vect ray_o, t_vect ray_d, t_cylinder *cyl, t_data *data)
-{
-	t_vect	hitpoint;
-
-	hitpoint = vector_add(ray_o, vector_scale(ray_d, cyl->inter.t1));
-	if (check_cy(cyl, hitpoint))
-	{
-		fill_normal_t1(cyl->inter.t1, data, cyl, hitpoint);
-		return (true);
-	}
-	return (false);
-}
-
-bool	t2_routine(t_vect ray_o, t_vect ray_d, t_cylinder *cyl, t_data *data)
-{
-	t_vect	hitpoint;
-
-	hitpoint = vector_add(ray_o, vector_scale(ray_d, cyl->inter.t1));
-	if (check_cy(cyl, hitpoint))
-	{
-		fill_normal_t2(cyl->inter.t2, data, cyl, hitpoint);
-		return (true);
-	}
-	return (false);
-}
-
 bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o,
-	t_vect ray_d, /*double *t,*/ t_data *data)
+		t_vect ray_d, t_data *data)
 {
 	cyl->inter.discriminant = get_cyl_discr(cyl, ray_o, ray_d);
 	if (cyl->inter.discriminant >= 0)
@@ -130,28 +77,34 @@ bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o,
 	return (false);
 }
 
+void	cylinder_hit_set_pix(t_data *data, t_cylinder *cyls,
+		t_vect ray_o, t_vect ray_d)
+{
+	if (is_cylinder_hit(cyls, ray_o, ray_d, data)
+		&& data->t_temp < data->pix.t)
+	{
+		data->pix.t = data->t_temp;
+		data->pix.color = cyls->color;
+		data->pix.hitpoint = vector_add(ray_o,
+				vector_scale(ray_d, data->t_temp));
+	}
+}
+
 void	hit_cylinder(t_data *data, t_cylinder *cyls, t_vect ray_o, t_vect ray_d)
 {
-	//double	t;
-
 	while (cyls)
 	{
-		if (is_cylinder_hit(cyls, ray_o, ray_d, /*&(data->t_temp),*/ data)
-			&& data->t_temp < data->pix.t)
-		{
-			data->pix.t = data->t_temp;
-			data->pix.color = cyls->color;
-			data->pix.hitpoint = vector_add(ray_o, vector_scale(ray_d, data->t_temp));
-		}
+		cylinder_hit_set_pix(data, cyls, ray_o, ray_d);
 		if (is_cylinder_disk_top_hit(cyls, ray_o, ray_d, &(data->t_temp))
 			&& data->t_temp < data->pix.t)
 		{
 			data->pix.t = data->t_temp;
 			data->pix.color = cyls->color;
-			data->pix.hitpoint = vector_add(ray_o, vector_scale(ray_d, data->t_temp));
+			data->pix.hitpoint = vector_add(ray_o,
+					vector_scale(ray_d, data->t_temp));
 			data->pix.normal = get_opposite_normal(cyls->norm_vect);
 		}
-		if (is_cylinder_disk_bottom_hit(cyls, ray_o, ray_d,  &(data->t_temp))
+		if (is_cylinder_disk_bottom_hit(cyls, ray_o, ray_d, &(data->t_temp))
 			&& data->t_temp < data->pix.t)
 		{
 			data->pix.t = data->t_temp;

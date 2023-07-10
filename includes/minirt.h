@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 11:14:45 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/10 11:37:02 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,13 @@ void hit_disk_cylinder(t_data* data, t_cylinder* cylinders, t_vect ray_origin, t
 int is_cylinder_disk_hit(t_data* data, t_cylinder* cylinder, t_vect ray_origin, t_vect ray_direction, double* t);
 bool is_cylinder_disk_top_hit(t_cylinder* cylinder, t_vect ray_origin, t_vect ray_direction, double* t);
 bool is_cylinder_disk_bottom_hit(t_cylinder* cylinder, t_vect ray_origin, t_vect ray_direction, double* t);
+bool	check_cy(t_cylinder *cy, t_vect hpnt);
+
+// cylinder_utils_t
+void	fill_normal_t1(double t1, t_data *data, t_cylinder *cyl, t_vect hp);
+void	fill_normal_t2(double t2, t_data *data, t_cylinder *cyl, t_vect hp);
+bool	t1_routine(t_vect ray_o, t_vect ray_d, t_cylinder *cyl, t_data *data);
+bool	t2_routine(t_vect ray_o, t_vect ray_d, t_cylinder *cyl, t_data *data);
 
 /* VECTORS */
 t_vect vector_subtract(t_vect v1, t_vect v2);
