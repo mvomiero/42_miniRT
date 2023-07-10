@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/07 17:25:21 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/10 11:09:00 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_pixel
 	t_vect			hitpoint;
 	t_vect			normal;
 	t_vect			dir;
+	t_vect			light_dir;
 }						t_pixel;
 
 typedef struct s_inter_triangle
@@ -173,6 +174,7 @@ typedef struct s_data
 	t_type		type;
 	t_scenes	scenes;
 	bool		instructions;
+	double		t_temp;
 }				t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/07 16:58:35 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/10 11:14:45 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ bool is_plane_hit(t_plane *plane, t_vect ray_origin, t_vect ray_direction, doubl
 void hit_plane(t_data *data, t_plane *planes, t_vect rayOrigin, t_vect rayDirection);
 bool is_sphere_hit(t_sphere *sphere, t_vect ray_origin, t_vect ray_direction, double *t);
 void hit_sphere(t_data *data, t_sphere *spheres, t_vect rayOrigin, t_vect rayDirection);
-bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_direction, double *t, t_data* data);
+bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_direction, /*double *t,*/ t_data* data);
 void hit_cylinder(t_data *data, t_cylinder *cylinders, t_vect rayOrigin, t_vect rayDirection);
 void hit_triangle(t_data *data, t_triangle *triangles, t_vect ray_origin, t_vect ray_direction);
 bool is_triangle_hit(t_triangle *triangle, t_vect ray_origin, t_vect ray_direction, double *t);
