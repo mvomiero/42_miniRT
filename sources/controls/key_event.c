@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:47:14 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/07 17:01:43 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:02:32 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,8 @@ void	print_instructions(int keycode, t_data *data)
 
 int	key_event(int keycode, t_data *data)
 {
-	static t_type	selected_type;
+	static t_type	selected_type = TYPE_UNDEFINED;
 
-	selected_type = TYPE_UNDEFINED;
 	if (keycode == KEY_ESC)
 		close_rt(data);
 	if (keycode == KEY_R)
