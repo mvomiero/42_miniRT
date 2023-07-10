@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shade.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/10 11:47:10 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:32:50 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,41 +41,31 @@ static	t_vect get_light_direction(t_light *light, t_pixel *pix)
 	return (light_direction);
 }
 
-
-
 void	get_soft_shadow_color(t_data *data, t_light *light, t_pixel *pix, t_vect light_direction)
 {
-	// int num_shadow_rays = 20;  // Number of shadow rays to cast
-	double	shadow_intensity;
-	double	pixel_size; 
 	int		i;
-	double	offset_x;
-	t_vect	shadow_target;
-	t_vect	shadow_direction;
-	double	distance_to_light;
-	double	dot_product;
-	double	ambient_dot_product;
+	t_shadow	shadow;
 
-	shadow_intensity = 0.0;
-	pixel_size = 1.0 / data->scenes.n_rays; 
+	shadow.intensity = 0.0;
+	shadow.pixel_size = 1.0 / data->scenes.n_rays; 
 	i = 0;
 	while (i < data->scenes.n_rays)
 	{
-		offset_x = (i % 10 - 5) * pixel_size;
-		shadow_target = vector_add(light->pos, vector_scale(random_in_unit_disk(), 2));
-		shadow_direction = vector_subtract(shadow_target, vector_add(pix->hitpoint, vector_scale(pix->normal, offset_x)));
-		distance_to_light = vector_length(shadow_direction);
-		shadow_direction = vector_divide(shadow_direction, distance_to_light);
-		if (!is_in_shadow(data, pix->hitpoint, shadow_direction, distance_to_light))
-			shadow_intensity += 1;
+		shadow.offset_x = (i % 10 - 5) * shadow.pixel_size;
+		shadow.target = vector_add(light->pos, vector_scale(random_in_unit_disk(), 2));
+		shadow.direction = vector_subtract(shadow.target, vector_add(pix->hitpoint, vector_scale(pix->normal, shadow.offset_x)));
+		shadow.distance_to_light = vector_length(shadow.direction);
+		shadow.direction = vector_divide(shadow.direction, shadow.distance_to_light);
+		if (!is_in_shadow(data, pix->hitpoint, shadow.direction, shadow.distance_to_light))
+			shadow.intensity += 1;
 		i++;
 	}
-	shadow_intensity /= data->scenes.n_rays;
-	dot_product = vector_dot_product(pix->normal, light_direction);
-	ambient_dot_product = vector_dot_product(pix->normal, data->ambient->norm_vect);
-	pix->color.r = clamp((pix->color.r * light->brightness * dot_product * shadow_intensity) + (ambient_dot_product * data->ambient->light_ratio * data->ambient->color.r), 0, 255);
-	pix->color.g = clamp((pix->color.g * light->brightness * dot_product * shadow_intensity) + (ambient_dot_product * data->ambient->light_ratio * data->ambient->color.g), 0, 255);
-	pix->color.b = clamp((pix->color.b * light->brightness * dot_product * shadow_intensity) + (ambient_dot_product * data->ambient->light_ratio * data->ambient->color.b), 0, 255);
+	shadow.intensity /= data->scenes.n_rays;
+	shadow.light_dot_product = vector_dot_product(pix->normal, light_direction);
+	shadow.ambient_dot_product = vector_dot_product(pix->normal, data->ambient->norm_vect);
+	pix->color.r = clamp((pix->color.r * light->brightness * shadow.light_dot_product * shadow.intensity) + (shadow.ambient_dot_product * data->ambient->light_ratio * data->ambient->color.r), 0, 255);
+	pix->color.g = clamp((pix->color.g * light->brightness * shadow.light_dot_product * shadow.intensity) + (shadow.ambient_dot_product * data->ambient->light_ratio * data->ambient->color.g), 0, 255);
+	pix->color.b = clamp((pix->color.b * light->brightness * shadow.light_dot_product * shadow.intensity) + (shadow.ambient_dot_product * data->ambient->light_ratio * data->ambient->color.b), 0, 255);
 }
 
 void	get_diffuse_color(t_data *data, t_light *light, t_pixel *pix, t_vect light_direction)

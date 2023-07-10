@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 12:07:58 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:31:44 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 
 /* ELEMENTS */
+
 
 typedef struct s_coord
 {
@@ -38,6 +39,18 @@ typedef struct	s_color
 	int		g;
 	int		b;
 }				t_color;
+
+typedef struct s_shadow
+{
+	t_vect	target;
+	t_vect	direction;
+	double	intensity;
+	double	pixel_size; 
+	double	offset_x;
+	double	distance_to_light;
+	double	light_dot_product;
+	double	ambient_dot_product;
+}			t_shadow;
 
 typedef struct	s_ambient
 {
