@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 11:09:00 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:07:58 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ typedef struct s_data
 	t_scenes	scenes;
 	bool		instructions;
 	double		t_temp;
+	double		dist_to_light;
 }				t_data;
 
 #endif

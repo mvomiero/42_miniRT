@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/10 11:16:58 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/10 11:47:10 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,71 +41,7 @@ static	t_vect get_light_direction(t_light *light, t_pixel *pix)
 	return (light_direction);
 }
 
-bool	is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double distance_to_light)
-{
-	t_sphere	*spheres;
-	t_cylinder	*cylinders;
-	t_plane		*planes;
-	t_triangle	*triangles;
-	double		t;
 
-	if (data->scenes.render == R_SHADED)
-		return (false);
-	planes = data->planes;
-	while (planes)
-	{
-		if (is_plane_hit(planes, ray_origin, ray_direction, &t) && t < distance_to_light)
-		{
-			t_vect offset_hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
-			t_vect offset_origin = vector_add(offset_hitpoint, vector_scale(planes->norm_vect, EPSILON));
-			if (is_plane_hit(planes, offset_origin, ray_direction, &t) && t < distance_to_light)
-				return true;
-		}
-		planes = planes->next;
-	}
-	triangles = data->triangles;
-	while (triangles)
-	{
-		if (is_triangle_hit(triangles, ray_origin, ray_direction, &t) && t < distance_to_light)
-		{
-			t_vect offset_hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t));
-			t_vect offset_origin = vector_add(offset_hitpoint, vector_scale(triangles->norm_vect, EPSILON));
-			if (is_triangle_hit(triangles, offset_origin, ray_direction, &t) && t < distance_to_light)
-				return (true);
-		}
-		triangles = triangles->next;
-	}
-	spheres = data->spheres;
-	while (spheres)
-	{
-		if (is_sphere_hit(spheres, ray_origin, ray_direction, &t) && t < distance_to_light)
-			return (true);
-		spheres = spheres->next;
-	}
-	cylinders = data->cylinders;
-	data->t_temp = t;
-	while (cylinders)
-	{
-		if (is_cylinder_hit(cylinders, ray_origin, ray_direction, /*&t,*/ NULL) && data->t_temp < distance_to_light)
-			return (true);
-		if (is_cylinder_disk_bottom_hit(cylinders, ray_origin, ray_direction, &(data->t_temp)) && data->t_temp < distance_to_light)
-		{
-			t_vect offset_hitpoint = vector_add(ray_origin, vector_scale(ray_direction, data->t_temp));
-			t_vect offset_origin = vector_add(offset_hitpoint, vector_scale(cylinders->norm_vect, EPSILON));
-			if (is_cylinder_disk_bottom_hit(cylinders, offset_origin, ray_direction, &(data->t_temp)) && data->t_temp < distance_to_light)
-				return (true);
-		}
-		if (is_cylinder_disk_top_hit(cylinders, ray_origin, ray_direction, &(data->t_temp)) && data->t_temp < distance_to_light)
-		{
-			t_vect offset_hitpoint = vector_add(ray_origin, vector_scale(ray_direction, data->t_temp));
-			t_vect offset_origin = vector_add(offset_hitpoint, vector_scale(get_opposite_normal(cylinders->norm_vect), EPSILON));
-			if (is_cylinder_disk_top_hit(cylinders, offset_origin, ray_direction, &(data->t_temp)) && data->t_temp < distance_to_light)
-				return (true);
-		}
-		cylinders = cylinders->next;
-	}
-	return (false);
-}
 
 void	get_soft_shadow_color(t_data *data, t_light *light, t_pixel *pix, t_vect light_direction)
 {
