@@ -6,7 +6,7 @@
 #    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/10 17:17:10 by lde-ross         ###   ########.fr        #
+#    Updated: 2023/07/10 17:18:27 by lde-ross         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -136,6 +136,7 @@ re: fclean all
 
 norminette:
 	norminette ./src
+	norminette ./libft
 	norminette -R CheckForbiddenSourceHeader ./includes
 
 valgrind:
