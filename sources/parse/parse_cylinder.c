@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:51:04 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/06/28 12:52:06 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/10 18:32:52 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ bool	parse_cylinder(t_data *data, char **tab)
 	temp->height = ft_atof(tab[4]);
 	if ((!temp->diameter && !ft_is_zero(tab[3])) 
 		|| (!temp->height && !ft_is_zero(tab[4])))
+		return (err_msg("invalid cylinder configuration", NULL, NULL), false);
+	if (temp->diameter <= 0 || temp->height <= 0)
 		return (err_msg("invalid cylinder configuration", NULL, NULL), false);
 	temp->next = NULL;
 	return (true);
