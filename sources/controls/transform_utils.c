@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:46:34 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/06 19:34:27 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:29:16 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void	rotate_element(int keycode, t_vect *norm_vect)
 {
 	double	angle;
 
-	angle = ROTATION_ANGLE * M_PI / 180.0; // Convert degrees to radians
+	angle = ROTATION_ANGLE * M_PI / 180.0;
 	if (keycode == KEY_H)
-		rotate_vector_y(angle, norm_vect); // Rotate counterclockwise along the y-axis
+		rotate_vector_y(angle, norm_vect);
 	else if (keycode == KEY_J)
-		rotate_vector_y(-angle, norm_vect); // Rotate clockwise along the y-axis
+		rotate_vector_y(-angle, norm_vect);
 	else if (keycode == KEY_U)
-		rotate_vector_x(angle, norm_vect); // Rotate counterclockwise along the x-axis
+		rotate_vector_x(angle, norm_vect);
 	else if (keycode == KEY_N)
-		rotate_vector_x(-angle, norm_vect); // Rotate clockwise along the x-axis
+		rotate_vector_x(-angle, norm_vect);
 	else if (keycode == KEY_Y)
-		rotate_vector_z(angle, norm_vect); // Rotate counterclockwise along the z-axis
+		rotate_vector_z(angle, norm_vect);
 	else if (keycode == KEY_M)
-		rotate_vector_z(-angle, norm_vect); // Rotate clockwise along the z-axis
+		rotate_vector_z(-angle, norm_vect);
 }
 
 void	move_element(int keycode, t_vect *pos)
