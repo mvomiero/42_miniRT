@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/10 11:48:12 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/07/10 15:12:48 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRC			=	main.c \
 				render/trace.c \
 				render/shade.c \
 				render/shade_is_in_shadow.c \
+				render/shade_is_in_shadow_utils.c \
 				controls/key_event.c \
 				controls/transform_utils.c \
 				controls/transform_camera.c \

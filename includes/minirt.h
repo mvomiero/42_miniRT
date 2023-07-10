@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 11:47:52 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:12:11 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ bool is_cylinder_disk_bottom_hit(t_cylinder* cylinder, t_vect ray_origin, t_vect
 bool	check_cy(t_cylinder *cy, t_vect hpnt);
 
 bool	is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction, double distance_to_light);
+bool	is_cylinder_disk_in_shadow(t_data *data, t_vect ray_o, t_vect ray_d, t_cylinder *cyls);
+
 
 
 // cylinder_utils_t
