@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:41:52 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/10 16:30:46 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:47:18 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,24 @@ void	get_soft_shadow_color(t_data *data, t_light *light,
 				* data->ambient->color.b), 0, 255);
 }
 
-// static unsigned int	get_diffuse_shadow_color(t_data *data, t_light *light, t_pixel *pix, t_shadow shadow)
-// {
-// 	unsigned int	color;
+static int	get_diffuse_shadow_rgb(int color, t_data *data, t_shadow shadow)
+{
+	int	new_color;
 
-// 	color = clamp((pix->color.r * light->brightness * dot_product)
-// 				+ (ambient_dot_product * data->ambient->light_ratio
-// 					* data->ambient->color.r), 0, 255);
-// 	return color;
-// }
+	new_color = clamp((shadow.ambient_dot_product * data->ambient->light_ratio
+					* color), 0, 255);
+	return (new_color);
+}
 
+static int	get_diffuse_rgb(int color, t_data *data, t_light *light, t_shadow shadow)
+{
+	int	new_color;
+
+	new_color = clamp((color * light->brightness * shadow.light_dot_product)
+				+ (shadow.ambient_dot_product * data->ambient->light_ratio
+					* color), 0, 255);
+	return (new_color);
+}
 
 void	get_diffuse_color(t_data *data, t_light *light,
 	t_pixel *pix, t_vect light_direction)
@@ -118,24 +126,15 @@ void	get_diffuse_color(t_data *data, t_light *light,
 		|| is_in_shadow(data, pix->hitpoint,
 			light_direction, shadow.distance_to_light))
 	{
-		pix->color.r = clamp((shadow.ambient_dot_product * data->ambient->light_ratio
-					* data->ambient->color.r), 0, 255);
-		pix->color.g = clamp((shadow.ambient_dot_product * data->ambient->light_ratio
-					* data->ambient->color.g), 0, 255);
-		pix->color.b = clamp((shadow.ambient_dot_product * data->ambient->light_ratio
-					* data->ambient->color.b), 0, 255);
+		pix->color.r = get_diffuse_shadow_rgb(data->ambient->color.r,data, shadow);
+		pix->color.g = get_diffuse_shadow_rgb(data->ambient->color.g,data, shadow);
+		pix->color.b = get_diffuse_shadow_rgb(data->ambient->color.b,data, shadow);
 	}
 	else
 	{
-		pix->color.r = clamp((pix->color.r * light->brightness * shadow.light_dot_product)
-				+ (shadow.ambient_dot_product * data->ambient->light_ratio
-					* data->ambient->color.r), 0, 255);
-		pix->color.g = clamp((pix->color.g * light->brightness * shadow.light_dot_product)
-				+ (shadow.ambient_dot_product * data->ambient->light_ratio
-					* data->ambient->color.g), 0, 255);
-		pix->color.b = clamp((pix->color.b * light->brightness * shadow.light_dot_product)
-				+ (shadow.ambient_dot_product * data->ambient->light_ratio
-					* data->ambient->color.b), 0, 255);
+		pix->color.r = get_diffuse_rgb(pix->color.r, data, light, shadow);
+		pix->color.g = get_diffuse_rgb(pix->color.g, data, light, shadow);
+		pix->color.b = get_diffuse_rgb(pix->color.b, data, light, shadow);
 	}
 }
 

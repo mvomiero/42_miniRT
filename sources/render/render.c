@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:37:24 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/07 17:50:30 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:42:33 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	render(t_data *data)
 	int	line_bytes;
 	int	endian;
 
+	if (data->img)
+		mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->buf = mlx_get_data_addr(data->img, &pixel_bits, &line_bytes, &endian);
 	render_pixel(data);
