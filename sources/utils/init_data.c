@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:37:09 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/05 18:16:31 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:51:57 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void	init_data(t_data *data)
 	data->scenes.render = R_SHADED;
 	data->scenes.n_rays = 100;
 	data->instructions = false;
+	data->img = NULL;
 }

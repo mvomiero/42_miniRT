@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/10 15:12:48 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/07/10 16:50:47 by lde-ross         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -137,6 +137,7 @@ norminette:
 	norminette -R CheckForbiddenSourceHeader ./includes
 
 valgrind:
-	valgrind ./$(NAME)
+	valgrind  --track-origins=yes --leak-check=full --show-leak-kinds=all -s ./miniRT scenes/scene_spheres.rt
+
 
 .PHONY: all re clean fclean norminette valgrind
