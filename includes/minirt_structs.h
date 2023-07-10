@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 15:31:44 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:53:26 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ typedef struct s_data
 	bool		instructions;
 	double		t_temp;
 	double		dist_to_light;
+	bool		no_shadows;
 }				t_data;
 
 #endif

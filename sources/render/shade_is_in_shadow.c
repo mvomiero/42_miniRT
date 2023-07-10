@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shade_is_in_shadow.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 11:46:55 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 15:23:45 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:53:03 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ bool	is_cylinder_in_shadow(t_data *data, t_vect ray_o, t_vect ray_d,
 	cyls = data->cylinders;
 	while (cyls)
 	{
-		if (is_cylinder_hit(cyls, ray_o, ray_d, NULL)
+		data->no_shadows = false;
+		if (is_cylinder_hit(cyls, ray_o, ray_d, data)
 			&& data->t_temp < dist_to_light)
 			return (true);
 		if (is_cylinder_disk_in_shadow(data, ray_o, ray_d, cyls))
