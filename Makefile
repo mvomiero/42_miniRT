@@ -6,7 +6,7 @@
 #    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/10 16:50:47 by lde-ross         ###   ########.fr        #
+#    Updated: 2023/07/10 17:17:10 by lde-ross         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,8 @@ SRC			=	main.c \
 				render/intersect_plane.c \
 				render/trace.c \
 				render/shade.c \
+				render/shade_soft.c \
+				render/shade_hard.c \
 				render/shade_is_in_shadow.c \
 				render/shade_is_in_shadow_utils.c \
 				controls/key_event.c \

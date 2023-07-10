@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 16:45:05 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/10 17:17:41 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ bool	is_triangle_hit(t_triangle *triangle, t_vect ray_origin,
 			t_vect ray_direction, double *t);
 void	ray_tracer(t_data *data, t_coord pixel);
 void	shade(t_data *data, t_coord pixel);
+void	get_soft_shadow_color(t_data *data, t_light *light,
+			t_pixel *pix, t_vect light_direction);
+void	get_diffuse_color(t_data *data, t_light *light,
+			t_pixel *pix, t_vect light_direction);
 void	hit_disk_cylinder(t_data *data, t_cylinder *cylinders,
 			t_vect ray_origin, t_vect ray_direction);
 bool	is_cylinder_disk_top_hit(t_cylinder *cylinder, t_vect ray_origin,
