@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_cylinder.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 15:53:07 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:33:07 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,18 @@ bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o,
 			/ (2 * cyl->inter.a);
 		if (cyl->inter.t1 > 0 && cyl->inter.t1 < cyl->inter.t2)
 		{
-			if (data->no_shadows)
+			if (data->no_shadows && t1_routine(ray_o, ray_d, cyl, data))
 			{
-				if (t1_routine(ray_o, ray_d, cyl, data))
-				{
-					data->t_temp = cyl->inter.t1;
-					return (true);
-				}
+				data->t_temp = cyl->inter.t1;
+				return (true);
 			}
 		}
 		if (cyl->inter.t2 > 0 && cyl->inter.t2 < cyl->inter.t1)
 		{
-			if (data->no_shadows)
+			if (data->no_shadows && t2_routine(ray_o, ray_d, cyl, data))
 			{
-				if (t2_routine(ray_o, ray_d, cyl, data))
-				{
-					data->t_temp = cyl->inter.t2;
-					return (true);
-				}
+				data->t_temp = cyl->inter.t2;
+				return (true);
 			}
 		}
 	}
