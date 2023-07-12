@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/06 19:26:59 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:57:04 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ bool	parser(t_data *data, char *arg)
 {
 	int	fd;
 
+	if (!ft_strrchr(arg, '.'))
+		return (err_msg("Wrong file path or extension", NULL, NULL), false);
 	if (ft_strncmp(ft_strrchr(arg, '.'), ".rt", 4) != 0)
 		return (err_msg("Wrong file extension", NULL, NULL), false);
 	fd = open(arg, O_RDONLY);
