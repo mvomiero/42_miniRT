@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/12 12:57:04 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:29:55 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ static bool	parse_lines(t_data *data, int fd)
 				free_tab(tab);
 				return (false);
 			}
-			ft_print_strarr(tab);
 			free_tab(tab);
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (!data->ambient || !data->camera || !data->light)
+		return (err_msg("Missing elements", NULL, NULL), false);
 	return (true);
 }
 
