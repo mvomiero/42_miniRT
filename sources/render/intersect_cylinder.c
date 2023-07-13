@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:06 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/13 13:11:30 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:30:30 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,71 @@ static double	get_cyl_discr(t_cylinder *cyl, t_vect ray_o, t_vect ray_d)
 	return (cyl->inter.b * cyl->inter.b - 4 * cyl->inter.a * cyl->inter.c);
 }
 
+// bool is_cylinder_hit(t_cylinder *cylinder, t_vect ray_origin, t_vect ray_direction, double *t, t_data *data)
+// {
+// 	// Calculate the direction vector of the cylinder's axis
+// 	t_vect axisDirection = cylinder->norm_vect;
+
+// 	// Calculate the vector from the ray origin to the cylinder's position
+// 	t_vect oc = vector_subtract(ray_origin, cylinder->pos);
+
+// 	// Calculate the dot products needed for the quadratic equation
+// 	double a = vector_dot_product(ray_direction, ray_direction) - pow(vector_dot_product(ray_direction, axisDirection), 2);
+// 	double b = 2 * (vector_dot_product(ray_direction, oc) - vector_dot_product(ray_direction, axisDirection) * vector_dot_product(oc, axisDirection));
+// 	double c = vector_dot_product(oc, oc) - pow(vector_dot_product(oc, axisDirection), 2) - pow(cylinder->diameter / 2, 2);
+
+// 	// Solve the quadratic equation to find the intersection points
+// 	double discriminant = b * b - 4 * a * c;
+
+// 	if (discriminant >= 0)
+// 	{
+// 		// Calculate the solutions
+// 		// Quadratic equations always have two solutions, one with -sqrt and the other with +sqrt
+// 		double t1 = (-b - sqrt(discriminant)) / (2 * a);
+// 		double t2 = (-b + sqrt(discriminant)) / (2 * a);
+
+// 		// Check if the solutions are within the valid range and closer than the current closest hit
+// 		// > 0 means that they are not in the ray but behind the origin
+// 		if (t1 > 0 && t1 < t2)
+// 		{
+// 			// Calculate the y-coordinate of the intersection point
+// 			t_vect hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t1));
+
+// 			// Check if the intersection point is within the height of the cylinder
+// 			if (check_cy(cylinder, hitpoint))
+// 			{
+// 				*t = t1;
+// 				if (data)
+// 				{
+// 					if (t1 < data->pix.t)
+// 						data->pix.normal = vector_normalize(vector_subtract(hitpoint, vector_add(cylinder->pos, vector_scale(axisDirection, vector_dot_product(vector_subtract(hitpoint, cylinder->pos), axisDirection)))));
+// 				}
+
+// 				return true;
+// 			}
+// 		}
+// 		if (t2 > 0 && t2 < t1)
+// 		{
+// 			// Calculate the y-coordinate of the intersection point
+// 			t_vect hitpoint = vector_add(ray_origin, vector_scale(ray_direction, t1));
+
+// 			// Check if the intersection point is within the height of the cylinder
+// 			if (check_cy(cylinder, hitpoint))
+// 			{
+// 				*t = t2;
+// 				if (data)
+// 				{
+// 					if (t2 < data->pix.t)
+// 						data->pix.normal = vector_normalize(vector_subtract(hitpoint, vector_add(cylinder->pos, vector_scale(axisDirection, t2))));
+// 				}
+// 				return true;
+// 			}
+// 		}
+// 		//(void)t2;
+// 	}
+// 	return false;
+// }
+
 bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o,
 		t_vect ray_d, t_data *data)
 {
@@ -59,7 +124,7 @@ bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o,
 			/ (2 * cyl->inter.a);
 		if (cyl->inter.t1 > 0 && cyl->inter.t1 < cyl->inter.t2)
 		{
-			if (data->no_shadows && t1_routine(ray_o, ray_d, cyl, data))
+			if (t1_routine(ray_o, ray_d, cyl, data))
 			{
 				data->t_temp = cyl->inter.t1;
 				return (true);
@@ -67,7 +132,7 @@ bool	is_cylinder_hit(t_cylinder *cyl, t_vect ray_o,
 		}
 		if (cyl->inter.t2 > 0 && cyl->inter.t2 < cyl->inter.t1)
 		{
-			if (data->no_shadows && t2_routine(ray_o, ray_d, cyl, data))
+			if (t2_routine(ray_o, ray_d, cyl, data))
 			{
 				data->t_temp = cyl->inter.t2;
 				return (true);

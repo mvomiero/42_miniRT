@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect_cylinder_utlis_t.c                       :+:      :+:    :+:   */
+/*   intersect_cylinder_utils_t.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 11:32:18 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 11:32:57 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:29:20 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ bool	t1_routine(t_vect ray_o, t_vect ray_d, t_cylinder *cyl, t_data *data)
 {
 	t_vect	hitpoint;
 
-	hitpoint = vector_add(ray_o, vector_scale(ray_d, cyl->inter.t1));
+		hitpoint = vector_add(ray_o, vector_scale(ray_d, cyl->inter.t1));
 	if (check_cy(cyl, hitpoint))
 	{
-		fill_normal_t1(cyl->inter.t1, data, cyl, hitpoint);
+		if (data->no_shadows)
+			fill_normal_t1(cyl->inter.t1, data, cyl, hitpoint);
 		return (true);
 	}
 	return (false);
@@ -59,7 +60,8 @@ bool	t2_routine(t_vect ray_o, t_vect ray_d, t_cylinder *cyl, t_data *data)
 	hitpoint = vector_add(ray_o, vector_scale(ray_d, cyl->inter.t1));
 	if (check_cy(cyl, hitpoint))
 	{
-		fill_normal_t2(cyl->inter.t2, data, cyl, hitpoint);
+		if (data->no_shadows)
+			fill_normal_t2(cyl->inter.t2, data, cyl, hitpoint);
 		return (true);
 	}
 	return (false);
