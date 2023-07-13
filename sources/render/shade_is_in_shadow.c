@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 11:46:55 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/13 13:30:59 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:58:12 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ bool	is_sphere_in_shadow(t_data *data, t_vect ray_o, t_vect ray_d,
 	}
 	return (false);
 }
-
-
 
 bool	is_cylinder_in_shadow(t_data *data, t_vect ray_o, t_vect ray_d,
 		double dist_to_light)
