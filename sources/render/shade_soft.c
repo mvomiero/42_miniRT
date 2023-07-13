@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:11:06 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/10 17:15:22 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:53:37 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	get_soft_rgb(t_data *data, t_light *light, t_shadow shadow)
 				* shadow.light_dot_product * shadow.intensity)
 			+ (shadow.ambient_dot_product * data->ambient->light_ratio
 				* data->ambient->color.b), 0, 255);
+
 }
 
 void	get_soft_shadow_color(t_data *data, t_light *light,
