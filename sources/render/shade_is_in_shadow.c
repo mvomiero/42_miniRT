@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 11:46:55 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 15:53:03 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:15:14 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,15 @@ bool	is_cylinder_in_shadow(t_data *data, t_vect ray_o, t_vect ray_d,
 		data->no_shadows = false;
 		if (is_cylinder_hit(cyls, ray_o, ray_d, data)
 			&& data->t_temp < dist_to_light)
+		{
+			printf("surface in shadow\n");
 			return (true);
+		}
 		if (is_cylinder_disk_in_shadow(data, ray_o, ray_d, cyls))
+		{
+			printf("disk in shadow\n");
 			return (true);
+		}
 		cyls = cyls->next;
 	}
 	return (false);

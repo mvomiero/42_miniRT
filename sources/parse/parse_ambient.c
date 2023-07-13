@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:14:27 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/03 17:47:56 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:07:13 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ bool	parse_ambient(t_data *data, char **tab)
 {
 	t_ambient	*temp;
 
+	if (data->ambient)
+		return (err_msg("Only one ambient light possible", NULL, NULL), false);
 	if (ft_arrlen(tab) != 3)
 		return (err_msg("Invalid ambient arguments number", NULL, NULL), false);
 	temp = malloc(sizeof(t_ambient));

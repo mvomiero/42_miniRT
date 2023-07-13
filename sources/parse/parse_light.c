@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:17:55 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/28 12:52:43 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:05:53 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ bool	parse_light(t_data *data, char **tab)
 {
 	t_light	*temp;
 
+	if (data->light)
+		return (err_msg("Only one light possible", NULL, NULL), false);
 	if (ft_arrlen(tab) != 4)
 		return (err_msg("Invalid light arguments number", NULL, NULL), false);
 	temp = malloc(sizeof(t_light));

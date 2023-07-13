@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:47:14 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 15:02:32 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:03:19 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	put_instructions(t_data *data)
 	mlx_string_put(data->mlx, data->win, 5, 70, W_INST,
 		"Move: arrows to move in the xz plane, Pg to move in z axis ");
 	mlx_string_put(data->mlx, data->win, 5, 90, W_INST, "Rotate:");
-	mlx_string_put(data->mlx, data->win, 5, 90, W_INST, "(H)-(J) -> y axis");
-	mlx_string_put(data->mlx, data->win, 5, 110, W_INST, "(U)-(N) -> x axis");
-	mlx_string_put(data->mlx, data->win, 5, 130, W_INST, "(Y)-(M) -> z axis");
+	mlx_string_put(data->mlx, data->win, 5, 110, W_INST, "(H)-(J) -> y axis");
+	mlx_string_put(data->mlx, data->win, 5, 130, W_INST, "(U)-(N) -> x axis");
+	mlx_string_put(data->mlx, data->win, 5, 150, W_INST, "(Y)-(M) -> z axis");
 	mlx_string_put(data->mlx, data->win, 5, 170, W_INST, "Scale: + -");
 	mlx_string_put(data->mlx, data->win, 5, 190, W_INST,
 		"Render: (R) shaded, (E) hard shadows, (T) soft shadows");

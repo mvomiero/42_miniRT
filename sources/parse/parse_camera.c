@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:30:49 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/06/28 12:53:07 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:07:32 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ bool	parse_camera(t_data *data, char **tab)
 {
 	t_camera	*temp;
 
+	if (data->camera)
+		return (err_msg("Only one camera possible", NULL, NULL), false);
 	if (ft_arrlen(tab) != 4)
 		return (err_msg("Invalid camera arguments number", NULL, NULL), false);
 	temp = malloc(sizeof(t_camera));
