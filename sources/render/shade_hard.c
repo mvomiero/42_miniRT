@@ -6,20 +6,11 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:15:55 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/13 13:34:08 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:36:54 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-
-static int	get_diff_shadow_rgb(int color, t_data *data, t_shadow shadow)
-{
-	int	new_color;
-
-	new_color = clamp((shadow.ambient_dot_product * data->ambient->light_ratio
-				* color), 0, 255);
-	return (new_color);
-}
 
 static int	get_diff_rgb(int color, t_data *data,
 	t_light *light, t_shadow shadow)
@@ -46,12 +37,9 @@ void	get_diffuse_color(t_data *data, t_light *light,
 		|| is_in_shadow(data, pix->hitpoint,
 			light_direction, shadow.distance_to_light))
 	{
-		pix->color.r = get_diff_shadow_rgb(data->ambient->color.r,
-				data, shadow);
-		pix->color.g = get_diff_shadow_rgb(data->ambient->color.g,
-				data, shadow);
-		pix->color.b = get_diff_shadow_rgb(data->ambient->color.b,
-				data, shadow);
+		pix->color.r = 0;
+		pix->color.g = 0;
+		pix->color.b = 0;
 	}
 	else
 	{
