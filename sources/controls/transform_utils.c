@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:46:34 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 16:29:16 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:30:11 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	move_element(int keycode, t_vect *pos)
 	else if (keycode == KEY_PAGE_UP)
 		pos->y += STEP;
 	else if (keycode == KEY_LEFT)
-		pos->x -= STEP;
-	else if (keycode == KEY_RIGHT)
 		pos->x += STEP;
+	else if (keycode == KEY_RIGHT)
+		pos->x -= STEP;
 	else if (keycode == KEY_DOWN)
 		pos->z -= STEP;
 	else if (keycode == KEY_UP)

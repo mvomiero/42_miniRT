@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/13 13:29:34 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/14 16:46:37 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1600
+# define HEIGHT 800
 # define EPSILON 1e-6
 
 # define STEP 2

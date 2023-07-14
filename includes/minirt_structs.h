@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:53:22 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/10 16:57:59 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:03:02 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdbool.h>
 
 /* ELEMENTS */
+
+
 
 typedef struct s_coord
 {
@@ -30,6 +32,17 @@ typedef struct s_vect
 	double	y;
 	double	z;
 }				t_vect;
+
+typedef struct s_ray
+{
+	t_vect	origin;
+	t_vect	direction;	
+}				t_ray;
+
+typedef struct s_matrix
+{
+	double	d[4][4];
+}				t_matrix;
 
 typedef struct s_color
 {
@@ -62,6 +75,7 @@ typedef struct s_camera
 	t_vect	pos;
 	t_vect	norm_vect;
 	int		fov;
+	t_matrix	m;
 }			t_camera;
 
 typedef struct s_light
