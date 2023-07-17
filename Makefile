@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+         #
+#    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/10 17:19:44 by lde-ross         ###   ########.fr        #
+#    Updated: 2023/07/17 11:12:59 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,8 @@ SRC			=	main.c \
 				utils/vectors3.c \
 				utils/color.c \
 				render/render.c \
+				render/render_viewport_matrix.c \
+				render/render_get_ray.c \
 				render/intersect_sphere.c \
 				render/intersect_triangle.c \
 				render/intersect_cylinder.c \

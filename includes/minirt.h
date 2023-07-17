@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/14 16:46:37 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:23:08 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ bool	is_in_shadow(t_data *data, t_vect ray_origin, t_vect ray_direction,
 			double distance_to_light);
 bool	is_cylinder_disk_in_shadow(t_data *data, t_vect ray_o, t_vect ray_d,
 			t_cylinder *cyls);
+void	matrix_look_at(t_data *s);
+t_ray	get_ray(t_data *data, int x, int y);
 
 // cylinder_utils_t
 void	fill_normal_t1(double t1, t_data *data, t_cylinder *cyl, t_vect hp);
@@ -116,6 +118,7 @@ t_vect	move_point_along_normal(t_vect point, t_vect normal, double distance);
 t_vect	vector_cross_product(t_vect v1, t_vect v2);
 t_vect	vector_subtract(t_vect v1, t_vect v2);
 t_vect	vector_multiply(t_vect v1, t_vect v2);
+t_vect	new_vector(double x, double y, double z);
 
 /* COLOR */
 int		convert_rgb_to_hex(t_color *color);
