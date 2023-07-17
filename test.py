@@ -61,7 +61,8 @@ def modify_macros(file_path, macro1, macro2, new_value1, new_value2):
 print_text("\n\tMINIRT TESTS\n", BOLD, PURPLE)
 
 # managing input:
-user_input = input("Enter for tests: 'parsing', 'rendering', 'window_size', 'animation' or 'all'\n")
+user_input = input("Enter for tests: 'parsing', 'rendering', 'window_size',\
+\n'animation_diamond', 'animation_cube' or 'all'\n")
 
 if user_input == 'parsing' or user_input == 'all':
 
@@ -254,21 +255,15 @@ if user_input == 'window_size' or user_input == 'all':
 	subprocess.Popen(["make"])
 	time.sleep(5)
 
-if user_input == 'animation' or user_input == 'all':
+if user_input == 'animation_diamond':
 
 	""" SPHERE ANIMATION """
-	print_text("\nAnimation:\n", ITAL, BOLD, PURPLE)
-
-
-	""" SPHERE """
-
-	print_text("\nSphere:\n", ITAL, GREEN)
+	print_text("\nAnimation diamond:\n", ITAL, BOLD, PURPLE)
 
 	# Execute the command
-	subprocess.Popen(["./miniRT", "scenes/simple_scenes/camera_test_spheres.rt"])
+	subprocess.Popen(["./miniRT", "scenes/simple_scenes/animation_diamond.rt"])
 
-	# Wait for x seconds
-
+	time.sleep(TIME_PAUSE)
 	pyautogui.press('e')
 	""" SPHERE MOVEMENT """
 	keys = ['up', 'down', 'left', 'right', 'pageup', 'pagedown', '+', '-']
@@ -278,6 +273,21 @@ if user_input == 'animation' or user_input == 'all':
 		random_key = random.choice(keys)
 		pyautogui.press(random_key)
 
-		#time.sleep(TIME_PAUSE)
+
+if user_input == 'animation_cube':
+
+	""" SPHERE ANIMATION """
+	print_text("\nAnimation:\n", ITAL, BOLD, PURPLE)
+
+
+	subprocess.Popen(["./miniRT", "scenes/simple_scenes/animation_spheres.rt"])
+
+	keys = ['up', 'down', 'left', 'right', 'pageup', 'pagedown', '+', '-']
+
+	while True:
+		pyautogui.press('s')
+		random_key = random.choice(keys)
+		pyautogui.press(random_key)
+
 
 print_text("\n\t🌞 DONE!!! 🌞\n", ITAL, BOLD, PURPLE)
