@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/17 13:14:29 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:32:42 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static bool	parse_lines(t_data *data, int fd)
 
 bool	parser(t_data *data, char *arg)
 {
-	int	fd;
+	int		fd;
+	bool	parser_res;
 
 	if (!ft_strrchr(arg, '.'))
 		return (err_msg("Wrong file path or extension", NULL, NULL), false);
@@ -69,5 +70,7 @@ bool	parser(t_data *data, char *arg)
 	fd = open(arg, O_RDONLY);
 	if (fd < 0)
 		return (err_msg("Promblem opening file", NULL, NULL), false);
-	return (parse_lines(data, fd));
+	parser_res = parse_lines(data, fd);
+	close(fd);
+	return (parser_res);
 }

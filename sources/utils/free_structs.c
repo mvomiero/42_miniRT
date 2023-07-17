@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:54:38 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/05 18:15:29 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:25:04 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,20 @@ static void	free_cylinders(t_cylinder **alst)
 	}
 }
 
+static void	free_triangles(t_triangle **alst)
+{
+	t_triangle	*temp;
+	t_triangle	*current;
+
+	current = *alst;
+	while (current)
+	{
+		temp = current->next;
+		free(current);
+		current = temp;
+	}
+}
+
 void	free_structs(t_data *data)
 {
 	if (data->camera)
@@ -68,4 +82,6 @@ void	free_structs(t_data *data)
 		free_spheres(&data->spheres);
 	if (data->cylinders)
 		free_cylinders(&data->cylinders);
+	if (data->triangles)
+		free_triangles(&data->triangles);
 }
