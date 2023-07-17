@@ -3,14 +3,20 @@
 import subprocess
 import pyautogui
 import time
+import shutil
+import os
 
 RESET = '\033[0m'
 BOLD = '\033[1m'
 ITAL = '\033[3m'
 GREEN = '\033[32m'
+BLUE = '\033[34m'
+PURPLE = '\033[35m'
+ORANGE = '\033[38;5;208m'
 
 TIME = 3
 TIME_PAUSE = 1
+TIME_WR_INPUT = 2
 
 # printing formatted
 def print_text(text, *formatting):
@@ -31,7 +37,56 @@ file_path = 'scenes/simple_scenes/camera_test.rt'
 
 
 
-print_text("\n\tMINIRT TESTS\n", BOLD, GREEN)
+print_text("\n\tMINIRT TESTS\n", BOLD, PURPLE)
+
+""" WRONG INPUT """
+print_text("\nWrong input tests:\n", ITAL, BOLD, PURPLE)
+
+
+
+
+print_text("\nWrong text input: (blabla)", ITAL, ORANGE)
+subprocess.Popen(["./miniRT", "blabla"])
+time.sleep(TIME_WR_INPUT)
+
+print_text("\nNo input", ITAL, ORANGE)
+subprocess.Popen(["./miniRT", ""])
+time.sleep(TIME_WR_INPUT)
+
+print_text("\nNumeric input", ITAL, ORANGE)
+subprocess.Popen(["./miniRT", ""])
+time.sleep(TIME_WR_INPUT)
+
+print_text("\nNo arguments", ITAL, ORANGE)
+subprocess.Popen(["./miniRT"])
+time.sleep(TIME_WR_INPUT)
+
+print_text("\nToo many arguments", ITAL, ORANGE)
+subprocess.Popen(["./miniRT", "ciao", "bello"])
+time.sleep(TIME_WR_INPUT)
+
+print_text("\nWrong file no access", ITAL, ORANGE)
+subprocess.Popen(["./miniRT", "scenes/simple_scenes/test_wrong_no_access.rt"])
+time.sleep(TIME_WR_INPUT)
+
+# handling a copy of the file
+shutil.copy("scenes/simple_scenes/test_wrong.rt", "scenes/simple_scenes/test_wrong_temp.rt")
+
+print_text("\nToo few elements", ITAL, ORANGE)
+subprocess.Popen(["./miniRT", "scenes/simple_scenes/test_wrong_temp.rt"])
+time.sleep(TIME_WR_INPUT)
+
+print_text("\nWrong file line", ITAL, ORANGE)
+substitute_last_line("scenes/simple_scenes/test_wrong_temp.rt", "L 6,20,-20 0.7 255,255,255\nblabla")
+subprocess.Popen(["./miniRT", "scenes/simple_scenes/test_wrong_temp.rt"])
+time.sleep(TIME_WR_INPUT)
+
+print_text("\nToo many elements", ITAL, ORANGE)
+substitute_last_line("scenes/simple_scenes/test_wrong_temp.rt", "L 6,20,-20 0.7 255,255,255")
+subprocess.Popen(["./miniRT", "scenes/simple_scenes/test_wrong_temp.rt"])
+time.sleep(TIME_WR_INPUT)
+# delete the copied file
+os.remove("scenes/simple_scenes/test_wrong_temp.rt")
 
 """ SPHERE """
 

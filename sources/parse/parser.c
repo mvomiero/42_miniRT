@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:16:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/13 16:29:55 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:14:29 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static bool	parse_lines(t_data *data, int fd)
 			{
 				free(line);
 				free_tab(tab);
-				return (false);
+				return (err_msg("Parsing error", NULL, NULL), false);
 			}
 			free_tab(tab);
 		}
