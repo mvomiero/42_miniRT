@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:12:31 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/17 11:14:51 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:54:52 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_vect	ray_pixel_to_world(t_data *data, int x, int y)
 	double	p_y;
 
 	fov = tanf((double)data->camera->fov / 2 * M_PI / 180);
-	aspect_ratio = WIDTH / HEIGHT;
+	aspect_ratio = (double)WIDTH / HEIGHT;
 	p_x = (2 * (x + 0.5) / WIDTH - 1) * aspect_ratio * fov;
 	p_y = (1 - 2 * (y + 0.5) / HEIGHT) * fov;
 	return (new_vector(-p_x, p_y, 1));
