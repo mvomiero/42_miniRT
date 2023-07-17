@@ -6,6 +6,7 @@ import time
 import shutil
 import os
 import fileinput
+import random
 
 
 RESET = '\033[0m'
@@ -60,7 +61,7 @@ def modify_macros(file_path, macro1, macro2, new_value1, new_value2):
 print_text("\n\tMINIRT TESTS\n", BOLD, PURPLE)
 
 # managing input:
-user_input = input("Enter for tests: 'parsing', 'rendering', 'window_size' or 'all'\n")
+user_input = input("Enter for tests: 'parsing', 'rendering', 'window_size', 'animation' or 'all'\n")
 
 if user_input == 'parsing' or user_input == 'all':
 
@@ -253,5 +254,30 @@ if user_input == 'window_size' or user_input == 'all':
 	subprocess.Popen(["make"])
 	time.sleep(5)
 
-	print_text("\n\t🌞 DONE!!! 🌞\n", ITAL, BOLD, PURPLE)
+if user_input == 'animation' or user_input == 'all':
 
+	""" SPHERE ANIMATION """
+	print_text("\nAnimation:\n", ITAL, BOLD, PURPLE)
+
+
+	""" SPHERE """
+
+	print_text("\nSphere:\n", ITAL, GREEN)
+
+	# Execute the command
+	subprocess.Popen(["./miniRT", "scenes/simple_scenes/camera_test_spheres.rt"])
+
+	# Wait for x seconds
+
+	pyautogui.press('e')
+	""" SPHERE MOVEMENT """
+	keys = ['up', 'down', 'left', 'right', 'pageup', 'pagedown', '+', '-']
+
+	while True:
+		pyautogui.press('s')
+		random_key = random.choice(keys)
+		pyautogui.press(random_key)
+
+		#time.sleep(TIME_PAUSE)
+
+print_text("\n\t🌞 DONE!!! 🌞\n", ITAL, BOLD, PURPLE)
