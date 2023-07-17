@@ -138,7 +138,7 @@ time.sleep(TIME_PAUSE)
 #reset file to initial status
 substitute_last_line(file_path, "C 4,10,-70 -0.2,0,0.7 90")
 
-print_text("\n\t🌞DONE!!!🌞\n", ITAL, GREEN)
+print_text("\n\t🌞 DONE!!! 🌞\n", BOLD, GREEN)
 
 # general overview
 #C 4,10,-70 -0.2,0,0.7 90
