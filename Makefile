@@ -6,7 +6,7 @@
 #    By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 13:03:45 by mvomiero          #+#    #+#              #
-#    Updated: 2023/07/17 11:12:59 by mvomiero         ###   ########.fr        #
+#    Updated: 2023/07/17 11:57:46 by mvomiero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,6 +140,9 @@ norminette:
 	norminette ./sources
 	norminette ./libft
 	norminette -R CheckForbiddenSourceHeader ./includes
+
+test:
+	@python3 test.py
 
 valgrind:
 	valgrind  --track-origins=yes --leak-check=full --show-leak-kinds=all -s ./miniRT scenes/scene_spheres.rt

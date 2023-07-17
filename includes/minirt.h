@@ -6,7 +6,7 @@
 /*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:29:11 by mvomiero          #+#    #+#             */
-/*   Updated: 2023/07/17 11:52:39 by mvomiero         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:57:15 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define WIDTH 1600
+# define WIDTH 1000
 # define HEIGHT 800
 # define EPSILON 1e-6
 
