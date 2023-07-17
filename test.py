@@ -60,9 +60,9 @@ def modify_macros(file_path, macro1, macro2, new_value1, new_value2):
 print_text("\n\tMINIRT TESTS\n", BOLD, PURPLE)
 
 # managing input:
-user_input = input("Enter 'parsing' for parsing tests")
+user_input = input("Enter for tests: 'parsing', 'rendering', 'window_size' or 'all'\n")
 
-if user_input == 'parsing':
+if user_input == 'parsing' or user_input == 'all':
 
 	""" WRONG INPUT """
 	print_text("\nWrong input tests:\n", ITAL, BOLD, PURPLE)
@@ -115,7 +115,7 @@ if user_input == 'parsing':
 	# delete the copied file
 	os.remove("scenes/simple_scenes/test_wrong_temp.rt")
 
-else:
+if user_input == 'rendering' or user_input == 'all':
 
 	""" RENDERING AND CAMERA """
 	print_text("\nRendering and camera tests:\n", ITAL, BOLD, PURPLE)
@@ -132,8 +132,18 @@ else:
 	time.sleep(TIME)
 
 	# Simulate pressing the Esc key
+
+	""" SPHERE MOVEMENT """
+
+	pyautogui.press('s')
+	pyautogui.press('right')
+	pyautogui.press('pageup')
+	pyautogui.press('e')
+	pyautogui.press('i')
+	time.sleep(6)
 	pyautogui.press('esc')
 	time.sleep(TIME_PAUSE)
+
 
 	""" PLANE """
 
@@ -153,19 +163,6 @@ else:
 	pyautogui.press('esc')
 	time.sleep(TIME_PAUSE)
 
-	""" SPHERE WIDTH HEIGHT """
-
-	print_text("\nModified height and width:\n", ITAL, GREEN)
-
-	modify_macros('includes/minirt.h', 'HEIGHT', 'WIDTH', '1200', '600')
-	subprocess.Popen(["make"])
-	time.sleep(3)
-	subprocess.Popen(["./miniRT", "scenes/simple_scenes/sphere.rt"])
-	time.sleep(TIME)
-	pyautogui.press('esc')
-	modify_macros('includes/minirt.h', 'HEIGHT', 'WIDTH', '800', '1000')
-	subprocess.Popen(["make"])
-	time.sleep(3)
 
 	""" CAMERA """
 	#substitute_last_line(file_path, new_line)
@@ -239,6 +236,22 @@ else:
 
 	#reset file to initial status
 	substitute_last_line(file_path, "C 4,10,-70 -0.2,0,0.7 90")
+
+if user_input == 'window_size' or user_input == 'all':
+
+	""" SPHERE WIDTH HEIGHT """
+
+	print_text("\nModified height and width:\n", ITAL, GREEN)
+
+	modify_macros('includes/minirt.h', 'HEIGHT', 'WIDTH', '1200', '600')
+	subprocess.Popen(["make"])
+	time.sleep(3)
+	subprocess.Popen(["./miniRT", "scenes/simple_scenes/sphere.rt"])
+	time.sleep(TIME)
+	pyautogui.press('esc')
+	modify_macros('includes/minirt.h', 'HEIGHT', 'WIDTH', '800', '1000')
+	subprocess.Popen(["make"])
+	time.sleep(5)
 
 	print_text("\n\t🌞 DONE!!! 🌞\n", ITAL, BOLD, PURPLE)
 
