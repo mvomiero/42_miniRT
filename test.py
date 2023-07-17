@@ -5,6 +5,8 @@ import pyautogui
 import time
 import shutil
 import os
+import fileinput
+
 
 RESET = '\033[0m'
 BOLD = '\033[1m'
@@ -33,6 +35,27 @@ def substitute_last_line(file_path, new_line):
 			file.truncate()
 
 file_path = 'scenes/simple_scenes/camera_test.rt'
+
+# change some macros
+def modify_macros(file_path, macro1, macro2, new_value1, new_value2):
+    # Read the contents of the file
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+
+    # Modify the lines with the macros
+    modified_lines = []
+    for line in lines:
+        if macro1 in line:
+            line = f'# define {macro1} {new_value1}\n'
+        elif macro2 in line:
+            line = f'# define {macro2} {new_value2}\n'
+        modified_lines.append(line)
+
+    # Write the modified contents back to the file
+    with open(file_path, 'w') as file:
+        file.writelines(modified_lines)
+
+""" TESTS """
 
 print_text("\n\tMINIRT TESTS\n", BOLD, PURPLE)
 
@@ -121,7 +144,7 @@ else:
 	pyautogui.press('esc')
 	time.sleep(TIME_PAUSE)
 
-	""" PLANE """
+	""" CYLINDER """
 
 	print_text("\nCylinder:\n", ITAL, GREEN)
 
@@ -129,6 +152,20 @@ else:
 	time.sleep(TIME)
 	pyautogui.press('esc')
 	time.sleep(TIME_PAUSE)
+
+	""" SPHERE WIDTH HEIGHT """
+
+	print_text("\nModified height and width:\n", ITAL, GREEN)
+
+	modify_macros('includes/minirt.h', 'HEIGHT', 'WIDTH', '1200', '600')
+	subprocess.Popen(["make"])
+	time.sleep(3)
+	subprocess.Popen(["./miniRT", "scenes/simple_scenes/sphere.rt"])
+	time.sleep(TIME)
+	pyautogui.press('esc')
+	modify_macros('includes/minirt.h', 'HEIGHT', 'WIDTH', '800', '1000')
+	subprocess.Popen(["make"])
+	time.sleep(3)
 
 	""" CAMERA """
 	#substitute_last_line(file_path, new_line)
