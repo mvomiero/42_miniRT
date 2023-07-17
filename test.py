@@ -42,9 +42,6 @@ print_text("\n\tMINIRT TESTS\n", BOLD, PURPLE)
 """ WRONG INPUT """
 print_text("\nWrong input tests:\n", ITAL, BOLD, PURPLE)
 
-
-
-
 print_text("\nWrong text input: (blabla)", ITAL, ORANGE)
 subprocess.Popen(["./miniRT", "blabla"])
 time.sleep(TIME_WR_INPUT)
@@ -66,8 +63,13 @@ subprocess.Popen(["./miniRT", "ciao", "bello"])
 time.sleep(TIME_WR_INPUT)
 
 print_text("\nWrong file no access", ITAL, ORANGE)
+# set permissions to 000
+os.chmod("scenes/simple_scenes/test_wrong_no_access.rt", 0o000)
+subprocess.Popen(["cat", "scenes/simple_scenes/test_wrong_no_access.rt"])
+time.sleep(TIME_PAUSE)
 subprocess.Popen(["./miniRT", "scenes/simple_scenes/test_wrong_no_access.rt"])
 time.sleep(TIME_WR_INPUT)
+os.chmod("scenes/simple_scenes/test_wrong_no_access.rt", 0o777)
 
 # handling a copy of the file
 shutil.copy("scenes/simple_scenes/test_wrong.rt", "scenes/simple_scenes/test_wrong_temp.rt")
@@ -87,6 +89,10 @@ subprocess.Popen(["./miniRT", "scenes/simple_scenes/test_wrong_temp.rt"])
 time.sleep(TIME_WR_INPUT)
 # delete the copied file
 os.remove("scenes/simple_scenes/test_wrong_temp.rt")
+
+""" RENDERING AND CAMERA """
+print_text("\nRendering and camera tests:\n", ITAL, BOLD, PURPLE)
+
 
 """ SPHERE """
 
@@ -193,7 +199,7 @@ time.sleep(TIME_PAUSE)
 #reset file to initial status
 substitute_last_line(file_path, "C 4,10,-70 -0.2,0,0.7 90")
 
-print_text("\n\t🌞 DONE!!! 🌞\n", BOLD, GREEN)
+print_text("\n\t🌞 DONE!!! 🌞\n", ITAL, BOLD, PURPLE)
 
 # general overview
 #C 4,10,-70 -0.2,0,0.7 90
