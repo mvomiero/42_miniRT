@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   trace.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/17 10:49:30 by mvomiero          #+#    #+#             */
+/*   Updated: 2023/07/17 10:49:50 by mvomiero         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minirt.h"
 
 // static t_coord normalize_pixel(t_coord pixel)
@@ -35,14 +47,12 @@
 // 	return (rayDirection);
 // }
 
-void ray_tracer(t_data *data, t_coord pixel)
+void	ray_tracer(t_data *data, t_coord pixel)
 {
 	data->pix.t = INFINITY;
 	(void)pixel;
-	//data->pix.dir = get_ray_direction(data->camera, pixel);
 	hit_sphere(data, data->spheres, data->camera->pos, data->pix.dir);
 	hit_cylinder(data, data->cylinders, data->camera->pos, data->pix.dir);
 	hit_plane(data, data->planes, data->camera->pos, data->pix.dir);
 	hit_triangle(data, data->triangles, data->camera->pos, data->pix.dir);
 }
-

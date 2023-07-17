@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: mvomiero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:37:24 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/07/14 17:25:21 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:53:38 by mvomiero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,6 @@ t_vect	multiply_by_matrix(t_vect p, t_matrix m)
 
 t_vect	ray_pixel_to_world(t_data *data, int x, int y)
 {
-	// double fov;
-	// double aspectRatio;
-	// t_coord viewport;
-
-	// fov = data->camera->fov * M_PI / 180.0; // Convert FOV to radians
-	// aspectRatio = (double)WIDTH / (double)HEIGHT;
-	// viewport.y = 2.0 * tan(fov / 2.0);
-	// viewport.x = aspectRatio * viewport.y;
-	// viewport.x = (2 * x - 1) * viewport.x / 2.0;
-	// viewport.y = (1 - 2 * y) * viewport.y / 2.0;
-	
 	double	aspect_ratio;
 	double	fov;
 	double	p_x;
@@ -92,8 +81,6 @@ void	matrix_look_at(t_data *s)
 		right = vector_normalize(right);
 		up = vector_cross_product(s->camera->norm_vect, right);
 	}
-
-
 	s->camera->m.d[0][0] = right.x;
 	s->camera->m.d[0][1] = right.y;
 	s->camera->m.d[0][2] = right.z;
@@ -122,8 +109,6 @@ static void	render_pixel(t_data *data)
 
 
 	matrix_look_at(data);
-	printf("(POST render) pixel Camera norm: x %f, y %f, z %f\n\n", data->camera->norm_vect.x, data->camera->norm_vect.y, data->camera->norm_vect.z);
-
 	y = -1;
 	while (++y < HEIGHT)
 	{
@@ -152,7 +137,6 @@ void	render(t_data *data)
 	int	line_bytes;
 	int	endian;
 
-	printf("(PRE render) pixel Camera norm: x %f, y %f, z %f\n\n", data->camera->norm_vect.x, data->camera->norm_vect.y, data->camera->norm_vect.z);
 	if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
