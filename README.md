@@ -30,7 +30,7 @@ Ray tracing is a rendering technique used in computer graphics to generate reali
 
 #### Tracing the camera-pixel ray
 
-1. 
+1. the camera is defined by a coordinate position and a normal
 2. sdfs
 
 ![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/minirt_camera.gif?raw=true)
