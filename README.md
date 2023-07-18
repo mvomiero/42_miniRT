@@ -8,6 +8,10 @@ and the official 42 [minilibx](https://github.com/42Paris/minilibx-linux) submod
 ```
 git clone --recurse-submodules https://github.com/mvomiero/42_miniRT.git
 ```
+to run the python script to test some scenes, error handling and features of the project:
+```
+make test
+```
 
 # Project description
 
@@ -25,6 +29,9 @@ After parsing and initializing the window and getting the image buffer thanks to
 Ray tracing is a rendering technique used in computer graphics to generate realistic images by simulating the behavior of light. It works by tracing the path of light rays as they interact with objects in a virtual scene. Each ray is cast from a virtual camera through each pixel on the screen and traced as it bounces off objects, undergoes reflection or refraction (not implemented in our project), and eventually reaches a light source.
 
 #### Tracing the camera-pixel ray
+
+1. 
+2. sdfs
 
 ![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/minirt_camera.gif?raw=true)
 
