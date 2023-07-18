@@ -21,5 +21,7 @@ git clone --recurse-submodules https://github.com/mvomiero/42_miniRT.git
 
 * to see modifications: `git pull`
 
-<img src="url_of_the_gif" alt="Alt Text" width="300px" height="200px" />
+
+![Alt Text](![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/diagram.jpg?raw=true))
+
 
