@@ -24,6 +24,8 @@ _(mlx is a windowing graphics library that provides a simple interface for creat
 
 ## Ray tracing
 
+_click on the gifs to see the process_
+
 After parsing and initializing the window and getting the image buffer thanks to the mlx library, the ray tracing process starts.
 
 Ray tracing is a rendering technique used in computer graphics to generate realistic images by simulating the behavior of light. It works by tracing the path of light rays as they interact with objects in a virtual scene. Each ray is cast from a virtual camera through each pixel on the screen and traced as it bounces off objects, undergoes reflection or refraction (not implemented in our project), and eventually reaches a light source.
@@ -51,6 +53,14 @@ Ray tracing is a rendering technique used in computer graphics to generate reali
 
 
 #### Rendering the pixel color
+
+1. camera-pixel iterates through the objects and finds intersection points (if an object is hit in two points, the closesest one is choose)
+2. pixel color is updated with the object color
+3. the iteration continues, a closer hitted object is found. The picel color is changed accordingly.
+4. the inluence of ambient light. A vector is traced from the hit point to the light source, a dot product operation is then performed with this ray and the normal to the surface of the hitten object at the hit point. This way the contribution of the ambient light for the shading of the object is calculated.
+5. spotlight, in the case of an object drawing projected shadow on the object.
+
+
 
 ![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/minirt_intersections.gif?raw=true)
 
