@@ -3,7 +3,7 @@
 ## About
 
 Ray tracing project part of the core curriculum of 42 school. By myself and [Luca](https://github.com/lucafisc).
-Subject is to be found here: [subject]()
+Subject is to be found here: [subject](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/en.subject.pdf)
 
 ## Usage
 
