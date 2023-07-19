@@ -1,5 +1,10 @@
 # miniRT
 
+## About
+
+Ray tracing project part of the core curriculum of 42 school. By myself and [Luca](https://github.com/lucafisc).
+Subject is to be found here: [subject]()
+
 ## Usage
 
 * Clone the repository with our [libft](https://github.com/mvomiero/42_libft) 
@@ -65,6 +70,9 @@ Ray tracing is a rendering technique used in computer graphics to generate reali
 
 # Output
 
+![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/spheres.png?raw=true)
+![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/cylinders.png?raw=true)
+![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/cat.png?raw=true)
 
 
 
