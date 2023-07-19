@@ -2,16 +2,17 @@
 
 ## Usage
 
-Clone the repository with our [libft](https://github.com/mvomiero/42_libft) 
+* Clone the repository with our [libft](https://github.com/mvomiero/42_libft) 
 and the official 42 [minilibx](https://github.com/42Paris/minilibx-linux) submodules bu using the `--recurse-submodules` flag:
 
 ```
 git clone --recurse-submodules https://github.com/mvomiero/42_miniRT.git
 ```
-to run the python script to test some scenes, error handling and features of the project:
+* to run the python script to test some scenes, error handling and features of the project:
 ```
 make test
 ```
+* When the rendered window shows, press `I` to have for the list of keys
 
 # Project description
 
@@ -60,7 +61,10 @@ Ray tracing is a rendering technique used in computer graphics to generate reali
 4. the inluence of ambient light. A vector is traced from the hit point to the light source, a dot product operation is then performed with this ray and the normal to the surface of the hitten object at the hit point. This way the contribution of the ambient light for the shading of the object is calculated.
 5. spotlight, in the case of an object drawing projected shadow on the object.
 
-
-
 ![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/minirt_intersections.gif?raw=true)
+
+# Output
+
+
+
 
