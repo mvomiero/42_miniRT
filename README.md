@@ -47,6 +47,8 @@ Ray tracing is a rendering technique used in computer graphics to generate reali
 4. the ray is found for the world coordinate system, it has to be translated to the camera's one, by applying the conversion matrix
 5. the ray in the camera system is found
 
+![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/minirt_camera_ray.gif?raw=true)
+
 
 #### Rendering the pixel color
 
