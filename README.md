@@ -28,7 +28,6 @@ After parsing and initializing the window and getting the image buffer thanks to
 
 Ray tracing is a rendering technique used in computer graphics to generate realistic images by simulating the behavior of light. It works by tracing the path of light rays as they interact with objects in a virtual scene. Each ray is cast from a virtual camera through each pixel on the screen and traced as it bounces off objects, undergoes reflection or refraction (not implemented in our project), and eventually reaches a light source.
 
-#### Tracing the camera-pixel ray
 #### Findind the conversion matrix to translate the ray from the world to the camera coordinate system
 
 1. the camera is defined by a coordinate position and a normal
@@ -38,8 +37,16 @@ Ray tracing is a rendering technique used in computer graphics to generate reali
 5. the cross product of the camera direction and the right vector is the up vector
 6. the camera coordinate system is defined, with a matrix is possible to perform the operations to translate a vector from a system to another
 
-
 ![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/minirt_camera_matrix.gif?raw=true)
+
+#### Tracing the camera-pixel ray in the world coordinate system and translate it to the camer coordinate system
+
+1. Define the viewport knowing the field of view and the image ratio
+2. find the point world coordinates knowing x and y
+3. having two points, the ray is traced
+4. the ray is found for the world coordinate system, it has to be translated to the camera's one, by applying the conversion matrix
+5. the ray in the camera system is found
+
 
 #### Rendering the pixel color
 
