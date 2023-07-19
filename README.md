@@ -19,16 +19,16 @@ make test
 ```
 * When the rendered window shows, press `I` to have for the list of keys
 
-# Project description
+## Project description
 
-## Conceptual diagram
+### Conceptual diagram
 
 The different phases of the project: parsing, intializing mlx, rendering and starting the mlx loop.
 _(mlx is a windowing graphics library that provides a simple interface for creating graphical applications)_
 
 ![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/diagram.jpg?raw=true)
 
-## Ray tracing
+### Ray tracing
 
 _click on the gifs to see the process_
 
@@ -68,7 +68,7 @@ Ray tracing is a rendering technique used in computer graphics to generate reali
 
 ![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/minirt_intersections.gif?raw=true)
 
-# Output
+## Output
 
 ![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/spheres.png?raw=true)
 ![Alt Text](https://github.com/mvomiero/42_miniRT/blob/publishing/assets/cylinders.png?raw=true)
